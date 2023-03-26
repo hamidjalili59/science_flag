@@ -20,8 +20,6 @@ class Application extends StatelessWidget {
               colorSchemeSeed: Colors.blueAccent,
             ),
             routerConfig: _appRouter.config(),
-            // routerDelegate: _appRouter.delegate(),
-            // routeInformationParser: _appRouter.defaultRouteParser(),
             debugShowCheckedModeBanner: false,
           );
         });
