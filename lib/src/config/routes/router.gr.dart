@@ -14,19 +14,33 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    Login.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AuthPage(),
+      );
+    },
     Splash.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SplashPage(),
       );
     },
-    Login.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const LoginPage(),
-      );
-    },
   };
+}
+
+/// generated route for
+/// [AuthPage]
+class Login extends PageRouteInfo<void> {
+  const Login({List<PageRouteInfo>? children})
+      : super(
+          Login.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'Login';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -39,20 +53,6 @@ class Splash extends PageRouteInfo<void> {
         );
 
   static const String name = 'Splash';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [LoginPage]
-class Login extends PageRouteInfo<void> {
-  const Login({List<PageRouteInfo>? children})
-      : super(
-          Login.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'Login';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
