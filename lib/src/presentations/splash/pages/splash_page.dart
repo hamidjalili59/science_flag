@@ -138,8 +138,8 @@ class SplashAnimatedBackgroud extends StatefulWidget {
       _SplashAnimatedBackgroudState();
 }
 
-class _SplashAnimatedBackgroudState extends State<SplashAnimatedBackgroud>
-    with TickerProviderStateMixin {
+class _SplashAnimatedBackgroudState extends State<SplashAnimatedBackgroud> {
+  // with TickerProviderStateMixin {
   //
   // final DecorationTween decorationTween =
   //     DecorationTween(begin: const BoxDecoration(), end: const BoxDecoration());
