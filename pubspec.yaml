@@ -17,7 +17,7 @@ dependencies:
   database_service:
     git:
       url: https://github.com/hamidjalili59/database_service.git
-  dio: ^5.0.0
+  dio: ^5.1.0
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.12.0

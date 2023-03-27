@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:base_project/src/config/routes/router.dart';
 import 'package:base_project/src/config/utils/general_dependencies.dart';
 import 'package:base_project/src/presentations/splash/bloc/splash/splash_bloc.dart';
 import 'package:flutter/material.dart';
@@ -17,14 +16,13 @@ class SplashPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: BlocProvider<SplashBloc>(
-          create: (context) => StaticDependencies.bloc,
+          create: (context) => StaticDependencies.splashbloc,
           child: BlocConsumer<SplashBloc, SplashState>(
             listener: (context, state) {
               state.maybeWhen(
                 sucessfull: () async {
                   await Future.delayed(const Duration(seconds: 1));
-                  StaticDependencies.autoRoutes
-                      .push(const PageRouteInfo(Login.name));
+                  StaticDependencies.autoRoutes.replaceNamed('/login');
                 },
                 orElse: () {},
               );
@@ -33,7 +31,7 @@ class SplashPage extends StatelessWidget {
               return state.maybeWhen(
                 initial: () {
                   Future.delayed(const Duration(seconds: 1)).then((value) {
-                    StaticDependencies.bloc
+                    StaticDependencies.splashbloc
                         .add(const SplashEvent.readingData());
                   });
                   return SizedBox(
