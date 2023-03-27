@@ -42,6 +42,7 @@ Future<void> _initializeInjection() async {
   }
   GeneralConstants.didStartSetup = true;
   configureInjection();
-  // final mainModule = MainModulesInjection();
-  MainModulesInjection();
+  final mainModule = MainModulesInjection();
+  await mainModule.initDatabase();
+  await mainModule.registerHiveAdapters();
 }
