@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:base_project/src/config/routes/router.dart';
 import 'package:base_project/src/config/utils/function_helper.dart';
+import 'package:base_project/src/config/utils/general_dependencies.dart';
 import 'package:base_project/src/features/auth/domain/use_cases/otp_login_use_case.dart';
-import 'package:base_project/src/injectable/injectable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:base_project/src/features/core/models/tuple.dart' as tuple;
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,7 +18,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final OtpLoginUseCase _otpLoginUseCase;
   // final CacheAuthDataUseCase _cacheAuthDataUseCase;
   // final LogoutUseCase _logoutUseCase;
-  final AppRouter appRoute = getIt.get<AppRouter>();
   AuthBloc(
     this._otpLoginUseCase,
   ) : super(const AuthState.initial()) {
@@ -43,7 +42,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     )
         .then((value) {
       if (value.isRight()) {
-        appRoute.replaceNamed('/');
+        StaticDependencies.autoRoutes.pushNamed('/home');
       }
     });
   }

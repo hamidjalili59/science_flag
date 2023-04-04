@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:base_project/src/presentations/auth/pages/auth_page.dart';
+import 'package:base_project/src/presentations/home/pages/home_page.dart';
 import 'package:base_project/src/presentations/splash/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -26,11 +27,15 @@ class AppRouter extends _$AppRouter {
   final List<AutoRoute> routes = <AutoRoute>[
     AutoRoute(
       path: "/",
-      page: Splash.page, //replace your route Widget
+      page: Splash.page,
     ),
     AutoRoute(
       path: "/login",
-      page: Login.page, //replace your route Widget
+      page: Login.page,
+    ),
+    AutoRoute(
+      path: "/home",
+      page: Home.page,
     ),
   ];
 }

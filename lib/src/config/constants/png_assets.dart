@@ -1,6 +1,25 @@
 class PngAssets {
   const PngAssets._();
   static String get logo => 'logo'.png;
+  static String get bag => 'school_bag'.png;
+  static String get math => 'math_1'.png;
+  static String get math_2 => 'math_2'.png;
+  static String get math_3 => 'math_3'.png;
+  static String get math_4 => 'math_4'.png;
+  static String get math_5 => 'math_5'.png;
+  static String get shimi_1 => 'shimi_1'.png;
+  static String get shimi_2 => 'shimi_2'.png;
+  static String get shimi_3 => 'shimi_3'.png;
+  static String get lang_1 => 'lang_1'.png;
+  static String get lang_2 => 'lang_2'.png;
+  static String get lang_3 => 'lang_3'.png;
+  static String get lang_4 => 'lang_4'.png;
+  static String get lang_5 => 'lang_5'.png;
+  static String get lang_6 => 'lang_6'.png;
+  static String get lang_7 => 'lang_7'.png;
+  static String get bio_1 => 'bio_1'.png;
+  static String get bio_2 => 'bio_2'.png;
+  static String get bio_3 => 'bio_3'.png;
 }
 
 extension on String {
