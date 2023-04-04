@@ -50,13 +50,12 @@ class OtpLoginResponseAdapter extends TypeAdapter<OtpLoginResponse> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-OtpLoginResponse _$OtpLoginResponseFromJson(Map<String, dynamic> json) {
-  return OtpLoginResponse(
-    token: json['token'] as String,
-    email: json['email'] as String,
-    password: json['password'] as String,
-  );
-}
+OtpLoginResponse _$OtpLoginResponseFromJson(Map<String, dynamic> json) =>
+    OtpLoginResponse(
+      token: json['token'] as String,
+      email: json['email'] as String,
+      password: json['password'] as String,
+    );
 
 Map<String, dynamic> _$OtpLoginResponseToJson(OtpLoginResponse instance) =>
     <String, dynamic>{

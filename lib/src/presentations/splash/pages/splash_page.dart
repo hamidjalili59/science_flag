@@ -44,7 +44,7 @@ class SplashPage extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .headlineLarge!
-                              .copyWith(color: Colors.black),
+                              .copyWith(color: Colors.white),
                         ),
                       ),
                     ),
@@ -61,7 +61,7 @@ class SplashPage extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .headlineLarge!
-                              .copyWith(color: Colors.black),
+                              .copyWith(color: Colors.white),
                         ),
                       ),
                     ),
@@ -78,7 +78,7 @@ class SplashPage extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .headlineLarge!
-                              .copyWith(color: Colors.black),
+                              .copyWith(color: Colors.white),
                         ),
                       ),
                     ),
@@ -95,7 +95,7 @@ class SplashPage extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .headlineLarge!
-                              .copyWith(color: Colors.black),
+                              .copyWith(color: Colors.white),
                         ),
                       ),
                     ),
@@ -112,7 +112,7 @@ class SplashPage extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .headlineLarge!
-                              .copyWith(color: Colors.black),
+                              .copyWith(color: Colors.white),
                         ),
                       ),
                     ),
