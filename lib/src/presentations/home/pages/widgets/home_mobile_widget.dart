@@ -1,4 +1,5 @@
 import 'package:base_project/src/config/constants/png_assets.dart';
+import 'package:base_project/src/config/utils/general_dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,20 +8,17 @@ class HomeMobileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: SizedBox(
-        width: 1.sw,
-        height: 1.sh,
-        child: SingleChildScrollView(
-          child: Column(
-            children: const [
-              HomeAppbarWidget(),
-              HomeHeaderWidget(),
-              TabbarWidget(),
-              HomeGridViewWidget(),
-            ],
-          ),
+    return SizedBox(
+      width: 1.sw,
+      height: 1.sh,
+      child: SingleChildScrollView(
+        child: Column(
+          children: const [
+            HomeAppbarWidget(),
+            HomeHeaderWidget(),
+            TabbarWidget(),
+            HomeGridViewWidget(),
+          ],
         ),
       ),
     );
@@ -169,52 +167,70 @@ class HomeHeaderWidget extends StatelessWidget {
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(18.r)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Expanded(
+      child: InkWell(
+        onTap: () {
+          StaticDependencies.autoRoutes.pushNamed('/notes');
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+                flex: 1,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Notes',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.background,
+                                fontWeight: FontWeight.bold,
+                              ),
+                          textAlign: TextAlign.left,
+                        ),
+                        SizedBox(height: 10.h),
+                        Text(
+                          'Last seen yesterday',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(
+                                color:
+                                    Theme.of(context).colorScheme.onBackground,
+                                fontWeight: FontWeight.w500,
+                              ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15.h),
+                    Container(
+                      width: 120.w,
+                      height: 40.h,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.background,
+                        borderRadius: BorderRadius.circular(24.r),
+                      ),
+                      child: Text(
+                        'Add Course',
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                    ),
+                  ],
+                )),
+            Expanded(
               flex: 1,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Notes',
-                    style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                          color: Theme.of(context).colorScheme.background,
-                          fontWeight: FontWeight.bold,
-                        ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 10.h),
-                  Text(
-                    'Last seen yesterday',
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          color: Theme.of(context).colorScheme.onBackground,
-                          fontWeight: FontWeight.w500,
-                        ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 15.h),
-                  Container(
-                    width: 100.w,
-                    height: 40.h,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.background,
-                      borderRadius: BorderRadius.circular(24.r),
-                    ),
-                    child: Text(
-                      'Add Course',
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ),
-                  ),
-                ],
-              )),
-          Expanded(
-            flex: 1,
-            child: Image.asset(PngAssets.bag),
-          ),
-        ],
+              child: Image.asset(PngAssets.bag),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -257,15 +273,17 @@ class HomeAppbarWidget extends StatelessWidget {
             ),
             const Spacer(),
             Container(
-              width: 70,
-              height: 70,
+              width: 60.w,
+              height: 60.w,
+              padding: EdgeInsets.all(12.r),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(16.r),
+                color: Theme.of(context).colorScheme.secondary,
               ),
-              child: Icon(
-                Icons.search_rounded,
-                size: 36.r,
+              child: SizedBox(
+                child: Image.asset(
+                  PngAssets.search_3,
+                ),
               ),
             ),
           ],

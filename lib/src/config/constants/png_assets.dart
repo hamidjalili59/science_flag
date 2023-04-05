@@ -2,6 +2,12 @@ class PngAssets {
   const PngAssets._();
   static String get logo => 'logo'.png;
   static String get bag => 'school_bag'.png;
+  static String get mathNote => 'math_note'.icon;
+  static String get mathNote2 => 'math_note_2'.icon;
+  static String get chemistryNote1 => 'chemistry_1'.icon;
+  static String get chemistryNote2 => 'chemistry_2'.icon;
+  static String get chemistryNote3 => 'chemistry_3'.icon;
+  static String get chemistryNote4 => 'chemistry_4'.icon;
   static String get math => 'math_1'.png;
   static String get math_2 => 'math_2'.png;
   static String get math_3 => 'math_3'.png;
@@ -20,10 +26,16 @@ class PngAssets {
   static String get bio_1 => 'bio_1'.png;
   static String get bio_2 => 'bio_2'.png;
   static String get bio_3 => 'bio_3'.png;
+  static String get searchDark => 'search_dark'.png;
+  static String get searchLight => 'search_light'.png;
+  static String get search_1 => 'search_1'.png;
+  static String get search_2 => 'search_2'.png;
+  static String get search_3 => 'search_3'.png;
+  static String get open => 'open'.png;
 }
 
 extension on String {
   String get png => 'assets/images/$this.png';
-  // String get icons => 'assets/images/icons/$this.png';
+  String get icon => 'assets/icons/$this.png';
   // String get intro => 'assets/images/png/intro/$this.png';
 }
