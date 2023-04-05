@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:base_project/src/config/routes/router.dart';
 import 'package:base_project/src/config/utils/function_helper.dart';
 import 'package:base_project/src/config/utils/general_dependencies.dart';
 import 'package:base_project/src/features/auth/domain/use_cases/otp_login_use_case.dart';
@@ -16,8 +14,6 @@ part 'auth_bloc.freezed.dart';
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final OtpLoginUseCase _otpLoginUseCase;
-  // final CacheAuthDataUseCase _cacheAuthDataUseCase;
-  // final LogoutUseCase _logoutUseCase;
   AuthBloc(
     this._otpLoginUseCase,
   ) : super(const AuthState.initial()) {
