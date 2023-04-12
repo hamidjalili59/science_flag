@@ -16,7 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
   @override
   void onEvent(HomeEvent event) {
-    FunctionHelper().logMessage('>>>>> Auth Bloc event: ${event.toString()}');
+    FunctionHelper().logMessage('>>>>> Home Bloc event: ${event.toString()}');
     super.onEvent(event);
   }
 

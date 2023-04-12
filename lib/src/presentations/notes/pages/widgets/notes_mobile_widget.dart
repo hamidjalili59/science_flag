@@ -68,18 +68,29 @@ class NotesMobileWidget extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .titleLarge,
+                                          .titleLarge!
+                                          .copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .surface,
+                                          ),
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 40.w,
-                                    child: Padding(
-                                      padding: EdgeInsets.all(6.0.r),
-                                      child: Image.asset(
-                                        PngAssets.open,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onSurface,
+                                  InkWell(
+                                    onTap: () {
+                                      StaticDependencies.autoRoutes
+                                          .pushNamed('/editor');
+                                    },
+                                    child: SizedBox(
+                                      width: 40.w,
+                                      child: Padding(
+                                        padding: EdgeInsets.all(6.0.r),
+                                        child: Image.asset(
+                                          PngAssets.open,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .surface,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -116,19 +127,21 @@ class AppbarSubPagesWidget extends StatelessWidget {
         children: [
           Icon(
             Icons.arrow_back_ios_new_rounded,
-            color: Theme.of(context).colorScheme.onSurface,
+            color: Theme.of(context).colorScheme.surface,
             size: 30.r,
           ),
           Text(
             'Notes',
-            style: Theme.of(context).textTheme.headlineSmall,
+            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.surface,
+                ),
             textAlign: TextAlign.center,
           ),
           SizedBox(
             width: 30.w,
             child: Image.asset(
               PngAssets.search_1,
-              color: Theme.of(context).colorScheme.onSurface,
+              color: Theme.of(context).colorScheme.surface,
             ),
           ),
         ],

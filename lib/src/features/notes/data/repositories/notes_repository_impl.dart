@@ -17,6 +17,7 @@ class NotesRepositoryImpl extends NotesRepository {
   @override
   Future<Either<NotesFailure, List<NotesItemListModel>>> cacheNotesItem(
       {required List<NotesItemListModel> notesList}) {
+    _localDS;
     throw UnimplementedError();
   }
 

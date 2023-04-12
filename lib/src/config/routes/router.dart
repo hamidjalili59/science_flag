@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:base_project/src/presentations/auth/pages/auth_page.dart';
+import 'package:base_project/src/presentations/editor/pages/editor_page.dart';
 import 'package:base_project/src/presentations/home/pages/home_page.dart';
 import 'package:base_project/src/presentations/notes/pages/notes_page.dart';
 import 'package:base_project/src/presentations/splash/pages/splash_page.dart';
@@ -26,6 +27,10 @@ class AppRouter extends _$AppRouter {
     AutoRoute(
       path: "/notes",
       page: Notes.page,
+    ),
+    AutoRoute(
+      path: "/editor",
+      page: Editor.page,
     ),
   ];
 }

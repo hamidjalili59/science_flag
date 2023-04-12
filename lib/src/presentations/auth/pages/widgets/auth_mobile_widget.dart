@@ -29,7 +29,10 @@ class AuthMobileWidget extends StatelessWidget {
                       fit: BoxFit.contain,
                       child: Text(
                         'Sign up',
-                        style: Theme.of(context).textTheme.displayMedium,
+                        style:
+                            Theme.of(context).textTheme.displayMedium!.copyWith(
+                                  color: Theme.of(context).colorScheme.surface,
+                                ),
                       )),
                 ),
               ),
@@ -37,7 +40,9 @@ class AuthMobileWidget extends StatelessWidget {
             SizedBox(height: 0.12.sh),
             Text(
               'Login',
-              style: Theme.of(context).textTheme.displayLarge,
+              style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.surface,
+                  ),
             ),
             SizedBox(height: 0.15.sh),
             SimpleTextFieldWidget(

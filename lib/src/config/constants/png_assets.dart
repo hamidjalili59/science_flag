@@ -32,6 +32,10 @@ class PngAssets {
   static String get search_2 => 'search_2'.png;
   static String get search_3 => 'search_3'.png;
   static String get open => 'open'.png;
+  static String get slide_1 => 'slide_1'.icon;
+  static String get slide_2 => 'slide_2'.icon;
+  static String get slide_3 => 'slide_3'.icon;
+  static String get slide_4 => 'slide_4'.icon;
 }
 
 extension on String {

@@ -20,6 +20,14 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AuthPage(),
       );
     },
+    Editor.name: (routeData) {
+      final args =
+          routeData.argsAs<EditorArgs>(orElse: () => const EditorArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EditorPage(key: args.key),
+      );
+    },
     Home.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -53,6 +61,34 @@ class Login extends PageRouteInfo<void> {
   static const String name = 'Login';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EditorPage]
+class Editor extends PageRouteInfo<EditorArgs> {
+  Editor({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          Editor.name,
+          args: EditorArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'Editor';
+
+  static const PageInfo<EditorArgs> page = PageInfo<EditorArgs>(name);
+}
+
+class EditorArgs {
+  const EditorArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'EditorArgs{key: $key}';
+  }
 }
 
 /// generated route for

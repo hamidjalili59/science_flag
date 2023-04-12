@@ -105,15 +105,21 @@ class HomeGridViewItemWidget extends StatelessWidget {
           ),
           Text(
             title,
-            style: Theme.of(context).textTheme.titleMedium,
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  color: Theme.of(context).colorScheme.surface,
+                ),
           ),
           Text(
             '$courseNumber courses',
-            style: Theme.of(context).textTheme.titleSmall,
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.surface,
+                ),
           ),
           Text(
             '$noteNumber notes',
-            style: Theme.of(context).textTheme.titleSmall,
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.surface,
+                ),
           ),
         ],
       ),
@@ -136,17 +142,17 @@ class TabbarWidget extends StatelessWidget {
         children: [
           Text(
             'Subject',
-            style: Theme.of(context)
-                .textTheme
-                .displaySmall!
-                .copyWith(fontWeight: FontWeight.w600),
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.surface,
+                ),
           ),
           Text(
             'See all',
-            style: Theme.of(context)
-                .textTheme
-                .labelLarge!
-                .copyWith(fontWeight: FontWeight.w400),
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: Theme.of(context).colorScheme.surface,
+                ),
           ),
         ],
       ),
@@ -220,7 +226,9 @@ class HomeHeaderWidget extends StatelessWidget {
                       ),
                       child: Text(
                         'Add Course',
-                        style: Theme.of(context).textTheme.labelLarge,
+                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                              color: Theme.of(context).colorScheme.surface,
+                            ),
                       ),
                     ),
                   ],
@@ -259,14 +267,19 @@ class HomeAppbarWidget extends StatelessWidget {
                 children: [
                   Text(
                     'Welcome',
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: Theme.of(context).colorScheme.surface,
+                        ),
                   ),
                   Text(
                     'Find your course',
                     style: Theme.of(context)
                         .textTheme
                         .headlineLarge!
-                        .copyWith(fontWeight: FontWeight.bold),
+                        .copyWith(fontWeight: FontWeight.bold)
+                        .copyWith(
+                          color: Theme.of(context).colorScheme.surface,
+                        ),
                   ),
                 ],
               ),
@@ -275,7 +288,7 @@ class HomeAppbarWidget extends StatelessWidget {
             Container(
               width: 60.w,
               height: 60.w,
-              padding: EdgeInsets.all(12.r),
+              padding: EdgeInsets.all(16.r),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.r),
                 color: Theme.of(context).colorScheme.secondary,
