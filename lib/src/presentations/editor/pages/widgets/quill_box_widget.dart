@@ -1,4 +1,3 @@
-import 'package:base_project/src/config/utils/general_dependencies.dart';
 import 'package:base_project/src/presentations/editor/bloc/editor/editor_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
@@ -6,10 +5,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dotted_border/dotted_border.dart';
 
 class QuillBoxWidget extends StatelessWidget {
-  const QuillBoxWidget(
-      {super.key, required this.index, required this.stackWidgetData});
+  const QuillBoxWidget({
+    super.key,
+    required this.index,
+    required this.stackWidgetData,
+    required this.bloc,
+  });
   final int index;
   final Map<String, dynamic> stackWidgetData;
+  final EditorBloc bloc;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class QuillBoxWidget extends StatelessWidget {
               s.values.toList()[index]['offset'] = Offset(
                   details.localPosition.dx - 50,
                   details.localPosition.dy + 200);
-              StaticDependencies.editorbloc.add(
+              bloc.add(
                 EditorEvent.updateTool('text', '$index', s),
               );
             },

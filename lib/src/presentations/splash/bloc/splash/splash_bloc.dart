@@ -9,7 +9,7 @@ part 'splash_state.dart';
 part 'splash_event.dart';
 part 'splash_bloc.freezed.dart';
 
-@injectable
+@singleton
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
   SplashBloc() : super(const SplashState.initial()) {
     on<_ReadingData>(_onReadingData);

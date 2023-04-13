@@ -12,11 +12,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class EditorPage extends StatelessWidget {
   EditorPage({super.key});
   final Map<String, dynamic> stackWidget = {};
+  final EditorBloc bloc = StaticDependencies.editorbloc;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: BlocProvider(
-        create: (context) => StaticDependencies.editorbloc,
+        create: (context) => bloc,
         child: CustomFloatingActionButton(
           type: CustomFloatingActionButtonType.verticalUp,
           spaceFromRight: 16.w,
@@ -54,8 +55,7 @@ class EditorPage extends StatelessWidget {
                   };
                 }
 
-                StaticDependencies.editorbloc
-                    .add(EditorEvent.addTool('text', stackWidget));
+                bloc.add(EditorEvent.addTool('text', stackWidget));
                 StaticDependencies.autoRoutes.pop();
               },
               child: CircleAvatar(
@@ -104,8 +104,10 @@ class EditorPage extends StatelessWidget {
               ),
             ),
             body: ScreenUtil().screenWidth < 400
-                ? EditorMobileWidget()
-                : EditorMobileWidget(),
+                ? EditorMobileWidget(
+                    bloc: bloc,
+                  )
+                : EditorMobileWidget(bloc: bloc),
           ),
         ),
       ),

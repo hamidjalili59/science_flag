@@ -85,7 +85,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i16.OtpLoginUseCase>(() => authFeatureModule.otpLoginUseCase);
     gh.factory<_i17.OtpSignupUseCase>(() => authFeatureModule.otpSignupUseCase);
     gh.factory<_i18.RequestInterceptor>(() => _i18.RequestInterceptor());
-    gh.factory<_i19.SplashBloc>(() => _i19.SplashBloc());
+    gh.singleton<_i19.SplashBloc>(_i19.SplashBloc());
     gh.factory<_i20.AuthBloc>(() => _i20.AuthBloc(gh<_i16.OtpLoginUseCase>()));
     return this;
   }

@@ -1,5 +1,4 @@
 import 'package:base_project/src/config/constants/png_assets.dart';
-import 'package:base_project/src/config/utils/general_dependencies.dart';
 import 'package:base_project/src/presentations/editor/bloc/editor/editor_bloc.dart';
 import 'package:base_project/src/presentations/editor/pages/widgets/quill_box_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +11,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 /// بتونه تنظیم کنه که چطور بهش نمایش بده با اسکرول
 /// یا دونه ای با دکمه بعد و قبلی یا با یک نسبت خاصی
 class EditorMobileWidget extends StatelessWidget {
-  EditorMobileWidget({super.key});
+  EditorMobileWidget({super.key, required this.bloc});
   final List<quill.QuillController> controllerList = List.empty(growable: true);
   final int controllerPosition = 0;
+  final EditorBloc bloc;
   @override
   Widget build(BuildContext context) {
     if (controllerList.isEmpty) {
@@ -38,7 +38,7 @@ class EditorMobileWidget extends StatelessWidget {
                       height: 0.8.sh,
                       color: Colors.white,
                       child: BlocBuilder<EditorBloc, EditorState>(
-                        bloc: StaticDependencies.editorbloc,
+                        bloc: bloc,
                         builder: (context, state) {
                           return state.maybeWhen(
                             idle: (isLoading, stackWidgetData) {
@@ -57,6 +57,7 @@ class EditorMobileWidget extends StatelessWidget {
                                         child: QuillBoxWidget(
                                           index: index,
                                           stackWidgetData: stackWidgetData,
+                                          bloc: bloc,
                                         ),
                                       ),
                                     ),
