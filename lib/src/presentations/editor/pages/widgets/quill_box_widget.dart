@@ -10,74 +10,61 @@ class QuillBoxWidget extends StatelessWidget {
     required this.index,
     required this.stackWidgetData,
     required this.bloc,
+    required this.controller,
   });
   final int index;
   final Map<String, dynamic> stackWidgetData;
   final EditorBloc bloc;
+  final quill.QuillController controller;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Align(
-          alignment: Alignment.topCenter,
-          child: GestureDetector(
-            onLongPressMoveUpdate: (details) {
-              Map<String, dynamic> s = stackWidgetData;
-              s.values.toList()[index]['offset'] = Offset(
-                  details.localPosition.dx - 50,
-                  details.localPosition.dy + 200);
-              bloc.add(
-                EditorEvent.updateTool('text', '$index', s),
-              );
-            },
-            child: const SizedBox(
-              width: 30,
-              height: 30,
-              child: CircleAvatar(
-                child: Icon(
-                  Icons.keyboard_double_arrow_right_rounded,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          right: 5,
-          top: 18,
-          child: GestureDetector(
-            onLongPressMoveUpdate: (details) {},
-            child: const Icon(
-              Icons.arrow_outward_rounded,
-              color: Colors.blueAccent,
-            ),
-          ),
-        ),
-        Positioned.fill(
-          top: 35.h,
-          left: 25.w,
-          right: 25.w,
-          child: SizedBox(
-            child: DottedBorder(
-              child: quill.QuillEditor(
-                controller: quill.QuillController.basic(),
-                focusNode: FocusNode(),
-                scrollController: ScrollController(),
-                scrollable: false,
-                padding: EdgeInsets.all(0.r),
-                autoFocus: false,
-                readOnly: false,
-                maxHeight: 0.1.sh,
-                textCapitalization: TextCapitalization.words,
-                enableSelectionToolbar: true,
-                paintCursorAboveText: true,
-                expands: true,
-              ),
-            ),
-          ),
-        ),
-      ],
+    // return Stack(
+    //   children: [
+    // const SizedBox(
+    //   width: 30,
+    //   height: 30,
+    //   child: CircleAvatar(
+    //     child: Icon(
+    //       Icons.keyboard_double_arrow_right_rounded,
+    //       color: Colors.black,
+    //     ),
+    //   ),
+    // ),
+    // Positioned(
+    //   right: 5,
+    //   top: 18,
+    //   child: GestureDetector(
+    //     onLongPressMoveUpdate: (details) {},
+    //     child: const Icon(
+    //       Icons.arrow_outward_rounded,
+    //       color: Colors.blueAccent,
+    //     ),
+    //   ),
+    // ),
+    // Positioned.fill(
+    //   top: 35.h,
+    //   left: 25.w,
+    //   right: 25.w,
+    //   child:
+    return SizedBox(
+      child: quill.QuillEditor(
+        controller: controller,
+        focusNode: FocusNode(),
+        scrollController: ScrollController(),
+        scrollable: false,
+        padding: EdgeInsets.all(0.r),
+        autoFocus: false,
+        readOnly: false,
+        // maxHeight: 0.1.sh,
+        textCapitalization: TextCapitalization.words,
+        enableSelectionToolbar: true,
+        paintCursorAboveText: true,
+        expands: false,
+      ),
     );
+    // );
+    // ],
+    // );
   }
 }

@@ -41,7 +41,6 @@ class EditorBloc extends Bloc<EditorEvent, EditorState> {
     Emitter<EditorState> emit,
   ) {
     if (event.widgetType == 'text') {
-      print(event);
       emit(_Idle(isLoading: false, stackWidgetData: event.config));
     } else if (event.widgetType == 'camera') {
     } else {}
