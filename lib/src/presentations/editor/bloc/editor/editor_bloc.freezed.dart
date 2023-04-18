@@ -18,8 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$EditorState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool isLoading, Map<String, dynamic> stackWidgetData)
+    required TResult Function(bool isLoading,
+            List<Map<String, dynamic>> stackWidgetData, int selectPosition)
         idle,
     required TResult Function() sucess,
     required TResult Function() failed,
@@ -27,7 +27,8 @@ mixin _$EditorState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading, Map<String, dynamic> stackWidgetData)?
+    TResult? Function(bool isLoading,
+            List<Map<String, dynamic>> stackWidgetData, int selectPosition)?
         idle,
     TResult? Function()? sucess,
     TResult? Function()? failed,
@@ -35,7 +36,8 @@ mixin _$EditorState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading, Map<String, dynamic> stackWidgetData)?
+    TResult Function(bool isLoading, List<Map<String, dynamic>> stackWidgetData,
+            int selectPosition)?
         idle,
     TResult Function()? sucess,
     TResult Function()? failed,
@@ -89,7 +91,10 @@ abstract class _$$_IdleCopyWith<$Res> {
   factory _$$_IdleCopyWith(_$_Idle value, $Res Function(_$_Idle) then) =
       __$$_IdleCopyWithImpl<$Res>;
   @useResult
-  $Res call({bool isLoading, Map<String, dynamic> stackWidgetData});
+  $Res call(
+      {bool isLoading,
+      List<Map<String, dynamic>> stackWidgetData,
+      int selectPosition});
 }
 
 /// @nodoc
@@ -104,6 +109,7 @@ class __$$_IdleCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? stackWidgetData = null,
+    Object? selectPosition = null,
   }) {
     return _then(_$_Idle(
       isLoading: null == isLoading
@@ -113,7 +119,11 @@ class __$$_IdleCopyWithImpl<$Res>
       stackWidgetData: null == stackWidgetData
           ? _value._stackWidgetData
           : stackWidgetData // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as List<Map<String, dynamic>>,
+      selectPosition: null == selectPosition
+          ? _value.selectPosition
+          : selectPosition // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -123,24 +133,29 @@ class __$$_IdleCopyWithImpl<$Res>
 class _$_Idle implements _Idle {
   const _$_Idle(
       {this.isLoading = false,
-      final Map<String, dynamic> stackWidgetData = const {}})
+      final List<Map<String, dynamic>> stackWidgetData = const [],
+      this.selectPosition = 0})
       : _stackWidgetData = stackWidgetData;
 
   @override
   @JsonKey()
   final bool isLoading;
-  final Map<String, dynamic> _stackWidgetData;
+  final List<Map<String, dynamic>> _stackWidgetData;
   @override
   @JsonKey()
-  Map<String, dynamic> get stackWidgetData {
-    if (_stackWidgetData is EqualUnmodifiableMapView) return _stackWidgetData;
+  List<Map<String, dynamic>> get stackWidgetData {
+    if (_stackWidgetData is EqualUnmodifiableListView) return _stackWidgetData;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_stackWidgetData);
+    return EqualUnmodifiableListView(_stackWidgetData);
   }
 
   @override
+  @JsonKey()
+  final int selectPosition;
+
+  @override
   String toString() {
-    return 'EditorState.idle(isLoading: $isLoading, stackWidgetData: $stackWidgetData)';
+    return 'EditorState.idle(isLoading: $isLoading, stackWidgetData: $stackWidgetData, selectPosition: $selectPosition)';
   }
 
   @override
@@ -151,12 +166,14 @@ class _$_Idle implements _Idle {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             const DeepCollectionEquality()
-                .equals(other._stackWidgetData, _stackWidgetData));
+                .equals(other._stackWidgetData, _stackWidgetData) &&
+            (identical(other.selectPosition, selectPosition) ||
+                other.selectPosition == selectPosition));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, isLoading,
-      const DeepCollectionEquality().hash(_stackWidgetData));
+      const DeepCollectionEquality().hash(_stackWidgetData), selectPosition);
 
   @JsonKey(ignore: true)
   @override
@@ -167,37 +184,39 @@ class _$_Idle implements _Idle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool isLoading, Map<String, dynamic> stackWidgetData)
+    required TResult Function(bool isLoading,
+            List<Map<String, dynamic>> stackWidgetData, int selectPosition)
         idle,
     required TResult Function() sucess,
     required TResult Function() failed,
   }) {
-    return idle(isLoading, stackWidgetData);
+    return idle(isLoading, stackWidgetData, selectPosition);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading, Map<String, dynamic> stackWidgetData)?
+    TResult? Function(bool isLoading,
+            List<Map<String, dynamic>> stackWidgetData, int selectPosition)?
         idle,
     TResult? Function()? sucess,
     TResult? Function()? failed,
   }) {
-    return idle?.call(isLoading, stackWidgetData);
+    return idle?.call(isLoading, stackWidgetData, selectPosition);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading, Map<String, dynamic> stackWidgetData)?
+    TResult Function(bool isLoading, List<Map<String, dynamic>> stackWidgetData,
+            int selectPosition)?
         idle,
     TResult Function()? sucess,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
     if (idle != null) {
-      return idle(isLoading, stackWidgetData);
+      return idle(isLoading, stackWidgetData, selectPosition);
     }
     return orElse();
   }
@@ -240,10 +259,12 @@ class _$_Idle implements _Idle {
 abstract class _Idle implements EditorState {
   const factory _Idle(
       {final bool isLoading,
-      final Map<String, dynamic> stackWidgetData}) = _$_Idle;
+      final List<Map<String, dynamic>> stackWidgetData,
+      final int selectPosition}) = _$_Idle;
 
   bool get isLoading;
-  Map<String, dynamic> get stackWidgetData;
+  List<Map<String, dynamic>> get stackWidgetData;
+  int get selectPosition;
   @JsonKey(ignore: true)
   _$$_IdleCopyWith<_$_Idle> get copyWith => throw _privateConstructorUsedError;
 }
@@ -284,8 +305,8 @@ class _$_Sucess implements _Sucess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool isLoading, Map<String, dynamic> stackWidgetData)
+    required TResult Function(bool isLoading,
+            List<Map<String, dynamic>> stackWidgetData, int selectPosition)
         idle,
     required TResult Function() sucess,
     required TResult Function() failed,
@@ -296,7 +317,8 @@ class _$_Sucess implements _Sucess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading, Map<String, dynamic> stackWidgetData)?
+    TResult? Function(bool isLoading,
+            List<Map<String, dynamic>> stackWidgetData, int selectPosition)?
         idle,
     TResult? Function()? sucess,
     TResult? Function()? failed,
@@ -307,7 +329,8 @@ class _$_Sucess implements _Sucess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading, Map<String, dynamic> stackWidgetData)?
+    TResult Function(bool isLoading, List<Map<String, dynamic>> stackWidgetData,
+            int selectPosition)?
         idle,
     TResult Function()? sucess,
     TResult Function()? failed,
@@ -394,8 +417,8 @@ class _$_Failed implements _Failed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool isLoading, Map<String, dynamic> stackWidgetData)
+    required TResult Function(bool isLoading,
+            List<Map<String, dynamic>> stackWidgetData, int selectPosition)
         idle,
     required TResult Function() sucess,
     required TResult Function() failed,
@@ -406,7 +429,8 @@ class _$_Failed implements _Failed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading, Map<String, dynamic> stackWidgetData)?
+    TResult? Function(bool isLoading,
+            List<Map<String, dynamic>> stackWidgetData, int selectPosition)?
         idle,
     TResult? Function()? sucess,
     TResult? Function()? failed,
@@ -417,7 +441,8 @@ class _$_Failed implements _Failed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading, Map<String, dynamic> stackWidgetData)?
+    TResult Function(bool isLoading, List<Map<String, dynamic>> stackWidgetData,
+            int selectPosition)?
         idle,
     TResult Function()? sucess,
     TResult Function()? failed,
@@ -470,65 +495,71 @@ abstract class _Failed implements EditorState {
 
 /// @nodoc
 mixin _$EditorEvent {
+  String get widgetType => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() refresh,
     required TResult Function(
-            String widgetType, Map<String, dynamic> stackWidget)
+            String widgetType, List<Map<String, dynamic>> stackWidget)
         addTool,
     required TResult Function(String widgetType, String tag) removeTool,
-    required TResult Function(
-            String widgetType, String tag, Map<String, dynamic> config)
+    required TResult Function(int position, String widgetType) switchPosition,
+    required TResult Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)
         updateTool,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? refresh,
-    TResult? Function(String widgetType, Map<String, dynamic> stackWidget)?
+    TResult? Function(
+            String widgetType, List<Map<String, dynamic>> stackWidget)?
         addTool,
     TResult? Function(String widgetType, String tag)? removeTool,
-    TResult? Function(
-            String widgetType, String tag, Map<String, dynamic> config)?
+    TResult? Function(int position, String widgetType)? switchPosition,
+    TResult? Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)?
         updateTool,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? refresh,
-    TResult Function(String widgetType, Map<String, dynamic> stackWidget)?
+    TResult Function(String widgetType, List<Map<String, dynamic>> stackWidget)?
         addTool,
     TResult Function(String widgetType, String tag)? removeTool,
-    TResult Function(
-            String widgetType, String tag, Map<String, dynamic> config)?
+    TResult Function(int position, String widgetType)? switchPosition,
+    TResult Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)?
         updateTool,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Refresh value) refresh,
     required TResult Function(_AddTool value) addTool,
     required TResult Function(_RemoveTool value) removeTool,
+    required TResult Function(_SwitchPosition value) switchPosition,
     required TResult Function(_UpdateTool value) updateTool,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Refresh value)? refresh,
     TResult? Function(_AddTool value)? addTool,
     TResult? Function(_RemoveTool value)? removeTool,
+    TResult? Function(_SwitchPosition value)? switchPosition,
     TResult? Function(_UpdateTool value)? updateTool,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Refresh value)? refresh,
     TResult Function(_AddTool value)? addTool,
     TResult Function(_RemoveTool value)? removeTool,
+    TResult Function(_SwitchPosition value)? switchPosition,
     TResult Function(_UpdateTool value)? updateTool,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $EditorEventCopyWith<EditorEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -537,6 +568,8 @@ abstract class $EditorEventCopyWith<$Res> {
   factory $EditorEventCopyWith(
           EditorEvent value, $Res Function(EditorEvent) then) =
       _$EditorEventCopyWithImpl<$Res, EditorEvent>;
+  @useResult
+  $Res call({String widgetType});
 }
 
 /// @nodoc
@@ -548,138 +581,29 @@ class _$EditorEventCopyWithImpl<$Res, $Val extends EditorEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? widgetType = null,
+  }) {
+    return _then(_value.copyWith(
+      widgetType: null == widgetType
+          ? _value.widgetType
+          : widgetType // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_RefreshCopyWith<$Res> {
-  factory _$$_RefreshCopyWith(
-          _$_Refresh value, $Res Function(_$_Refresh) then) =
-      __$$_RefreshCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_RefreshCopyWithImpl<$Res>
-    extends _$EditorEventCopyWithImpl<$Res, _$_Refresh>
-    implements _$$_RefreshCopyWith<$Res> {
-  __$$_RefreshCopyWithImpl(_$_Refresh _value, $Res Function(_$_Refresh) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Refresh implements _Refresh {
-  const _$_Refresh();
-
-  @override
-  String toString() {
-    return 'EditorEvent.refresh()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Refresh);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() refresh,
-    required TResult Function(
-            String widgetType, Map<String, dynamic> stackWidget)
-        addTool,
-    required TResult Function(String widgetType, String tag) removeTool,
-    required TResult Function(
-            String widgetType, String tag, Map<String, dynamic> config)
-        updateTool,
-  }) {
-    return refresh();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? refresh,
-    TResult? Function(String widgetType, Map<String, dynamic> stackWidget)?
-        addTool,
-    TResult? Function(String widgetType, String tag)? removeTool,
-    TResult? Function(
-            String widgetType, String tag, Map<String, dynamic> config)?
-        updateTool,
-  }) {
-    return refresh?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? refresh,
-    TResult Function(String widgetType, Map<String, dynamic> stackWidget)?
-        addTool,
-    TResult Function(String widgetType, String tag)? removeTool,
-    TResult Function(
-            String widgetType, String tag, Map<String, dynamic> config)?
-        updateTool,
-    required TResult orElse(),
-  }) {
-    if (refresh != null) {
-      return refresh();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Refresh value) refresh,
-    required TResult Function(_AddTool value) addTool,
-    required TResult Function(_RemoveTool value) removeTool,
-    required TResult Function(_UpdateTool value) updateTool,
-  }) {
-    return refresh(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Refresh value)? refresh,
-    TResult? Function(_AddTool value)? addTool,
-    TResult? Function(_RemoveTool value)? removeTool,
-    TResult? Function(_UpdateTool value)? updateTool,
-  }) {
-    return refresh?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Refresh value)? refresh,
-    TResult Function(_AddTool value)? addTool,
-    TResult Function(_RemoveTool value)? removeTool,
-    TResult Function(_UpdateTool value)? updateTool,
-    required TResult orElse(),
-  }) {
-    if (refresh != null) {
-      return refresh(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Refresh implements EditorEvent {
-  const factory _Refresh() = _$_Refresh;
-}
-
-/// @nodoc
-abstract class _$$_AddToolCopyWith<$Res> {
+abstract class _$$_AddToolCopyWith<$Res> implements $EditorEventCopyWith<$Res> {
   factory _$$_AddToolCopyWith(
           _$_AddTool value, $Res Function(_$_AddTool) then) =
       __$$_AddToolCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({String widgetType, Map<String, dynamic> stackWidget});
+  $Res call({String widgetType, List<Map<String, dynamic>> stackWidget});
 }
 
 /// @nodoc
@@ -703,7 +627,7 @@ class __$$_AddToolCopyWithImpl<$Res>
       null == stackWidget
           ? _value._stackWidget
           : stackWidget // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as List<Map<String, dynamic>>,
     ));
   }
 }
@@ -711,17 +635,18 @@ class __$$_AddToolCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AddTool implements _AddTool {
-  const _$_AddTool(this.widgetType, final Map<String, dynamic> stackWidget)
+  const _$_AddTool(
+      this.widgetType, final List<Map<String, dynamic>> stackWidget)
       : _stackWidget = stackWidget;
 
   @override
   final String widgetType;
-  final Map<String, dynamic> _stackWidget;
+  final List<Map<String, dynamic>> _stackWidget;
   @override
-  Map<String, dynamic> get stackWidget {
-    if (_stackWidget is EqualUnmodifiableMapView) return _stackWidget;
+  List<Map<String, dynamic>> get stackWidget {
+    if (_stackWidget is EqualUnmodifiableListView) return _stackWidget;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_stackWidget);
+    return EqualUnmodifiableListView(_stackWidget);
   }
 
   @override
@@ -753,13 +678,13 @@ class _$_AddTool implements _AddTool {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() refresh,
     required TResult Function(
-            String widgetType, Map<String, dynamic> stackWidget)
+            String widgetType, List<Map<String, dynamic>> stackWidget)
         addTool,
     required TResult Function(String widgetType, String tag) removeTool,
-    required TResult Function(
-            String widgetType, String tag, Map<String, dynamic> config)
+    required TResult Function(int position, String widgetType) switchPosition,
+    required TResult Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)
         updateTool,
   }) {
     return addTool(widgetType, stackWidget);
@@ -768,12 +693,13 @@ class _$_AddTool implements _AddTool {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? refresh,
-    TResult? Function(String widgetType, Map<String, dynamic> stackWidget)?
+    TResult? Function(
+            String widgetType, List<Map<String, dynamic>> stackWidget)?
         addTool,
     TResult? Function(String widgetType, String tag)? removeTool,
-    TResult? Function(
-            String widgetType, String tag, Map<String, dynamic> config)?
+    TResult? Function(int position, String widgetType)? switchPosition,
+    TResult? Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)?
         updateTool,
   }) {
     return addTool?.call(widgetType, stackWidget);
@@ -782,12 +708,12 @@ class _$_AddTool implements _AddTool {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? refresh,
-    TResult Function(String widgetType, Map<String, dynamic> stackWidget)?
+    TResult Function(String widgetType, List<Map<String, dynamic>> stackWidget)?
         addTool,
     TResult Function(String widgetType, String tag)? removeTool,
-    TResult Function(
-            String widgetType, String tag, Map<String, dynamic> config)?
+    TResult Function(int position, String widgetType)? switchPosition,
+    TResult Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)?
         updateTool,
     required TResult orElse(),
   }) {
@@ -800,9 +726,9 @@ class _$_AddTool implements _AddTool {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Refresh value) refresh,
     required TResult Function(_AddTool value) addTool,
     required TResult Function(_RemoveTool value) removeTool,
+    required TResult Function(_SwitchPosition value) switchPosition,
     required TResult Function(_UpdateTool value) updateTool,
   }) {
     return addTool(this);
@@ -811,9 +737,9 @@ class _$_AddTool implements _AddTool {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Refresh value)? refresh,
     TResult? Function(_AddTool value)? addTool,
     TResult? Function(_RemoveTool value)? removeTool,
+    TResult? Function(_SwitchPosition value)? switchPosition,
     TResult? Function(_UpdateTool value)? updateTool,
   }) {
     return addTool?.call(this);
@@ -822,9 +748,9 @@ class _$_AddTool implements _AddTool {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Refresh value)? refresh,
     TResult Function(_AddTool value)? addTool,
     TResult Function(_RemoveTool value)? removeTool,
+    TResult Function(_SwitchPosition value)? switchPosition,
     TResult Function(_UpdateTool value)? updateTool,
     required TResult orElse(),
   }) {
@@ -836,22 +762,25 @@ class _$_AddTool implements _AddTool {
 }
 
 abstract class _AddTool implements EditorEvent {
-  const factory _AddTool(
-          final String widgetType, final Map<String, dynamic> stackWidget) =
-      _$_AddTool;
+  const factory _AddTool(final String widgetType,
+      final List<Map<String, dynamic>> stackWidget) = _$_AddTool;
 
+  @override
   String get widgetType;
-  Map<String, dynamic> get stackWidget;
+  List<Map<String, dynamic>> get stackWidget;
+  @override
   @JsonKey(ignore: true)
   _$$_AddToolCopyWith<_$_AddTool> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_RemoveToolCopyWith<$Res> {
+abstract class _$$_RemoveToolCopyWith<$Res>
+    implements $EditorEventCopyWith<$Res> {
   factory _$$_RemoveToolCopyWith(
           _$_RemoveTool value, $Res Function(_$_RemoveTool) then) =
       __$$_RemoveToolCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({String widgetType, String tag});
 }
@@ -920,13 +849,13 @@ class _$_RemoveTool implements _RemoveTool {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() refresh,
     required TResult Function(
-            String widgetType, Map<String, dynamic> stackWidget)
+            String widgetType, List<Map<String, dynamic>> stackWidget)
         addTool,
     required TResult Function(String widgetType, String tag) removeTool,
-    required TResult Function(
-            String widgetType, String tag, Map<String, dynamic> config)
+    required TResult Function(int position, String widgetType) switchPosition,
+    required TResult Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)
         updateTool,
   }) {
     return removeTool(widgetType, tag);
@@ -935,12 +864,13 @@ class _$_RemoveTool implements _RemoveTool {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? refresh,
-    TResult? Function(String widgetType, Map<String, dynamic> stackWidget)?
+    TResult? Function(
+            String widgetType, List<Map<String, dynamic>> stackWidget)?
         addTool,
     TResult? Function(String widgetType, String tag)? removeTool,
-    TResult? Function(
-            String widgetType, String tag, Map<String, dynamic> config)?
+    TResult? Function(int position, String widgetType)? switchPosition,
+    TResult? Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)?
         updateTool,
   }) {
     return removeTool?.call(widgetType, tag);
@@ -949,12 +879,12 @@ class _$_RemoveTool implements _RemoveTool {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? refresh,
-    TResult Function(String widgetType, Map<String, dynamic> stackWidget)?
+    TResult Function(String widgetType, List<Map<String, dynamic>> stackWidget)?
         addTool,
     TResult Function(String widgetType, String tag)? removeTool,
-    TResult Function(
-            String widgetType, String tag, Map<String, dynamic> config)?
+    TResult Function(int position, String widgetType)? switchPosition,
+    TResult Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)?
         updateTool,
     required TResult orElse(),
   }) {
@@ -967,9 +897,9 @@ class _$_RemoveTool implements _RemoveTool {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Refresh value) refresh,
     required TResult Function(_AddTool value) addTool,
     required TResult Function(_RemoveTool value) removeTool,
+    required TResult Function(_SwitchPosition value) switchPosition,
     required TResult Function(_UpdateTool value) updateTool,
   }) {
     return removeTool(this);
@@ -978,9 +908,9 @@ class _$_RemoveTool implements _RemoveTool {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Refresh value)? refresh,
     TResult? Function(_AddTool value)? addTool,
     TResult? Function(_RemoveTool value)? removeTool,
+    TResult? Function(_SwitchPosition value)? switchPosition,
     TResult? Function(_UpdateTool value)? updateTool,
   }) {
     return removeTool?.call(this);
@@ -989,9 +919,9 @@ class _$_RemoveTool implements _RemoveTool {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Refresh value)? refresh,
     TResult Function(_AddTool value)? addTool,
     TResult Function(_RemoveTool value)? removeTool,
+    TResult Function(_SwitchPosition value)? switchPosition,
     TResult Function(_UpdateTool value)? updateTool,
     required TResult orElse(),
   }) {
@@ -1006,20 +936,197 @@ abstract class _RemoveTool implements EditorEvent {
   const factory _RemoveTool(final String widgetType, final String tag) =
       _$_RemoveTool;
 
+  @override
   String get widgetType;
   String get tag;
+  @override
   @JsonKey(ignore: true)
   _$$_RemoveToolCopyWith<_$_RemoveTool> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_UpdateToolCopyWith<$Res> {
+abstract class _$$_SwitchPositionCopyWith<$Res>
+    implements $EditorEventCopyWith<$Res> {
+  factory _$$_SwitchPositionCopyWith(
+          _$_SwitchPosition value, $Res Function(_$_SwitchPosition) then) =
+      __$$_SwitchPositionCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int position, String widgetType});
+}
+
+/// @nodoc
+class __$$_SwitchPositionCopyWithImpl<$Res>
+    extends _$EditorEventCopyWithImpl<$Res, _$_SwitchPosition>
+    implements _$$_SwitchPositionCopyWith<$Res> {
+  __$$_SwitchPositionCopyWithImpl(
+      _$_SwitchPosition _value, $Res Function(_$_SwitchPosition) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? position = null,
+    Object? widgetType = null,
+  }) {
+    return _then(_$_SwitchPosition(
+      null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == widgetType
+          ? _value.widgetType
+          : widgetType // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SwitchPosition implements _SwitchPosition {
+  const _$_SwitchPosition(this.position, this.widgetType);
+
+  @override
+  final int position;
+  @override
+  final String widgetType;
+
+  @override
+  String toString() {
+    return 'EditorEvent.switchPosition(position: $position, widgetType: $widgetType)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SwitchPosition &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.widgetType, widgetType) ||
+                other.widgetType == widgetType));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, position, widgetType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SwitchPositionCopyWith<_$_SwitchPosition> get copyWith =>
+      __$$_SwitchPositionCopyWithImpl<_$_SwitchPosition>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String widgetType, List<Map<String, dynamic>> stackWidget)
+        addTool,
+    required TResult Function(String widgetType, String tag) removeTool,
+    required TResult Function(int position, String widgetType) switchPosition,
+    required TResult Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)
+        updateTool,
+  }) {
+    return switchPosition(position, widgetType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String widgetType, List<Map<String, dynamic>> stackWidget)?
+        addTool,
+    TResult? Function(String widgetType, String tag)? removeTool,
+    TResult? Function(int position, String widgetType)? switchPosition,
+    TResult? Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)?
+        updateTool,
+  }) {
+    return switchPosition?.call(position, widgetType);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String widgetType, List<Map<String, dynamic>> stackWidget)?
+        addTool,
+    TResult Function(String widgetType, String tag)? removeTool,
+    TResult Function(int position, String widgetType)? switchPosition,
+    TResult Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)?
+        updateTool,
+    required TResult orElse(),
+  }) {
+    if (switchPosition != null) {
+      return switchPosition(position, widgetType);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddTool value) addTool,
+    required TResult Function(_RemoveTool value) removeTool,
+    required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_UpdateTool value) updateTool,
+  }) {
+    return switchPosition(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddTool value)? addTool,
+    TResult? Function(_RemoveTool value)? removeTool,
+    TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_UpdateTool value)? updateTool,
+  }) {
+    return switchPosition?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddTool value)? addTool,
+    TResult Function(_RemoveTool value)? removeTool,
+    TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_UpdateTool value)? updateTool,
+    required TResult orElse(),
+  }) {
+    if (switchPosition != null) {
+      return switchPosition(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SwitchPosition implements EditorEvent {
+  const factory _SwitchPosition(final int position, final String widgetType) =
+      _$_SwitchPosition;
+
+  int get position;
+  @override
+  String get widgetType;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SwitchPositionCopyWith<_$_SwitchPosition> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UpdateToolCopyWith<$Res>
+    implements $EditorEventCopyWith<$Res> {
   factory _$$_UpdateToolCopyWith(
           _$_UpdateTool value, $Res Function(_$_UpdateTool) then) =
       __$$_UpdateToolCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({String widgetType, String tag, Map<String, dynamic> config});
+  $Res call(
+      {String widgetType, String tag, List<Map<String, dynamic>> stackWidget});
 }
 
 /// @nodoc
@@ -1035,7 +1142,7 @@ class __$$_UpdateToolCopyWithImpl<$Res>
   $Res call({
     Object? widgetType = null,
     Object? tag = null,
-    Object? config = null,
+    Object? stackWidget = null,
   }) {
     return _then(_$_UpdateTool(
       null == widgetType
@@ -1046,10 +1153,10 @@ class __$$_UpdateToolCopyWithImpl<$Res>
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
               as String,
-      null == config
-          ? _value._config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+      null == stackWidget
+          ? _value._stackWidget
+          : stackWidget // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>,
     ));
   }
 }
@@ -1058,24 +1165,24 @@ class __$$_UpdateToolCopyWithImpl<$Res>
 
 class _$_UpdateTool implements _UpdateTool {
   const _$_UpdateTool(
-      this.widgetType, this.tag, final Map<String, dynamic> config)
-      : _config = config;
+      this.widgetType, this.tag, final List<Map<String, dynamic>> stackWidget)
+      : _stackWidget = stackWidget;
 
   @override
   final String widgetType;
   @override
   final String tag;
-  final Map<String, dynamic> _config;
+  final List<Map<String, dynamic>> _stackWidget;
   @override
-  Map<String, dynamic> get config {
-    if (_config is EqualUnmodifiableMapView) return _config;
+  List<Map<String, dynamic>> get stackWidget {
+    if (_stackWidget is EqualUnmodifiableListView) return _stackWidget;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_config);
+    return EqualUnmodifiableListView(_stackWidget);
   }
 
   @override
   String toString() {
-    return 'EditorEvent.updateTool(widgetType: $widgetType, tag: $tag, config: $config)';
+    return 'EditorEvent.updateTool(widgetType: $widgetType, tag: $tag, stackWidget: $stackWidget)';
   }
 
   @override
@@ -1086,12 +1193,13 @@ class _$_UpdateTool implements _UpdateTool {
             (identical(other.widgetType, widgetType) ||
                 other.widgetType == widgetType) &&
             (identical(other.tag, tag) || other.tag == tag) &&
-            const DeepCollectionEquality().equals(other._config, _config));
+            const DeepCollectionEquality()
+                .equals(other._stackWidget, _stackWidget));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, widgetType, tag,
-      const DeepCollectionEquality().hash(_config));
+      const DeepCollectionEquality().hash(_stackWidget));
 
   @JsonKey(ignore: true)
   @override
@@ -1102,46 +1210,47 @@ class _$_UpdateTool implements _UpdateTool {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() refresh,
     required TResult Function(
-            String widgetType, Map<String, dynamic> stackWidget)
+            String widgetType, List<Map<String, dynamic>> stackWidget)
         addTool,
     required TResult Function(String widgetType, String tag) removeTool,
-    required TResult Function(
-            String widgetType, String tag, Map<String, dynamic> config)
+    required TResult Function(int position, String widgetType) switchPosition,
+    required TResult Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)
         updateTool,
   }) {
-    return updateTool(widgetType, tag, config);
+    return updateTool(widgetType, tag, stackWidget);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? refresh,
-    TResult? Function(String widgetType, Map<String, dynamic> stackWidget)?
+    TResult? Function(
+            String widgetType, List<Map<String, dynamic>> stackWidget)?
         addTool,
     TResult? Function(String widgetType, String tag)? removeTool,
-    TResult? Function(
-            String widgetType, String tag, Map<String, dynamic> config)?
+    TResult? Function(int position, String widgetType)? switchPosition,
+    TResult? Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)?
         updateTool,
   }) {
-    return updateTool?.call(widgetType, tag, config);
+    return updateTool?.call(widgetType, tag, stackWidget);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? refresh,
-    TResult Function(String widgetType, Map<String, dynamic> stackWidget)?
+    TResult Function(String widgetType, List<Map<String, dynamic>> stackWidget)?
         addTool,
     TResult Function(String widgetType, String tag)? removeTool,
-    TResult Function(
-            String widgetType, String tag, Map<String, dynamic> config)?
+    TResult Function(int position, String widgetType)? switchPosition,
+    TResult Function(String widgetType, String tag,
+            List<Map<String, dynamic>> stackWidget)?
         updateTool,
     required TResult orElse(),
   }) {
     if (updateTool != null) {
-      return updateTool(widgetType, tag, config);
+      return updateTool(widgetType, tag, stackWidget);
     }
     return orElse();
   }
@@ -1149,9 +1258,9 @@ class _$_UpdateTool implements _UpdateTool {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Refresh value) refresh,
     required TResult Function(_AddTool value) addTool,
     required TResult Function(_RemoveTool value) removeTool,
+    required TResult Function(_SwitchPosition value) switchPosition,
     required TResult Function(_UpdateTool value) updateTool,
   }) {
     return updateTool(this);
@@ -1160,9 +1269,9 @@ class _$_UpdateTool implements _UpdateTool {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Refresh value)? refresh,
     TResult? Function(_AddTool value)? addTool,
     TResult? Function(_RemoveTool value)? removeTool,
+    TResult? Function(_SwitchPosition value)? switchPosition,
     TResult? Function(_UpdateTool value)? updateTool,
   }) {
     return updateTool?.call(this);
@@ -1171,9 +1280,9 @@ class _$_UpdateTool implements _UpdateTool {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Refresh value)? refresh,
     TResult Function(_AddTool value)? addTool,
     TResult Function(_RemoveTool value)? removeTool,
+    TResult Function(_SwitchPosition value)? switchPosition,
     TResult Function(_UpdateTool value)? updateTool,
     required TResult orElse(),
   }) {
@@ -1186,11 +1295,13 @@ class _$_UpdateTool implements _UpdateTool {
 
 abstract class _UpdateTool implements EditorEvent {
   const factory _UpdateTool(final String widgetType, final String tag,
-      final Map<String, dynamic> config) = _$_UpdateTool;
+      final List<Map<String, dynamic>> stackWidget) = _$_UpdateTool;
 
+  @override
   String get widgetType;
   String get tag;
-  Map<String, dynamic> get config;
+  List<Map<String, dynamic>> get stackWidget;
+  @override
   @JsonKey(ignore: true)
   _$$_UpdateToolCopyWith<_$_UpdateTool> get copyWith =>
       throw _privateConstructorUsedError;

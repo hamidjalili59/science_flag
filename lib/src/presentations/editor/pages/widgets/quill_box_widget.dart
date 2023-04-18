@@ -2,7 +2,6 @@ import 'package:base_project/src/presentations/editor/bloc/editor/editor_bloc.da
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dotted_border/dotted_border.dart';
 
 class QuillBoxWidget extends StatelessWidget {
   const QuillBoxWidget({
@@ -11,60 +10,35 @@ class QuillBoxWidget extends StatelessWidget {
     required this.stackWidgetData,
     required this.bloc,
     required this.controller,
+    required this.fNode,
   });
   final int index;
-  final Map<String, dynamic> stackWidgetData;
+  final List<Map<String, dynamic>> stackWidgetData;
   final EditorBloc bloc;
   final quill.QuillController controller;
+  final FocusNode fNode;
 
   @override
   Widget build(BuildContext context) {
-    // return Stack(
-    //   children: [
-    // const SizedBox(
-    //   width: 30,
-    //   height: 30,
-    //   child: CircleAvatar(
-    //     child: Icon(
-    //       Icons.keyboard_double_arrow_right_rounded,
-    //       color: Colors.black,
-    //     ),
-    //   ),
-    // ),
-    // Positioned(
-    //   right: 5,
-    //   top: 18,
-    //   child: GestureDetector(
-    //     onLongPressMoveUpdate: (details) {},
-    //     child: const Icon(
-    //       Icons.arrow_outward_rounded,
-    //       color: Colors.blueAccent,
-    //     ),
-    //   ),
-    // ),
-    // Positioned.fill(
-    //   top: 35.h,
-    //   left: 25.w,
-    //   right: 25.w,
-    //   child:
     return SizedBox(
       child: quill.QuillEditor(
+        textSelectionControls: MaterialTextSelectionControls(),
+        onTapDown: (details, p1) {
+          bloc.add(EditorEvent.switchPosition(index, 'text'));
+          return false;
+        },
         controller: controller,
-        focusNode: FocusNode(),
+        focusNode: fNode,
         scrollController: ScrollController(),
         scrollable: false,
         padding: EdgeInsets.all(0.r),
         autoFocus: false,
         readOnly: false,
-        // maxHeight: 0.1.sh,
         textCapitalization: TextCapitalization.words,
         enableSelectionToolbar: true,
         paintCursorAboveText: true,
         expands: false,
       ),
     );
-    // );
-    // ],
-    // );
   }
 }
