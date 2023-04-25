@@ -1,9 +1,10 @@
-import 'package:base_project/src/config/constants/png_assets.dart';
+import 'package:base_project/src/config/constants/svg_assets.dart';
 import 'package:base_project/src/config/utils/general_dependencies.dart';
 import 'package:base_project/src/presentations/notes/bloc/notes/notes_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class NotesMobileWidget extends StatelessWidget {
   const NotesMobileWidget({super.key});
@@ -20,6 +21,11 @@ class NotesMobileWidget extends StatelessWidget {
             orElse: () => const SizedBox(),
             failed: () => const Text('Failed'),
             idle: (isLoading, notes) {
+              if (isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
               if (notes.isEmpty) {
                 StaticDependencies.notesbloc
                     .add(const NotesEvent.getNotesItem());
@@ -52,14 +58,7 @@ class NotesMobileWidget extends StatelessWidget {
                                 children: [
                                   SizedBox(
                                     width: 40.w,
-                                    child: Image.asset(
-                                      notes[position].category == 'math'
-                                          ? PngAssets.mathNote
-                                          : notes[position].category ==
-                                                  'chemistry'
-                                              ? PngAssets.chemistryNote1
-                                              : PngAssets.chemistryNote2,
-                                    ),
+                                    child: SvgPicture.asset(SVGAssets.math_1),
                                   ),
                                   SizedBox(
                                     width: 0.5.sw,
@@ -83,10 +82,12 @@ class NotesMobileWidget extends StatelessWidget {
                                     },
                                     child: SizedBox(
                                       width: 40.w,
+                                      height: 40.w,
                                       child: Padding(
                                         padding: EdgeInsets.all(6.0.r),
-                                        child: Image.asset(
-                                          PngAssets.open,
+                                        child: SvgPicture.asset(
+                                          SVGAssets.modify,
+                                          fit: BoxFit.fitHeight,
                                           color: Theme.of(context)
                                               .colorScheme
                                               .surface,
@@ -125,10 +126,15 @@ class AppbarSubPagesWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: Theme.of(context).colorScheme.surface,
-            size: 30.r,
+          InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Theme.of(context).colorScheme.surface,
+              size: 30.r,
+            ),
           ),
           Text(
             'Notes',
@@ -139,8 +145,10 @@ class AppbarSubPagesWidget extends StatelessWidget {
           ),
           SizedBox(
             width: 30.w,
-            child: Image.asset(
-              PngAssets.search_1,
+            height: 35.w,
+            child: SvgPicture.asset(
+              SVGAssets.search,
+              fit: BoxFit.fitHeight,
               color: Theme.of(context).colorScheme.surface,
             ),
           ),

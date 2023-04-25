@@ -1,7 +1,9 @@
 import 'package:base_project/src/config/constants/png_assets.dart';
+import 'package:base_project/src/config/constants/svg_assets.dart';
 import 'package:base_project/src/config/utils/general_dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeMobileWidget extends StatelessWidget {
   const HomeMobileWidget({super.key});
@@ -235,7 +237,7 @@ class HomeHeaderWidget extends StatelessWidget {
                 )),
             Expanded(
               flex: 1,
-              child: Image.asset(PngAssets.bag),
+              child: SvgPicture.asset(SVGAssets.bag),
             ),
           ],
         ),
@@ -288,15 +290,21 @@ class HomeAppbarWidget extends StatelessWidget {
             Container(
               width: 60.w,
               height: 60.w,
-              padding: EdgeInsets.all(16.r),
+              padding: EdgeInsets.all(12.r),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.r),
                 color: Theme.of(context).colorScheme.secondary,
               ),
-              child: SizedBox(
-                child: Image.asset(
-                  PngAssets.search_3,
-                ),
+              // child: SizedBox(
+              //   child: Image.asset(
+              //     PngAssets.search_3,
+              //   ),
+              // ),
+              child: SvgPicture.asset(
+                SVGAssets.search,
+                fit: BoxFit.fitHeight,
+                color: Colors.black,
+                // color: Theme.of(context).colorScheme.secondary,
               ),
             ),
           ],

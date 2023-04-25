@@ -1,3 +1,4 @@
+import 'package:base_project/src/features/editor/domain/models/editor_item_list.dart';
 import 'package:base_project/src/presentations/editor/bloc/editor/editor_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
@@ -13,7 +14,7 @@ class QuillBoxWidget extends StatelessWidget {
     required this.fNode,
   });
   final int index;
-  final List<Map<String, dynamic>> stackWidgetData;
+  final EditorItemList stackWidgetData;
   final EditorBloc bloc;
   final quill.QuillController controller;
   final FocusNode fNode;

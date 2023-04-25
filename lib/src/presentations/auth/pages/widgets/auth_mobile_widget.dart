@@ -1,6 +1,7 @@
 import 'package:base_project/src/config/utils/general_dependencies.dart';
 import 'package:base_project/src/presentations/auth/bloc/auth/auth_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthMobileWidget extends StatelessWidget {
@@ -57,26 +58,46 @@ class AuthMobileWidget extends StatelessWidget {
               controller: passwordController,
               size: const Size(0.7, 80),
             ),
-            MaterialButton(
-              color: Theme.of(context).colorScheme.onBackground,
-              onPressed: () async {
-                StaticDependencies.authbloc.add(
-                  AuthEvent.login(
-                      emailController.text, passwordController.text),
+            BlocBuilder<AuthBloc, AuthState>(
+              bloc: StaticDependencies.authbloc,
+              builder: (context, state) {
+                return state.maybeWhen(
+                  loadInProgress: () {
+                    return Container(
+                        color: Theme.of(context).colorScheme.onBackground,
+                        alignment: Alignment.center,
+                        height: 50.h,
+                        width: 0.65.sw,
+                        child: const CircularProgressIndicator());
+                  },
+                  initial: () {
+                    return MaterialButton(
+                      color: Theme.of(context).colorScheme.onBackground,
+                      onPressed: () async {
+                        StaticDependencies.authbloc.add(
+                          AuthEvent.login(
+                              emailController.text, passwordController.text),
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50.h,
+                        width: 0.58.sw,
+                        child: Text(
+                          'Login',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: Colors.white),
+                        ),
+                      ),
+                    );
+                  },
+                  orElse: () {
+                    return const SizedBox();
+                  },
                 );
               },
-              child: Container(
-                alignment: Alignment.center,
-                height: 50.h,
-                width: 0.58.sw,
-                child: Text(
-                  'Login',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: Colors.white),
-                ),
-              ),
             ),
           ],
         ),

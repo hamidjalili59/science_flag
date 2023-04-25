@@ -34,6 +34,9 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     _GetNotesItem event,
     Emitter<NotesState> emit,
   ) async {
+    emit(
+      const NotesState.idle(isLoading: true),
+    );
     await _otpLoginUseCase.call().then(
           (value) => value.fold(
             (l) {

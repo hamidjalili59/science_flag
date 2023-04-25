@@ -29,6 +29,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     _login event,
     Emitter<AuthState> emit,
   ) async {
+    emit(const AuthState.loadInProgress());
     await _otpLoginUseCase
         .call(
       param: tuple.Tuple2<String, String>(
@@ -41,5 +42,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         StaticDependencies.autoRoutes.pushNamed('/home');
       }
     });
+    emit(const AuthState.initial());
   }
 }
