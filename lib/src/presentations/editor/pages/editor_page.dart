@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:base_project/src/config/constants/png_assets.dart';
 import 'package:base_project/src/config/constants/svg_assets.dart';
 import 'package:base_project/src/config/utils/general_dependencies.dart';
 import 'package:base_project/src/features/editor/domain/models/editor_item_list.dart';
