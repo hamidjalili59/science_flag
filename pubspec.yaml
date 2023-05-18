@@ -1,0 +1,74 @@
+name: base_project
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  api_service:
+    git:
+      url: https://github.com/hamidjalili59/api_service.git
+      ref: main
+  auto_route: ^7.1.0
+  cunning_document_scanner: ^1.1.2
+  dartz: ^0.10.1
+  database_service:
+    git:
+      url: https://github.com/hamidjalili59/database_service.git
+  dio: ^5.1.0
+  dotted_border: ^2.0.0+3
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.2
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.2.16
+  # flutter_quill: ^7.0.9
+  # flutter_quill_extensions: ^0.2.0
+  
+  flutter_rte: ^0.4.13
+  flutter_screenutil: ^5.8.1
+  flutter_svg: ^2.0.5
+  freezed_annotation: ^2.2.0
+  get_it: ^7.6.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  injectable: ^2.1.1
+  json_annotation: ^4.8.1
+  logger: ^1.3.0
+  ndialog: ^4.3.0
+  permission_handler: ^10.2.0
+  shimmer: ^2.0.0
+
+dev_dependencies:
+  auto_route_generator: ^7.0.0
+  build_runner: ^2.3.3
+  change_app_package_name: ^1.1.0
+  flutter_lints: ^2.0.1
+  flutter_test:
+    sdk: flutter
+  freezed: ^2.3.2
+  hive_generator: ^2.0.0
+  injectable_generator: ^2.1.5
+  json_serializable: ^6.6.1
+
+flutter_native_splash:
+  image: assets/images/icon.png
+  color: "#ffffff"
+
+# add new icons
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/icon.png"
+  min_sdk_android: 21
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/icons/
+    - assets/svg/
