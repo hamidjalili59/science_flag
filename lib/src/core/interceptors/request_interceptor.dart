@@ -1,4 +1,5 @@
 import 'package:base_project/src/config/utils/function_helper.dart';
+import 'package:base_project/src/injectable/injectable.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
@@ -38,6 +39,20 @@ class RequestInterceptor extends Interceptor {
     appHelper.logMessage(
       'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}',
     );
+    var requestOptions = err.requestOptions;
+    var retries = requestOptions.extra["retries"] ?? 0;
+    if (retries < 3) {
+      requestOptions.extra["retries"] = retries + 1;
+      await Future.delayed(const Duration(seconds: 1));
+      getIt.get<Dio>().request(requestOptions.path,
+          data: requestOptions.data,
+          options: Options(
+              method: err.requestOptions.method,
+              contentType: err.requestOptions.contentType,
+              receiveTimeout: const Duration(seconds: 1),
+              headers: err.requestOptions.headers,
+              extra: err.requestOptions.extra));
+    }
 
     if (err.response?.statusCode == 401 && err.requestOptions.path != '') {
       // refresh token

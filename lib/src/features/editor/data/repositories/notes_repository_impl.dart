@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:base_project/src/features/notes/data/data_sources/local/notes_local_data_source.dart';
-import 'package:base_project/src/features/notes/data/data_sources/remote/notes_remote_data_source.dart';
-import 'package:base_project/src/features/notes/domain/models/notes_item_list_model.dart';
-import 'package:base_project/src/features/notes/domain/failures/notes_failure.dart';
-import 'package:base_project/src/features/notes/domain/repositories/notes_repository.dart';
+import 'package:base_project/src/features/editor/data/data_sources/local/notes_local_data_source.dart';
+import 'package:base_project/src/features/editor/data/data_sources/remote/notes_remote_data_source.dart';
+import 'package:base_project/src/features/editor/domain/failures/editor_failure.dart';
+import 'package:base_project/src/features/editor/domain/models/editor_item_list.dart';
+import 'package:base_project/src/features/editor/domain/repositories/notes_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class NotesRepositoryImpl extends NotesRepository {
+class NotesRepositoryImpl extends EditorRepository {
   final NotesRemoteDataSource _remoteDS;
   final NotesLocalDataSource _localDS;
   final String tokenFieldKey = 'token';
@@ -15,38 +15,28 @@ class NotesRepositoryImpl extends NotesRepository {
   NotesRepositoryImpl(this._remoteDS, this._localDS);
 
   @override
-  Future<Either<NotesFailure, List<NotesItemListModel>>> cacheNotesItem(
-      {required List<NotesItemListModel> notesList}) {
-    _localDS;
+  Future<Either<EditorFailure, void>> deleteNote(
+      {required EditorItemList editorItemList, required String? fileName}) {
+    // TODO: implement deleteNote
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<NotesFailure, List<NotesItemListModel>>> getCachedNotesItem(
-      {required List<NotesItemListModel> notesList}) {
+  Future<Either<EditorFailure, void>> renameNote({required String? fileName}) {
+    // TODO: implement renameNote
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<NotesFailure, List<NotesItemListModel>>> getNotesItem() async =>
-      await _remoteDS.getNotesItem().then(
-            (value) => value.fold(
-              (l) => left<NotesFailure, List<NotesItemListModel>>(
-                  NotesFailure.api(l)),
-              (r) {
-                if (r.statusCode != 200) {
-                  return left<NotesFailure, List<NotesItemListModel>>(
-                      const NotesFailure.missingToken());
-                }
-                return right(
-                  List<NotesItemListModel>.from(
-                    (jsonDecode(r.data ?? '{}') as List<dynamic>)
-                        .map(
-                            (dynamic note) => NotesItemListModel.fromJson(note))
-                        .toList(),
-                  ),
-                );
-              },
-            ),
-          );
+  Future<Either<EditorFailure, void>> saveNote(
+      {required String data, required String? fileName}) {
+    return _localDS.cacheData(fieldKey: fileName!, value: data).then((value) =>
+        value.fold((l) => left(EditorFailure.database(l)), (r) => right(null)));
+  }
+
+  @override
+  Future<Either<EditorFailure, String>> readNote({required String? fileName}) {
+    return _localDS.getCachedData(fieldKey: fileName!).then((value) =>
+        value.fold((l) => left(EditorFailure.database(l)), (r) => right(r!)));
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:base_project/src/config/constants/general_constants.dart';
 import 'package:base_project/src/config/constants/png_assets.dart';
 import 'package:base_project/src/config/constants/svg_assets.dart';
 import 'package:base_project/src/config/utils/general_dependencies.dart';
@@ -35,11 +36,11 @@ class HomeGridViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 0.9.sw,
+      width: 0.88.sw,
       child: GridView(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            mainAxisExtent: 0.3.sh,
+            mainAxisExtent: 0.26.sh,
             mainAxisSpacing: 15.h,
             crossAxisSpacing: 15.w),
         shrinkWrap: true,
@@ -107,19 +108,19 @@ class HomeGridViewItemWidget extends StatelessWidget {
           ),
           Text(
             title,
-            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
                   color: Theme.of(context).colorScheme.surface,
                 ),
           ),
           Text(
             '$courseNumber courses',
-            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: Theme.of(context).colorScheme.surface,
                 ),
           ),
           Text(
             '$noteNumber notes',
-            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: Theme.of(context).colorScheme.surface,
                 ),
           ),
@@ -137,21 +138,21 @@ class TabbarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 0.9.sw,
-      height: 80.h,
+      width: 0.87.sw,
+      height: 75.h,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             'Subject',
-            style: Theme.of(context).textTheme.displaySmall!.copyWith(
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                   fontWeight: FontWeight.w600,
                   color: Theme.of(context).colorScheme.surface,
                 ),
           ),
           Text(
             'See all',
-            style: Theme.of(context).textTheme.labelLarge!.copyWith(
+            style: Theme.of(context).textTheme.labelMedium!.copyWith(
                   fontWeight: FontWeight.w400,
                   color: Theme.of(context).colorScheme.surface,
                 ),
@@ -170,10 +171,10 @@ class HomeHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 0.9.sw,
-      height: 0.25.sh,
+      width: 0.88.sw,
+      height: 0.23.sh,
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(18.r)),
       child: InkWell(
         onTap: () {
@@ -195,9 +196,9 @@ class HomeHeaderWidget extends StatelessWidget {
                           'Notes',
                           style: Theme.of(context)
                               .textTheme
-                              .displaySmall!
+                              .headlineMedium!
                               .copyWith(
-                                color: Theme.of(context).colorScheme.background,
+                                color: GeneralConstants.backgroundColor,
                                 fontWeight: FontWeight.bold,
                               ),
                           textAlign: TextAlign.left,
@@ -223,12 +224,12 @@ class HomeHeaderWidget extends StatelessWidget {
                       height: 40.h,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.background,
+                        color: GeneralConstants.backgroundColor,
                         borderRadius: BorderRadius.circular(24.r),
                       ),
                       child: Text(
                         'Add Course',
-                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
                               color: Theme.of(context).colorScheme.surface,
                             ),
                       ),
@@ -256,8 +257,8 @@ class HomeAppbarWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 12.0.h),
       child: SizedBox(
-        width: 0.9.sw,
-        height: 100.h,
+        width: 0.88.sw,
+        height: 80.h,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -269,7 +270,7 @@ class HomeAppbarWidget extends StatelessWidget {
                 children: [
                   Text(
                     'Welcome',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           color: Theme.of(context).colorScheme.surface,
                         ),
                   ),
@@ -277,7 +278,7 @@ class HomeAppbarWidget extends StatelessWidget {
                     'Find your course',
                     style: Theme.of(context)
                         .textTheme
-                        .headlineLarge!
+                        .headlineMedium!
                         .copyWith(fontWeight: FontWeight.bold)
                         .copyWith(
                           color: Theme.of(context).colorScheme.surface,
@@ -288,22 +289,16 @@ class HomeAppbarWidget extends StatelessWidget {
             ),
             const Spacer(),
             Container(
-              width: 60.w,
-              height: 60.w,
-              padding: EdgeInsets.all(12.r),
+              width: 55.w,
+              height: 55.w,
+              padding: EdgeInsets.all(13.r),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.r),
                 color: Theme.of(context).colorScheme.secondary,
               ),
-              // child: SizedBox(
-              //   child: Image.asset(
-              //     PngAssets.search_3,
-              //   ),
-              // ),
               child: SvgPicture.asset(
                 SVGAssets.search,
                 fit: BoxFit.fitHeight,
-                // color: Colors.black,
               ),
             ),
           ],

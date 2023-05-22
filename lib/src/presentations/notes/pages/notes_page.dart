@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:base_project/src/config/constants/general_constants.dart';
 import 'package:base_project/src/config/utils/general_dependencies.dart';
 import 'package:base_project/src/presentations/notes/pages/widgets/notes_mobile_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class NotesPage extends StatelessWidget {
       child: BlocProvider(
         create: (context) => StaticDependencies.notesbloc,
         child: Scaffold(
+          backgroundColor: GeneralConstants.backgroundColor,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: FloatingActionButton.extended(
@@ -24,7 +26,7 @@ class NotesPage extends StatelessWidget {
               label: Icon(
                 Icons.add_rounded,
                 color: Colors.white,
-                size: 42.r,
+                size: 32.r,
               )),
           body: ScreenUtil().screenWidth < 400
               ? const NotesMobileWidget()

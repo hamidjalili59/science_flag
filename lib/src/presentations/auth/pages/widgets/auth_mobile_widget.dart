@@ -30,10 +30,9 @@ class AuthMobileWidget extends StatelessWidget {
                       fit: BoxFit.contain,
                       child: Text(
                         'Sign up',
-                        style:
-                            Theme.of(context).textTheme.displayMedium!.copyWith(
-                                  color: Theme.of(context).colorScheme.surface,
-                                ),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: Theme.of(context).colorScheme.surface,
+                            ),
                       )),
                 ),
               ),
@@ -41,7 +40,7 @@ class AuthMobileWidget extends StatelessWidget {
             SizedBox(height: 0.12.sh),
             Text(
               'Login',
-              style: Theme.of(context).textTheme.displayLarge!.copyWith(
+              style: Theme.of(context).textTheme.displayMedium!.copyWith(
                     color: Theme.of(context).colorScheme.surface,
                   ),
             ),
@@ -68,7 +67,9 @@ class AuthMobileWidget extends StatelessWidget {
                         alignment: Alignment.center,
                         height: 50.h,
                         width: 0.65.sw,
-                        child: const CircularProgressIndicator());
+                        child: const CircularProgressIndicator(
+                          color: Colors.white70,
+                        ));
                   },
                   initial: () {
                     return MaterialButton(
@@ -87,7 +88,7 @@ class AuthMobileWidget extends StatelessWidget {
                           'Login',
                           style: Theme.of(context)
                               .textTheme
-                              .bodyLarge!
+                              .bodyMedium!
                               .copyWith(color: Colors.white),
                         ),
                       ),

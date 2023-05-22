@@ -5,11 +5,3 @@ enum EditorItemType {
   formula,
   list,
 }
-
-enum EditorItemLayoutType {
-  oneBloc,
-  twoBloc,
-  threeBloc,
-  bigLeftBloc,
-  bigMiddle,
-}

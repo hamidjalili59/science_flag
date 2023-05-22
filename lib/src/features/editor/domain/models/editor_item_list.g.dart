@@ -17,10 +17,8 @@ class EditorItemListAdapter extends TypeAdapter<EditorItemList> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return EditorItemList(
-      fields[0] == null ? [] : (fields[0] as List).cast<EditorItemModel>(),
-      fields[1] == null
-          ? EditorItemLayoutType.oneBloc
-          : fields[1] as EditorItemLayoutType,
+      fields[0] == null ? {} : (fields[0] as Map).cast<String, dynamic>(),
+      fields[1] == null ? EditorItemType.text : fields[1] as EditorItemType,
     );
   }
 
@@ -51,22 +49,20 @@ class EditorItemListAdapter extends TypeAdapter<EditorItemList> {
 
 EditorItemList _$EditorItemListFromJson(Map<String, dynamic> json) =>
     EditorItemList(
-      (json['items'] as List<dynamic>)
-          .map((e) => EditorItemModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      $enumDecode(_$EditorItemLayoutTypeEnumMap, json['type']),
+      json['items'] as Map<String, dynamic>,
+      $enumDecode(_$EditorItemTypeEnumMap, json['type']),
     );
 
 Map<String, dynamic> _$EditorItemListToJson(EditorItemList instance) =>
     <String, dynamic>{
       'items': instance.items,
-      'type': _$EditorItemLayoutTypeEnumMap[instance.type]!,
+      'type': _$EditorItemTypeEnumMap[instance.type]!,
     };
 
-const _$EditorItemLayoutTypeEnumMap = {
-  EditorItemLayoutType.oneBloc: 'oneBloc',
-  EditorItemLayoutType.twoBloc: 'twoBloc',
-  EditorItemLayoutType.threeBloc: 'threeBloc',
-  EditorItemLayoutType.bigLeftBloc: 'bigLeftBloc',
-  EditorItemLayoutType.bigMiddle: 'bigMiddle',
+const _$EditorItemTypeEnumMap = {
+  EditorItemType.text: 'text',
+  EditorItemType.camera: 'camera',
+  EditorItemType.image: 'image',
+  EditorItemType.formula: 'formula',
+  EditorItemType.list: 'list',
 };

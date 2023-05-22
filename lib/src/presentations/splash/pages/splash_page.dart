@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:base_project/src/config/constants/general_constants.dart';
 import 'package:base_project/src/config/utils/general_dependencies.dart';
 import 'package:base_project/src/presentations/splash/bloc/splash/splash_bloc.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class SplashPage extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        backgroundColor: GeneralConstants.backgroundColor,
         body: BlocProvider<SplashBloc>(
           create: (context) => StaticDependencies.splashbloc,
           child: BlocConsumer<SplashBloc, SplashState>(

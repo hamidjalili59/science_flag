@@ -5,7 +5,10 @@ import 'package:dartz/dartz.dart';
 abstract class EditorRepository {
   //
   Future<Either<EditorFailure, void>> saveNote({
-    required EditorItemList editorItemList,
+    required String data,
+    required String? fileName,
+  });
+  Future<Either<EditorFailure, String>> readNote({
     required String? fileName,
   });
   Future<Either<EditorFailure, void>> deleteNote({

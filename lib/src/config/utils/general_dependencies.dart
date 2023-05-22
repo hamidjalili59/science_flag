@@ -11,6 +11,6 @@ class StaticDependencies {
   static AuthBloc authbloc = getIt.get<AuthBloc>();
   static HomeBloc homebloc = getIt.get<HomeBloc>();
   static NotesBloc notesbloc = getIt.get<NotesBloc>();
-  static EditorBloc editorbloc = getIt.get<EditorBloc>();
+  static EditorPageBloc editorbloc = getIt.get<EditorPageBloc>();
   static AppRouter autoRoutes = getIt.get<AppRouter>();
 }

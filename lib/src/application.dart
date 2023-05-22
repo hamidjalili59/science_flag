@@ -20,13 +20,13 @@ class Application extends StatelessWidget {
             darkTheme: ThemeData(
               colorScheme: const ColorScheme(
                   brightness: Brightness.light,
-                  primary: Color(0xffFFF3D3),
+                  primary: Color(0xFF000000),
                   onPrimary: Color(0xffFFF3D3),
                   secondary: Color(0xffe4F8F6),
                   onSecondary: Color(0xffFFF3D3),
                   error: Color(0xffFFF3D3),
                   onError: Color(0xffFFF3D3),
-                  background: Color(0xff29384d),
+                  background: Color.fromARGB(255, 255, 255, 255),
                   onBackground: Color(0xff465363),
                   surface: Color.fromARGB(255, 246, 243, 233),
                   onSurface: Color.fromARGB(255, 0, 0, 0)),
