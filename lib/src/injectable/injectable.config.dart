@@ -20,44 +20,44 @@ import 'package:base_project/src/features/auth/domain/repositories/auth_reposito
 import 'package:base_project/src/features/auth/domain/use_cases/cache_auth_data_use_case.dart'
     as _i6;
 import 'package:base_project/src/features/auth/domain/use_cases/get_cached_auth_data_use_case.dart'
-    as _i8;
-import 'package:base_project/src/features/auth/domain/use_cases/otp_login_use_case.dart'
-    as _i17;
-import 'package:base_project/src/features/auth/domain/use_cases/otp_signup_use_case.dart'
+    as _i10;
+import 'package:base_project/src/features/auth/domain/use_cases/otp_handshake_use_case.dart'
     as _i18;
-import 'package:base_project/src/features/editor/data/data_sources/local/notes_local_data_source.dart'
-    as _i13;
-import 'package:base_project/src/features/editor/data/data_sources/remote/notes_remote_data_source.dart'
-    as _i15;
-import 'package:base_project/src/features/editor/domain/repositories/notes_repository.dart'
+import 'package:base_project/src/features/editor/data/data_sources/local/editor_local_data_source.dart'
     as _i7;
+import 'package:base_project/src/features/editor/data/data_sources/remote/editor_remote_data_source.dart'
+    as _i8;
+import 'package:base_project/src/features/editor/domain/repositories/editor_repository.dart'
+    as _i9;
 import 'package:base_project/src/features/editor/domain/use_cases/read_node_editor_usecase.dart'
     as _i19;
 import 'package:base_project/src/features/editor/domain/use_cases/save_note_usecase.dart'
     as _i21;
 import 'package:base_project/src/features/notes/data/data_sources/local/notes_local_data_source.dart'
-    as _i12;
+    as _i15;
 import 'package:base_project/src/features/notes/data/data_sources/remote/notes_remote_data_source.dart'
-    as _i14;
-import 'package:base_project/src/features/notes/domain/repositories/notes_repository.dart'
     as _i16;
+import 'package:base_project/src/features/notes/domain/repositories/notes_repository.dart'
+    as _i17;
 import 'package:base_project/src/features/notes/domain/use_cases/get_notes_item.dart'
-    as _i9;
-import 'package:base_project/src/injectable/module_injection/feature/auth_feature_module.dart'
-    as _i25;
+    as _i11;
 import 'package:base_project/src/injectable/module_injection/feature/editor_feature_module.dart'
-    as _i27;
+    as _i25;
 import 'package:base_project/src/injectable/module_injection/feature/notes_feature_module.dart'
     as _i26;
-import 'package:base_project/src/presentations/auth/bloc/auth/auth_bloc.dart'
+import 'package:base_project/src/injectable/module_injection/feature/old_auth_feature_module.dart'
+    as _i27;
+import 'package:base_project/src/presentations/auth/bloc/auth_bloc.dart'
     as _i23;
 import 'package:base_project/src/presentations/editor/bloc/editor/editor_bloc.dart'
     as _i24;
 import 'package:base_project/src/presentations/home/bloc/home/home_bloc.dart'
-    as _i10;
+    as _i12;
+import 'package:base_project/src/presentations/intro/bloc/intro_bloc.dart'
+    as _i13;
 import 'package:base_project/src/presentations/notes/bloc/notes/notes_bloc.dart'
-    as _i11;
-import 'package:base_project/src/presentations/splash/bloc/splash/splash_bloc.dart'
+    as _i14;
+import 'package:base_project/src/presentations/splash/bloc/splash_bloc.dart'
     as _i22;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
@@ -81,27 +81,32 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i5.AuthRepository>(() => authFeatureModule.repo);
     gh.factory<_i6.CacheAuthDataUseCase>(
         () => authFeatureModule.cacheAuthDataUseCase);
-    gh.factory<_i7.EditorRepository>(() => editorFeatureModule.repo);
-    gh.factory<_i8.GetCachedAuthDataUseCase>(
+    gh.factory<_i7.EditorLocalDataSource>(() => editorFeatureModule.localDS);
+    gh.factory<_i8.EditorRemoteDataSource>(() => editorFeatureModule.remoteDS);
+    gh.factory<_i9.EditorRepository>(() => editorFeatureModule.repo);
+    gh.factory<_i10.GetCachedAuthDataUseCase>(
         () => authFeatureModule.getCacheDataUseCase);
-    gh.factory<_i9.GetNotesDataUseCase>(
+    gh.factory<_i11.GetNotesDataUseCase>(
         () => notesFeatureModule.getNotesUseCase);
-    gh.factory<_i10.HomeBloc>(() => _i10.HomeBloc());
-    gh.factory<_i11.NotesBloc>(
-        () => _i11.NotesBloc(gh<_i9.GetNotesDataUseCase>()));
-    gh.factory<_i12.NotesLocalDataSource>(() => notesFeatureModule.localDS);
-    gh.factory<_i13.NotesLocalDataSource>(() => editorFeatureModule.localDS);
-    gh.factory<_i14.NotesRemoteDataSource>(() => notesFeatureModule.remoteDS);
-    gh.factory<_i15.NotesRemoteDataSource>(() => editorFeatureModule.remoteDS);
-    gh.factory<_i16.NotesRepository>(() => notesFeatureModule.repo);
-    gh.factory<_i17.OtpLoginUseCase>(() => authFeatureModule.otpLoginUseCase);
-    gh.factory<_i18.OtpSignupUseCase>(() => authFeatureModule.otpSignupUseCase);
+    gh.factory<_i12.HomeBloc>(() => _i12.HomeBloc());
+    gh.factory<_i13.IntroBloc>(() => _i13.IntroBloc());
+    gh.factory<_i14.NotesBloc>(
+        () => _i14.NotesBloc(gh<_i11.GetNotesDataUseCase>()));
+    gh.factory<_i15.NotesLocalDataSource>(() => notesFeatureModule.localDS);
+    gh.factory<_i16.NotesRemoteDataSource>(() => notesFeatureModule.remoteDS);
+    gh.factory<_i17.NotesRepository>(() => notesFeatureModule.repo);
+    gh.factory<_i18.OtpHandshakeUseCase>(
+        () => authFeatureModule.otpHandshakeUseCase);
     gh.factory<_i19.ReadNoteEditorUseCase>(
         () => editorFeatureModule.readNotesUseCase);
     gh.factory<_i20.RequestInterceptor>(() => _i20.RequestInterceptor());
     gh.factory<_i21.SaveNoteUseCase>(() => editorFeatureModule.getNotesUseCase);
-    gh.singleton<_i22.SplashBloc>(_i22.SplashBloc());
-    gh.factory<_i23.AuthBloc>(() => _i23.AuthBloc(gh<_i17.OtpLoginUseCase>()));
+    gh.factory<_i22.SplashBloc>(
+        () => _i22.SplashBloc(gh<_i10.GetCachedAuthDataUseCase>()));
+    gh.factory<_i23.AuthBloc>(() => _i23.AuthBloc(
+          gh<_i18.OtpHandshakeUseCase>(),
+          gh<_i6.CacheAuthDataUseCase>(),
+        ));
     gh.lazySingleton<_i24.EditorPageBloc>(() => _i24.EditorPageBloc(
           gh<_i19.ReadNoteEditorUseCase>(),
           gh<_i21.SaveNoteUseCase>(),
@@ -110,8 +115,8 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$AuthFeatureModule extends _i25.AuthFeatureModule {}
+class _$EditorFeatureModule extends _i25.EditorFeatureModule {}
 
 class _$NotesFeatureModule extends _i26.NotesFeatureModule {}
 
-class _$EditorFeatureModule extends _i27.EditorFeatureModule {}
+class _$AuthFeatureModule extends _i27.AuthFeatureModule {}

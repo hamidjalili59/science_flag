@@ -15,7 +15,7 @@ import 'package:ndialog/ndialog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EditorMobileWidget extends StatefulWidget {
-  EditorMobileWidget({Key? key}) : super(key: key);
+  const EditorMobileWidget({Key? key}) : super(key: key);
 
   @override
   State<EditorMobileWidget> createState() => _EditorMobileWidgetState();
@@ -41,6 +41,12 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
             backgroundColor: Theme.of(context).colorScheme.secondary,
             onPressed: () {
               NDialog(
+                dialogStyle: DialogStyle(
+                  titleDivider: false,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 5.w, vertical: 0.h),
+                  titlePadding: EdgeInsets.symmetric(vertical: 10.h),
+                ),
                 title: Text(
                   'محتویات مورد نظر را انتخاب کنید',
                   style: Theme.of(context).textTheme.titleSmall,
@@ -48,59 +54,89 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
                 ),
                 content: SizedBox(
                   width: 0.35.sw,
-                  height: 0.2.sh,
-                  child: ListView(children: [
-                    InkWell(
-                      onTap: () => getIt.get<EditorPageBloc>().add(
-                          EditorPageEvent.addTool(
-                              'formula',
-                              editorState.controller!.selection.baseOffset,
-                              false)),
-                      child: ListTile(
-                        selected: true,
-                        selectedTileColor:
-                            Theme.of(context).colorScheme.secondary,
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                              flex: 1,
-                              child: SizedBox(
+                  height: 0.24.sh,
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                    children: [
+                      InkWell(
+                        onTap: () => getIt.get<EditorPageBloc>().add(
+                            EditorPageEvent.addTool(
+                                'formula',
+                                editorState.controller!.selection.baseOffset,
+                                false)),
+                        child: Container(
+                          height: 55,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black38),
+                              borderRadius: BorderRadius.circular(8.r)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
                                   width: 35,
-                                  height: 35,
+                                  height: 25,
                                   child: SvgPicture.asset(SVGAssets.formula)),
-                            ),
-                            const Flexible(flex: 5, child: Text('فرمول')),
-                          ],
+                              SizedBox(width: 0.25.sw),
+                              const Text('فرمول'),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () => getIt.get<EditorPageBloc>().add(
-                          EditorPageEvent.addTool(
-                              'camera',
-                              editorState.controller!.selection.baseOffset,
-                              false)),
-                      child: ListTile(
-                        selected: true,
-                        selectedTileColor:
-                            Theme.of(context).colorScheme.secondary,
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                              flex: 1,
-                              child: SizedBox(
-                                  width: 35,
-                                  height: 35,
-                                  child: SvgPicture.asset(SVGAssets.slide)),
-                            ),
-                            const Flexible(flex: 5, child: Text('دوربین')),
-                          ],
+                      SizedBox(height: 10.h),
+                      InkWell(
+                        onTap: () => getIt.get<EditorPageBloc>().add(
+                            EditorPageEvent.addTool(
+                                'gallary',
+                                editorState.controller!.selection.baseOffset,
+                                false)),
+                        child: Container(
+                          height: 55,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black38),
+                              borderRadius: BorderRadius.circular(8.r)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              const SizedBox(
+                                width: 35,
+                                height: 25,
+                                // child: SvgPicture.asset(SVGAssets.formula),
+                                child: Icon(Icons.image_rounded),
+                              ),
+                              SizedBox(width: 0.25.sw),
+                              const Text('گالری'),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ]),
+                      SizedBox(height: 10.h),
+                      InkWell(
+                        onTap: () => getIt.get<EditorPageBloc>().add(
+                            EditorPageEvent.addTool(
+                                'camera',
+                                editorState.controller!.selection.baseOffset,
+                                false)),
+                        child: Container(
+                          height: 55,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black38),
+                              borderRadius: BorderRadius.circular(8.r)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              const SizedBox(
+                                width: 35,
+                                height: 25,
+                                child: Icon(Icons.camera_alt_rounded),
+                              ),
+                              SizedBox(width: 0.25.sw),
+                              const Text('دوربین'),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ).show(context);
             },
@@ -134,7 +170,7 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
                           padding: EdgeInsets.only(
                             left: 16,
                             right: 16,
-                            bottom: MediaQuery.of(context).padding.bottom,
+                            bottom: 0.35.sh,
                           ),
                           onLaunchUrl: _launchUrl,
                           maxContentWidth: 800,
@@ -179,13 +215,26 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
             Image.file(File((node.value.data['images'] as List<String>).first)),
       );
     }
+    if (node.value.type == 'gallary') {
+      // Icons.rocket_launch_outlined
+      return SizedBox(
+        width: 0.8.sw,
+        height: 0.4.sh,
+        child: Image.file(File(node.value.data['image'])),
+      );
+    }
 
     if (node.value.type == 'formula') {
       // Icons.rocket_launch_outlined
-      return SizedBox(
-          width: 80,
-          height: 50,
-          child: Math.tex('r${node.value.data['value']}'));
+      return Container(
+        constraints: BoxConstraints(
+            minHeight: 15.h, maxHeight: 80.h, minWidth: 80.w, maxWidth: 250.w),
+        child: Math.tex(node.value.data['value'],
+            mathStyle: MathStyle.text,
+            textStyle: TextStyle(
+              fontSize: node.value.data['size'],
+            )),
+      );
     }
 
     if (node.value.type == 'icon') {
@@ -233,8 +282,8 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
   void _launchUrl(String? url) async {
     if (url == null) return;
     final uri = Uri.parse(url);
-    final _canLaunch = await canLaunchUrl(uri);
-    if (_canLaunch) {
+    final canLaunch = await canLaunchUrl(uri);
+    if (canLaunch) {
       await launchUrl(uri);
     }
   }
@@ -259,7 +308,6 @@ class ForceNewlineForInsertsAroundInlineImageRule extends InsertRule {
       if (cursorAfterInlineEmbed && !data.startsWith('\n')) {
         delta.insert('\n');
       }
-      print(data);
       delta.insert(data);
       if (cursorBeforeInlineEmbed && !data.endsWith('\n')) {
         delta.insert('\n');

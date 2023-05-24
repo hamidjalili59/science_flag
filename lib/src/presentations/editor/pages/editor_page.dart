@@ -47,8 +47,8 @@ class EditorPage extends StatelessWidget {
           ),
           floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
           body: ScreenUtil().screenWidth < 400
-              ? EditorMobileWidget()
-              : EditorMobileWidget(),
+              ? const EditorMobileWidget()
+              : const EditorMobileWidget(),
         ),
       ),
     );

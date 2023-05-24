@@ -1,4 +1,9 @@
+import 'package:base_project/src/config/constants/general_constants.dart';
+import 'package:base_project/src/config/routes/router.dart';
+import 'package:base_project/src/injectable/injectable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 
 class FunctionHelper {
@@ -14,6 +19,12 @@ class FunctionHelper {
     logger.i(message);
   }
 
+  Future<XFile> imagePickerMethod() async {
+    final ImagePicker picker = ImagePicker();
+    return Future.value(await picker.pickImage(
+        source: ImageSource.gallery, maxHeight: 1.sh, maxWidth: 1.sw));
+  }
+
 // funtion for showing ErrorDetails
   void logErrorDetailMessage(Object errorExep,
       {String? libraryName, String bodyMessage = ''}) {
@@ -24,40 +35,40 @@ class FunctionHelper {
     );
   }
 
-  // void displaySnackBar({
-  //   required String message,
-  //   bool isFailureMessage = false,
-  // }) {
-  //   BuildContext context = getIt.get<AppRouter>.navigatorKey.currentContext!;
-  //   final snackBar = SnackBar(
-  //     padding: EdgeInsets.symmetric(vertical: 8.h),
-  //     content: Text(
-  //       message.isNotEmpty ? message : 'Empty',
-  //       textAlign: TextAlign.center,
-  //       style: TextStyle(
-  //           color: isFailureMessage ? Colors.white70 : Colors.black54,
-  //           fontWeight: FontWeight.w900,
-  //           fontSize: 16.r),
-  //     ),
-  //     backgroundColor: isFailureMessage ? Colors.redAccent : Colors.greenAccent,
-  //   );
+  void displaySnackBar({
+    required String message,
+    bool isFailureMessage = false,
+  }) {
+    BuildContext context = getIt.get<AppRouter>().navigatorKey.currentContext!;
+    final snackBar = SnackBar(
+      padding: EdgeInsets.symmetric(vertical: 8.h),
+      content: Text(
+        message.isNotEmpty ? message : 'Empty',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            color: isFailureMessage ? Colors.white70 : Colors.black54,
+            fontWeight: FontWeight.w900,
+            fontSize: 16.r),
+      ),
+      backgroundColor: isFailureMessage ? Colors.redAccent : Colors.greenAccent,
+    );
 
-  //   ScaffoldMessenger.of(context)
-  //     ..clearSnackBars()
-  //     ..showSnackBar(snackBar);
-  // }
+    ScaffoldMessenger.of(context)
+      ..clearSnackBars()
+      ..showSnackBar(snackBar);
+  }
 
-  // Future<bool> onWillPop() async {
-  //   DateTime now = DateTime.now();
-  //   if (GeneralConstants.currentBackPressTime == null ||
-  //       now.difference(GeneralConstants.currentBackPressTime!) >
-  //           const Duration(seconds: 2)) {
-  //     GeneralConstants.currentBackPressTime = now;
-  //     FunctionHelper().displaySnackBar(
-  //         message: 'برای خروج دوباره کلیک کنید.', isFailureMessage: false);
-  //     return Future.value(false);
-  //   }
-  //   await Future<void>.delayed(const Duration(milliseconds: 250));
-  //   return Future.value(true);
-  // }
+  Future<bool> onWillPop() async {
+    DateTime now = DateTime.now();
+    if (GeneralConstants.currentBackPressTime == null ||
+        now.difference(GeneralConstants.currentBackPressTime!) >
+            const Duration(seconds: 2)) {
+      GeneralConstants.currentBackPressTime = now;
+      FunctionHelper().displaySnackBar(
+          message: 'برای خروج دوباره کلیک کنید.', isFailureMessage: false);
+      return Future.value(false);
+    }
+    await Future<void>.delayed(const Duration(milliseconds: 250));
+    return Future.value(true);
+  }
 }

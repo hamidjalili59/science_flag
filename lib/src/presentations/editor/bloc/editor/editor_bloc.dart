@@ -15,6 +15,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:math_keyboard/math_keyboard.dart';
 import 'package:ndialog/ndialog.dart';
@@ -51,7 +52,7 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
       state.controller!.document.insert(
           event.position,
           EmbeddableObject('widget',
-              inline: false, data: {'width': 50.0, 'height': 60.0}));
+              inline: true, data: {'width': 50.0, 'height': 60.0}));
       emit(
           EditorPageState.idle(controller: state.controller, isLoading: false));
     } else if (event.widgetType == 'camera') {
@@ -61,18 +62,34 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
       state.controller!.document.insert(
           event.position,
           EmbeddableObject('camera',
-              inline: false,
+              inline: true,
               data: {'length': imagesPath!.length, 'images': imagesPath}));
+      emit(
+          EditorPageState.idle(controller: state.controller, isLoading: false));
+    } else if (event.widgetType == 'gallary') {
+      emit(EditorPageState.idle(controller: state.controller, isLoading: true));
+      getIt.get<AppRouter>().popUntilRouteWithName('Editor');
+      XFile? imageFile = await FunctionHelper().imagePickerMethod();
+      state.controller!.document.insert(
+          event.position,
+          EmbeddableObject('gallary',
+              inline: true, data: {'image': imageFile.path}));
       emit(
           EditorPageState.idle(controller: state.controller, isLoading: false));
     } else if (event.widgetType == 'formula') {
       emit(EditorPageState.idle(controller: state.controller, isLoading: true));
       getIt.get<AppRouter>().popUntilRouteWithName('Editor');
       await NDialog(
-        title: const Text('فرمول را در کادر زیر وارد کنید'),
+        title: Text(
+          'فرمول را در کادر زیر وارد کنید',
+          style: Theme.of(getIt.get<AppRouter>().navigatorKey.currentContext!)
+              .textTheme
+              .titleSmall,
+          textAlign: TextAlign.center,
+        ),
         content: SizedBox(
           width: 0.3.sw,
-          height: 0.2.sh,
+          height: 0.1.sh,
           child: MathField(
             // No parameters are required.
             keyboardType: MathKeyboardType
@@ -90,8 +107,7 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
               state.controller!.document.insert(
                   event.position,
                   EmbeddableObject('formula',
-                      inline: event.inline,
-                      data: {'value': value, 'size': 26}));
+                      inline: true, data: {'value': value, 'size': 18.0}));
               getIt.get<AppRouter>().popUntilRouteWithName('Editor');
             }, // Respond to the user submitting their input.
             autofocus: true, // Enable or disable autofocus of the input field.
@@ -161,7 +177,7 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
               },
               (r) async {
                 try {
-                  final result = r;
+                  final result = json.decode(r);
 
                   final heuristics = ParchmentHeuristics(
                     formatRules: [],
@@ -171,7 +187,7 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
                     deleteRules: [],
                   ).merge(ParchmentHeuristics.fallback);
                   final doc = ParchmentDocument.fromJson(
-                    jsonDecode(result),
+                    result,
                     heuristics: heuristics,
                   );
                   final controller = FleatherController(doc);
@@ -221,8 +237,9 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
 
   FutureOr<void> _onSaveDocument(
       _SaveDocument event, Emitter<EditorPageState> emit) async {
-    String tempDoc = state.controller!.document.toString();
-    await _saveNodeUsecase.call(param: tuple.Tuple2(tempDoc, 'hamid'));
+    List<dynamic> tempDoc = state.controller!.document.toDelta().toJson();
+    await _saveNodeUsecase.call(
+        param: tuple.Tuple2(json.encode(tempDoc), 'hamid'));
 
     getIt.get<AppRouter>().pop();
   }

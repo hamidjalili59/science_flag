@@ -16,9 +16,10 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     Login.name: (routeData) {
+      final args = routeData.argsAs<LoginArgs>(orElse: () => const LoginArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const AuthPage(),
+        child: AuthPage(key: args.key),
       );
     },
     Editor.name: (routeData) {
@@ -33,6 +34,13 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomePage(),
       );
     },
+    Intro.name: (routeData) {
+      final args = routeData.argsAs<IntroArgs>(orElse: () => const IntroArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: IntroPage(key: args.key),
+      );
+    },
     Notes.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -40,9 +48,11 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     Splash.name: (routeData) {
+      final args =
+          routeData.argsAs<SplashArgs>(orElse: () => const SplashArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SplashPage(),
+        child: SplashPage(key: args.key),
       );
     },
   };
@@ -50,16 +60,30 @@ abstract class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [AuthPage]
-class Login extends PageRouteInfo<void> {
-  const Login({List<PageRouteInfo>? children})
-      : super(
+class Login extends PageRouteInfo<LoginArgs> {
+  Login({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           Login.name,
+          args: LoginArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'Login';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<LoginArgs> page = PageInfo<LoginArgs>(name);
+}
+
+class LoginArgs {
+  const LoginArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'LoginArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -91,6 +115,34 @@ class Home extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [IntroPage]
+class Intro extends PageRouteInfo<IntroArgs> {
+  Intro({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          Intro.name,
+          args: IntroArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'Intro';
+
+  static const PageInfo<IntroArgs> page = PageInfo<IntroArgs>(name);
+}
+
+class IntroArgs {
+  const IntroArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'IntroArgs{key: $key}';
+  }
+}
+
+/// generated route for
 /// [NotesPage]
 class Notes extends PageRouteInfo<void> {
   const Notes({List<PageRouteInfo>? children})
@@ -106,14 +158,28 @@ class Notes extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SplashPage]
-class Splash extends PageRouteInfo<void> {
-  const Splash({List<PageRouteInfo>? children})
-      : super(
+class Splash extends PageRouteInfo<SplashArgs> {
+  Splash({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           Splash.name,
+          args: SplashArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'Splash';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<SplashArgs> page = PageInfo<SplashArgs>(name);
+}
+
+class SplashArgs {
+  const SplashArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SplashArgs{key: $key}';
+  }
 }

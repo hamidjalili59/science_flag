@@ -4,14 +4,11 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<Either<DioError, Response<String>>> otpLogin({
-    required String email,
-    required String password,
-  });
-  Future<Either<DioError, Response<String>>> otpSignup({
-    required String email,
-    required String password,
-  });
+  Future<Either<DioError, Response<String>>> otpHandshake(
+      {required double phoneNumber});
+
+  Future<Either<DioError, Response<Map<String, dynamic>>>> getDataFromServer(
+      {required double phoneNumber});
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -19,23 +16,18 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final ApiService apiService;
 
   @override
-  Future<Either<DioError, Response<String>>> otpLogin({
-    required String email,
-    required String password,
-  }) async {
-    return await apiService.postMethod<String>(
-      AuthEndpoints.host + AuthEndpoints.login,
-      body: {"email": email, "password": password},
-    );
-  }
+  Future<Either<DioError, Response<String>>> otpHandshake(
+          {required double phoneNumber}) =>
+      apiService.postMethod<String>(
+        AuthEndpoints.host + AuthEndpoints.login,
+        body: {"email": '', "password": ''},
+      );
 
   @override
-  Future<Either<DioError, Response<String>>> otpSignup({
-    required String email,
-    required String password,
-  }) =>
-      apiService.postMethod<String>(
-        AuthEndpoints.host + AuthEndpoints.signup,
-        body: {"email": email, "password": password},
-      );
+  Future<Either<DioError, Response<Map<String, dynamic>>>> getDataFromServer(
+      {required double phoneNumber}) {
+    return apiService.getMethod(
+      'http://science_flag.ir/api/Devices/$phoneNumber',
+    );
+  }
 }

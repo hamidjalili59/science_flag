@@ -114,13 +114,6 @@ class _MathFormFieldState extends FormFieldState<String> {
   }
 
   @override
-  void didChange(String? value) {
-    super.didChange(value);
-
-    // todo: allow changing the value from outside of the controller.
-  }
-
-  @override
   void reset() {
     // setState will be called in the superclass, so even though state is being
     // manipulated, no setState call is needed here.

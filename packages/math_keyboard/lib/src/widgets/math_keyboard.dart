@@ -75,7 +75,7 @@ class MathKeyboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final curvedSlideAnimation = CurvedAnimation(
-      parent: slideAnimation ?? AlwaysStoppedAnimation(1),
+      parent: slideAnimation ?? const AlwaysStoppedAnimation(1),
       curve: Curves.ease,
     );
 
