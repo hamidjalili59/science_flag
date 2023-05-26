@@ -6,6 +6,7 @@ import 'package:base_project/src/features/notes/domain/models/notes_item_list_mo
 import 'package:base_project/src/features/notes/domain/failures/notes_failure.dart';
 import 'package:base_project/src/features/notes/domain/repositories/notes_repository.dart';
 import 'package:dartz/dartz.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class NotesRepositoryImpl extends NotesRepository {
   final NotesRemoteDataSource _remoteDS;
@@ -15,21 +16,37 @@ class NotesRepositoryImpl extends NotesRepository {
   NotesRepositoryImpl(this._remoteDS, this._localDS);
 
   @override
-  Future<Either<NotesFailure, List<NotesItemListModel>>> cacheNotesItem(
+  Future<Either<NotesFailure, void>> cacheNotesItem(
       {required List<NotesItemListModel> notesList}) {
-    _localDS;
-    throw UnimplementedError();
+    return _localDS.cacheData(fieldKey: 'notes', value: notesList).then(
+          (value) => value.fold(
+            (l) => left(NotesFailure.database(l)),
+            (r) => right(null),
+          ),
+        );
   }
 
   @override
   Future<Either<NotesFailure, List<NotesItemListModel>>> getCachedNotesItem(
       {required List<NotesItemListModel> notesList}) {
-    throw UnimplementedError();
+    return _localDS.getCachedData(fieldKey: 'notes').then(
+          (value) => value.fold(
+            (l) => left(NotesFailure.database(l)),
+            (r) {
+              if (r == null) {
+                return left(const NotesFailure.nullParam());
+              }
+              return right(r);
+            },
+          ),
+        );
   }
 
   @override
-  Future<Either<NotesFailure, List<NotesItemListModel>>> getNotesItem() async =>
-      await _remoteDS.getNotesItem().then(
+  Future<Either<NotesFailure, List<NotesItemListModel>>> getNotesItem() async {
+    bool result = await InternetConnectionChecker().hasConnection;
+    if (result == true) {
+      return await _remoteDS.getNotesItem().then(
             (value) => value.fold(
               (l) => left<NotesFailure, List<NotesItemListModel>>(
                   NotesFailure.api(l)),
@@ -49,4 +66,55 @@ class NotesRepositoryImpl extends NotesRepository {
               },
             ),
           );
+    } else {
+      return _localDS.getCachedData(fieldKey: 'notes').then(
+            (value) => value.fold(
+              (l) => left(NotesFailure.database(l)),
+              (r) {
+                if (r == null) {
+                  return left(const NotesFailure.nullParam());
+                }
+                return right(r);
+              },
+            ),
+          );
+    }
+  }
+
+  @override
+  Future<Either<NotesFailure, void>> deleteNoteItem(
+      {required NotesItemListModel note}) {
+    return _localDS.removeData(fieldKey: note.name).then(
+          (value) => value.fold(
+            (l) => left(NotesFailure.database(l)),
+            (r) => right(null),
+          ),
+        );
+  }
+
+  @override
+  Future<Either<NotesFailure, NotesItemListModel>> editNoteItem(
+      {required NotesItemListModel note}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<NotesFailure, NotesItemListModel>> readNoteItem(
+      {required NotesItemListModel note}) {
+    return _localDS.getCachedData(fieldKey: note.name).then(
+          (value) => value.fold(
+            (l) => left(NotesFailure.database(l)),
+            (r) {
+              if (r == null) {
+                return left(const NotesFailure.nullParam());
+              }
+              var tempNotes = r
+                  .toList()
+                  .where((element) => element.name == note.name)
+                  .first;
+              return right(tempNotes);
+            },
+          ),
+        );
+  }
 }

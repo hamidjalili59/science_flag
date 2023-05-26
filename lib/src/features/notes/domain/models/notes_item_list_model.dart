@@ -9,20 +9,23 @@ class NotesItemListModel {
   @HiveField(0, defaultValue: 'none')
   final String icon;
   @HiveField(1, defaultValue: 'unknown')
-  final String title;
+  final String name;
   @HiveField(2, defaultValue: 'self')
   final String owner;
   @HiveField(3, defaultValue: 'unknown')
   final String category;
   @HiveField(4, defaultValue: false)
   final bool doHisHavePractice;
+  @HiveField(5, defaultValue: '')
+  final String id;
 
   NotesItemListModel(
     this.icon,
-    this.title,
+    this.name,
     this.owner,
     this.category,
     this.doHisHavePractice,
+    this.id,
   );
 
   factory NotesItemListModel.fromJson(Map<String, dynamic> json) =>

@@ -334,18 +334,30 @@ mixin _$NotesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() refresh,
     required TResult Function() getNotesItem,
+    required TResult Function() createNotesItem,
+    required TResult Function() deleteNotesItem,
+    required TResult Function() readNotesItem,
+    required TResult Function() editNotesItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? refresh,
     TResult? Function()? getNotesItem,
+    TResult? Function()? createNotesItem,
+    TResult? Function()? deleteNotesItem,
+    TResult? Function()? readNotesItem,
+    TResult? Function()? editNotesItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? refresh,
     TResult Function()? getNotesItem,
+    TResult Function()? createNotesItem,
+    TResult Function()? deleteNotesItem,
+    TResult Function()? readNotesItem,
+    TResult Function()? editNotesItem,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -353,18 +365,30 @@ mixin _$NotesEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_GetNotesItem value) getNotesItem,
+    required TResult Function(_CreateNotesItem value) createNotesItem,
+    required TResult Function(_DeleteNotesItem value) deleteNotesItem,
+    required TResult Function(_ReadNotesItem value) readNotesItem,
+    required TResult Function(_EditNotesItem value) editNotesItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_GetNotesItem value)? getNotesItem,
+    TResult? Function(_CreateNotesItem value)? createNotesItem,
+    TResult? Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult? Function(_ReadNotesItem value)? readNotesItem,
+    TResult? Function(_EditNotesItem value)? editNotesItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Refresh value)? refresh,
     TResult Function(_GetNotesItem value)? getNotesItem,
+    TResult Function(_CreateNotesItem value)? createNotesItem,
+    TResult Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult Function(_ReadNotesItem value)? readNotesItem,
+    TResult Function(_EditNotesItem value)? editNotesItem,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -427,6 +451,10 @@ class _$_Refresh implements _Refresh {
   TResult when<TResult extends Object?>({
     required TResult Function() refresh,
     required TResult Function() getNotesItem,
+    required TResult Function() createNotesItem,
+    required TResult Function() deleteNotesItem,
+    required TResult Function() readNotesItem,
+    required TResult Function() editNotesItem,
   }) {
     return refresh();
   }
@@ -436,6 +464,10 @@ class _$_Refresh implements _Refresh {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? refresh,
     TResult? Function()? getNotesItem,
+    TResult? Function()? createNotesItem,
+    TResult? Function()? deleteNotesItem,
+    TResult? Function()? readNotesItem,
+    TResult? Function()? editNotesItem,
   }) {
     return refresh?.call();
   }
@@ -445,6 +477,10 @@ class _$_Refresh implements _Refresh {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? refresh,
     TResult Function()? getNotesItem,
+    TResult Function()? createNotesItem,
+    TResult Function()? deleteNotesItem,
+    TResult Function()? readNotesItem,
+    TResult Function()? editNotesItem,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -458,6 +494,10 @@ class _$_Refresh implements _Refresh {
   TResult map<TResult extends Object?>({
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_GetNotesItem value) getNotesItem,
+    required TResult Function(_CreateNotesItem value) createNotesItem,
+    required TResult Function(_DeleteNotesItem value) deleteNotesItem,
+    required TResult Function(_ReadNotesItem value) readNotesItem,
+    required TResult Function(_EditNotesItem value) editNotesItem,
   }) {
     return refresh(this);
   }
@@ -467,6 +507,10 @@ class _$_Refresh implements _Refresh {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_GetNotesItem value)? getNotesItem,
+    TResult? Function(_CreateNotesItem value)? createNotesItem,
+    TResult? Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult? Function(_ReadNotesItem value)? readNotesItem,
+    TResult? Function(_EditNotesItem value)? editNotesItem,
   }) {
     return refresh?.call(this);
   }
@@ -476,6 +520,10 @@ class _$_Refresh implements _Refresh {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Refresh value)? refresh,
     TResult Function(_GetNotesItem value)? getNotesItem,
+    TResult Function(_CreateNotesItem value)? createNotesItem,
+    TResult Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult Function(_ReadNotesItem value)? readNotesItem,
+    TResult Function(_EditNotesItem value)? editNotesItem,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -529,6 +577,10 @@ class _$_GetNotesItem implements _GetNotesItem {
   TResult when<TResult extends Object?>({
     required TResult Function() refresh,
     required TResult Function() getNotesItem,
+    required TResult Function() createNotesItem,
+    required TResult Function() deleteNotesItem,
+    required TResult Function() readNotesItem,
+    required TResult Function() editNotesItem,
   }) {
     return getNotesItem();
   }
@@ -538,6 +590,10 @@ class _$_GetNotesItem implements _GetNotesItem {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? refresh,
     TResult? Function()? getNotesItem,
+    TResult? Function()? createNotesItem,
+    TResult? Function()? deleteNotesItem,
+    TResult? Function()? readNotesItem,
+    TResult? Function()? editNotesItem,
   }) {
     return getNotesItem?.call();
   }
@@ -547,6 +603,10 @@ class _$_GetNotesItem implements _GetNotesItem {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? refresh,
     TResult Function()? getNotesItem,
+    TResult Function()? createNotesItem,
+    TResult Function()? deleteNotesItem,
+    TResult Function()? readNotesItem,
+    TResult Function()? editNotesItem,
     required TResult orElse(),
   }) {
     if (getNotesItem != null) {
@@ -560,6 +620,10 @@ class _$_GetNotesItem implements _GetNotesItem {
   TResult map<TResult extends Object?>({
     required TResult Function(_Refresh value) refresh,
     required TResult Function(_GetNotesItem value) getNotesItem,
+    required TResult Function(_CreateNotesItem value) createNotesItem,
+    required TResult Function(_DeleteNotesItem value) deleteNotesItem,
+    required TResult Function(_ReadNotesItem value) readNotesItem,
+    required TResult Function(_EditNotesItem value) editNotesItem,
   }) {
     return getNotesItem(this);
   }
@@ -569,6 +633,10 @@ class _$_GetNotesItem implements _GetNotesItem {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Refresh value)? refresh,
     TResult? Function(_GetNotesItem value)? getNotesItem,
+    TResult? Function(_CreateNotesItem value)? createNotesItem,
+    TResult? Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult? Function(_ReadNotesItem value)? readNotesItem,
+    TResult? Function(_EditNotesItem value)? editNotesItem,
   }) {
     return getNotesItem?.call(this);
   }
@@ -578,6 +646,10 @@ class _$_GetNotesItem implements _GetNotesItem {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Refresh value)? refresh,
     TResult Function(_GetNotesItem value)? getNotesItem,
+    TResult Function(_CreateNotesItem value)? createNotesItem,
+    TResult Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult Function(_ReadNotesItem value)? readNotesItem,
+    TResult Function(_EditNotesItem value)? editNotesItem,
     required TResult orElse(),
   }) {
     if (getNotesItem != null) {
@@ -589,4 +661,508 @@ class _$_GetNotesItem implements _GetNotesItem {
 
 abstract class _GetNotesItem implements NotesEvent {
   const factory _GetNotesItem() = _$_GetNotesItem;
+}
+
+/// @nodoc
+abstract class _$$_CreateNotesItemCopyWith<$Res> {
+  factory _$$_CreateNotesItemCopyWith(
+          _$_CreateNotesItem value, $Res Function(_$_CreateNotesItem) then) =
+      __$$_CreateNotesItemCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_CreateNotesItemCopyWithImpl<$Res>
+    extends _$NotesEventCopyWithImpl<$Res, _$_CreateNotesItem>
+    implements _$$_CreateNotesItemCopyWith<$Res> {
+  __$$_CreateNotesItemCopyWithImpl(
+      _$_CreateNotesItem _value, $Res Function(_$_CreateNotesItem) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_CreateNotesItem implements _CreateNotesItem {
+  const _$_CreateNotesItem();
+
+  @override
+  String toString() {
+    return 'NotesEvent.createNotesItem()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_CreateNotesItem);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() refresh,
+    required TResult Function() getNotesItem,
+    required TResult Function() createNotesItem,
+    required TResult Function() deleteNotesItem,
+    required TResult Function() readNotesItem,
+    required TResult Function() editNotesItem,
+  }) {
+    return createNotesItem();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? refresh,
+    TResult? Function()? getNotesItem,
+    TResult? Function()? createNotesItem,
+    TResult? Function()? deleteNotesItem,
+    TResult? Function()? readNotesItem,
+    TResult? Function()? editNotesItem,
+  }) {
+    return createNotesItem?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? refresh,
+    TResult Function()? getNotesItem,
+    TResult Function()? createNotesItem,
+    TResult Function()? deleteNotesItem,
+    TResult Function()? readNotesItem,
+    TResult Function()? editNotesItem,
+    required TResult orElse(),
+  }) {
+    if (createNotesItem != null) {
+      return createNotesItem();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_GetNotesItem value) getNotesItem,
+    required TResult Function(_CreateNotesItem value) createNotesItem,
+    required TResult Function(_DeleteNotesItem value) deleteNotesItem,
+    required TResult Function(_ReadNotesItem value) readNotesItem,
+    required TResult Function(_EditNotesItem value) editNotesItem,
+  }) {
+    return createNotesItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_GetNotesItem value)? getNotesItem,
+    TResult? Function(_CreateNotesItem value)? createNotesItem,
+    TResult? Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult? Function(_ReadNotesItem value)? readNotesItem,
+    TResult? Function(_EditNotesItem value)? editNotesItem,
+  }) {
+    return createNotesItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_GetNotesItem value)? getNotesItem,
+    TResult Function(_CreateNotesItem value)? createNotesItem,
+    TResult Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult Function(_ReadNotesItem value)? readNotesItem,
+    TResult Function(_EditNotesItem value)? editNotesItem,
+    required TResult orElse(),
+  }) {
+    if (createNotesItem != null) {
+      return createNotesItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateNotesItem implements NotesEvent {
+  const factory _CreateNotesItem() = _$_CreateNotesItem;
+}
+
+/// @nodoc
+abstract class _$$_DeleteNotesItemCopyWith<$Res> {
+  factory _$$_DeleteNotesItemCopyWith(
+          _$_DeleteNotesItem value, $Res Function(_$_DeleteNotesItem) then) =
+      __$$_DeleteNotesItemCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_DeleteNotesItemCopyWithImpl<$Res>
+    extends _$NotesEventCopyWithImpl<$Res, _$_DeleteNotesItem>
+    implements _$$_DeleteNotesItemCopyWith<$Res> {
+  __$$_DeleteNotesItemCopyWithImpl(
+      _$_DeleteNotesItem _value, $Res Function(_$_DeleteNotesItem) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_DeleteNotesItem implements _DeleteNotesItem {
+  const _$_DeleteNotesItem();
+
+  @override
+  String toString() {
+    return 'NotesEvent.deleteNotesItem()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_DeleteNotesItem);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() refresh,
+    required TResult Function() getNotesItem,
+    required TResult Function() createNotesItem,
+    required TResult Function() deleteNotesItem,
+    required TResult Function() readNotesItem,
+    required TResult Function() editNotesItem,
+  }) {
+    return deleteNotesItem();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? refresh,
+    TResult? Function()? getNotesItem,
+    TResult? Function()? createNotesItem,
+    TResult? Function()? deleteNotesItem,
+    TResult? Function()? readNotesItem,
+    TResult? Function()? editNotesItem,
+  }) {
+    return deleteNotesItem?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? refresh,
+    TResult Function()? getNotesItem,
+    TResult Function()? createNotesItem,
+    TResult Function()? deleteNotesItem,
+    TResult Function()? readNotesItem,
+    TResult Function()? editNotesItem,
+    required TResult orElse(),
+  }) {
+    if (deleteNotesItem != null) {
+      return deleteNotesItem();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_GetNotesItem value) getNotesItem,
+    required TResult Function(_CreateNotesItem value) createNotesItem,
+    required TResult Function(_DeleteNotesItem value) deleteNotesItem,
+    required TResult Function(_ReadNotesItem value) readNotesItem,
+    required TResult Function(_EditNotesItem value) editNotesItem,
+  }) {
+    return deleteNotesItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_GetNotesItem value)? getNotesItem,
+    TResult? Function(_CreateNotesItem value)? createNotesItem,
+    TResult? Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult? Function(_ReadNotesItem value)? readNotesItem,
+    TResult? Function(_EditNotesItem value)? editNotesItem,
+  }) {
+    return deleteNotesItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_GetNotesItem value)? getNotesItem,
+    TResult Function(_CreateNotesItem value)? createNotesItem,
+    TResult Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult Function(_ReadNotesItem value)? readNotesItem,
+    TResult Function(_EditNotesItem value)? editNotesItem,
+    required TResult orElse(),
+  }) {
+    if (deleteNotesItem != null) {
+      return deleteNotesItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteNotesItem implements NotesEvent {
+  const factory _DeleteNotesItem() = _$_DeleteNotesItem;
+}
+
+/// @nodoc
+abstract class _$$_ReadNotesItemCopyWith<$Res> {
+  factory _$$_ReadNotesItemCopyWith(
+          _$_ReadNotesItem value, $Res Function(_$_ReadNotesItem) then) =
+      __$$_ReadNotesItemCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ReadNotesItemCopyWithImpl<$Res>
+    extends _$NotesEventCopyWithImpl<$Res, _$_ReadNotesItem>
+    implements _$$_ReadNotesItemCopyWith<$Res> {
+  __$$_ReadNotesItemCopyWithImpl(
+      _$_ReadNotesItem _value, $Res Function(_$_ReadNotesItem) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ReadNotesItem implements _ReadNotesItem {
+  const _$_ReadNotesItem();
+
+  @override
+  String toString() {
+    return 'NotesEvent.readNotesItem()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ReadNotesItem);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() refresh,
+    required TResult Function() getNotesItem,
+    required TResult Function() createNotesItem,
+    required TResult Function() deleteNotesItem,
+    required TResult Function() readNotesItem,
+    required TResult Function() editNotesItem,
+  }) {
+    return readNotesItem();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? refresh,
+    TResult? Function()? getNotesItem,
+    TResult? Function()? createNotesItem,
+    TResult? Function()? deleteNotesItem,
+    TResult? Function()? readNotesItem,
+    TResult? Function()? editNotesItem,
+  }) {
+    return readNotesItem?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? refresh,
+    TResult Function()? getNotesItem,
+    TResult Function()? createNotesItem,
+    TResult Function()? deleteNotesItem,
+    TResult Function()? readNotesItem,
+    TResult Function()? editNotesItem,
+    required TResult orElse(),
+  }) {
+    if (readNotesItem != null) {
+      return readNotesItem();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_GetNotesItem value) getNotesItem,
+    required TResult Function(_CreateNotesItem value) createNotesItem,
+    required TResult Function(_DeleteNotesItem value) deleteNotesItem,
+    required TResult Function(_ReadNotesItem value) readNotesItem,
+    required TResult Function(_EditNotesItem value) editNotesItem,
+  }) {
+    return readNotesItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_GetNotesItem value)? getNotesItem,
+    TResult? Function(_CreateNotesItem value)? createNotesItem,
+    TResult? Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult? Function(_ReadNotesItem value)? readNotesItem,
+    TResult? Function(_EditNotesItem value)? editNotesItem,
+  }) {
+    return readNotesItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_GetNotesItem value)? getNotesItem,
+    TResult Function(_CreateNotesItem value)? createNotesItem,
+    TResult Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult Function(_ReadNotesItem value)? readNotesItem,
+    TResult Function(_EditNotesItem value)? editNotesItem,
+    required TResult orElse(),
+  }) {
+    if (readNotesItem != null) {
+      return readNotesItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ReadNotesItem implements NotesEvent {
+  const factory _ReadNotesItem() = _$_ReadNotesItem;
+}
+
+/// @nodoc
+abstract class _$$_EditNotesItemCopyWith<$Res> {
+  factory _$$_EditNotesItemCopyWith(
+          _$_EditNotesItem value, $Res Function(_$_EditNotesItem) then) =
+      __$$_EditNotesItemCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_EditNotesItemCopyWithImpl<$Res>
+    extends _$NotesEventCopyWithImpl<$Res, _$_EditNotesItem>
+    implements _$$_EditNotesItemCopyWith<$Res> {
+  __$$_EditNotesItemCopyWithImpl(
+      _$_EditNotesItem _value, $Res Function(_$_EditNotesItem) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_EditNotesItem implements _EditNotesItem {
+  const _$_EditNotesItem();
+
+  @override
+  String toString() {
+    return 'NotesEvent.editNotesItem()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_EditNotesItem);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() refresh,
+    required TResult Function() getNotesItem,
+    required TResult Function() createNotesItem,
+    required TResult Function() deleteNotesItem,
+    required TResult Function() readNotesItem,
+    required TResult Function() editNotesItem,
+  }) {
+    return editNotesItem();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? refresh,
+    TResult? Function()? getNotesItem,
+    TResult? Function()? createNotesItem,
+    TResult? Function()? deleteNotesItem,
+    TResult? Function()? readNotesItem,
+    TResult? Function()? editNotesItem,
+  }) {
+    return editNotesItem?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? refresh,
+    TResult Function()? getNotesItem,
+    TResult Function()? createNotesItem,
+    TResult Function()? deleteNotesItem,
+    TResult Function()? readNotesItem,
+    TResult Function()? editNotesItem,
+    required TResult orElse(),
+  }) {
+    if (editNotesItem != null) {
+      return editNotesItem();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Refresh value) refresh,
+    required TResult Function(_GetNotesItem value) getNotesItem,
+    required TResult Function(_CreateNotesItem value) createNotesItem,
+    required TResult Function(_DeleteNotesItem value) deleteNotesItem,
+    required TResult Function(_ReadNotesItem value) readNotesItem,
+    required TResult Function(_EditNotesItem value) editNotesItem,
+  }) {
+    return editNotesItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Refresh value)? refresh,
+    TResult? Function(_GetNotesItem value)? getNotesItem,
+    TResult? Function(_CreateNotesItem value)? createNotesItem,
+    TResult? Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult? Function(_ReadNotesItem value)? readNotesItem,
+    TResult? Function(_EditNotesItem value)? editNotesItem,
+  }) {
+    return editNotesItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Refresh value)? refresh,
+    TResult Function(_GetNotesItem value)? getNotesItem,
+    TResult Function(_CreateNotesItem value)? createNotesItem,
+    TResult Function(_DeleteNotesItem value)? deleteNotesItem,
+    TResult Function(_ReadNotesItem value)? readNotesItem,
+    TResult Function(_EditNotesItem value)? editNotesItem,
+    required TResult orElse(),
+  }) {
+    if (editNotesItem != null) {
+      return editNotesItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EditNotesItem implements NotesEvent {
+  const factory _EditNotesItem() = _$_EditNotesItem;
 }

@@ -77,7 +77,7 @@ class NotesPageBody extends StatelessWidget {
                                     SizedBox(
                                       width: 0.5.sw,
                                       child: Text(
-                                        notes[position].title,
+                                        notes[position].name,
                                         textAlign: TextAlign.center,
                                         style: Theme.of(context)
                                             .textTheme

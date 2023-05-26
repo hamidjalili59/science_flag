@@ -11,7 +11,7 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class EditorFeatureModule {
-  EditorRemoteDataSource get remoteDS => NotesRemoteDataSourceImpl(
+  EditorRemoteDataSource get remoteDS => EditorRemoteDataSourceImpl(
         getIt.get<ApiService>(),
       );
   EditorLocalDataSource get localDS => EditorLocalDataSource(

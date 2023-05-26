@@ -22,23 +22,26 @@ class NotesItemListModelAdapter extends TypeAdapter<NotesItemListModel> {
       fields[2] == null ? 'self' : fields[2] as String,
       fields[3] == null ? 'unknown' : fields[3] as String,
       fields[4] == null ? false : fields[4] as bool,
+      fields[5] == null ? '' : fields[5] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, NotesItemListModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.icon)
       ..writeByte(1)
-      ..write(obj.title)
+      ..write(obj.name)
       ..writeByte(2)
       ..write(obj.owner)
       ..writeByte(3)
       ..write(obj.category)
       ..writeByte(4)
-      ..write(obj.doHisHavePractice);
+      ..write(obj.doHisHavePractice)
+      ..writeByte(5)
+      ..write(obj.id);
   }
 
   @override
@@ -59,17 +62,19 @@ class NotesItemListModelAdapter extends TypeAdapter<NotesItemListModel> {
 NotesItemListModel _$NotesItemListModelFromJson(Map<String, dynamic> json) =>
     NotesItemListModel(
       json['icon'] as String,
-      json['title'] as String,
+      json['name'] as String,
       json['owner'] as String,
       json['category'] as String,
       json['doHisHavePractice'] as bool,
+      json['id'] as String,
     );
 
 Map<String, dynamic> _$NotesItemListModelToJson(NotesItemListModel instance) =>
     <String, dynamic>{
       'icon': instance.icon,
-      'title': instance.title,
+      'name': instance.name,
       'owner': instance.owner,
       'category': instance.category,
       'doHisHavePractice': instance.doHisHavePractice,
+      'id': instance.id,
     };

@@ -14,7 +14,7 @@ class NotesRemoteDataSourceImpl implements NotesRemoteDataSource {
   @override
   Future<Either<DioError, Response<String>>> getNotesItem() async {
     return await apiService.getMethod<String>(
-      NotesEndpoints.host + NotesEndpoints.notes,
+      NotesEndpoints.host + NotesEndpoints.getNotes,
     );
   }
 }
