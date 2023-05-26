@@ -67,22 +67,23 @@ class NotesPageBody extends StatelessWidget {
                                       width: 40.w,
                                       child: SvgPicture.asset(
                                         notes[position].category == 'math'
-                                            ? SVGAssets.math_1
+                                            ? SVGAssets.math_3
                                             : notes[position].category ==
                                                     'chemistry'
-                                                ? SVGAssets.math_2
+                                                ? SVGAssets.math_3
                                                 : SVGAssets.course,
                                       ),
                                     ),
                                     SizedBox(
                                       width: 0.5.sw,
                                       child: Text(
-                                        notes[position].title,
+                                        notes[position].name,
                                         textAlign: TextAlign.center,
                                         style: Theme.of(context)
                                             .textTheme
-                                            .titleLarge!
+                                            .bodyLarge!
                                             .copyWith(
+                                              fontWeight: FontWeight.w500,
                                               color: Theme.of(context)
                                                   .colorScheme
                                                   .surface,
@@ -166,7 +167,7 @@ class AppbarSubPagesWidget extends StatelessWidget {
             child: Icon(
               Icons.arrow_back_ios_new_rounded,
               color: Theme.of(context).colorScheme.surface,
-              size: 30.r,
+              size: 24.r,
             ),
           ),
           Text(
@@ -178,7 +179,7 @@ class AppbarSubPagesWidget extends StatelessWidget {
           ),
           SizedBox(
             width: 30.w,
-            height: 35.w,
+            height: 30.w,
             child: SvgPicture.asset(
               SVGAssets.search,
               fit: BoxFit.fitHeight,

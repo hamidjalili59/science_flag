@@ -1,10 +1,11 @@
 part of 'editor_bloc.dart';
 
 @freezed
-class EditorState with _$EditorState {
-  const factory EditorState.idle({
-    @Default([]) List<EditorItemList> stackWidgetData,
+class EditorPageState with _$EditorPageState {
+  const factory EditorPageState.idle({
+    @Default(false) bool isLoading,
+    @Default([]) List<Map<String, dynamic>> documentData,
     @Default(0) int selectPosition,
-    @Default([]) List<EditorItemList> stackWidgetList,
+    FleatherController? controller,
   }) = _Idle;
 }

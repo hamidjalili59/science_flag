@@ -15,30 +15,33 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$EditorState {
-  List<EditorItemList> get stackWidgetData =>
+mixin _$EditorPageState {
+  bool get isLoading => throw _privateConstructorUsedError;
+  List<Map<String, dynamic>> get documentData =>
       throw _privateConstructorUsedError;
   int get selectPosition => throw _privateConstructorUsedError;
-  List<EditorItemList> get stackWidgetList =>
-      throw _privateConstructorUsedError;
+  FleatherController? get controller => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<EditorItemList> stackWidgetData,
-            int selectPosition, List<EditorItemList> stackWidgetList)
+    required TResult Function(
+            bool isLoading,
+            List<Map<String, dynamic>> documentData,
+            int selectPosition,
+            FleatherController? controller)
         idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<EditorItemList> stackWidgetData, int selectPosition,
-            List<EditorItemList> stackWidgetList)?
+    TResult? Function(bool isLoading, List<Map<String, dynamic>> documentData,
+            int selectPosition, FleatherController? controller)?
         idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<EditorItemList> stackWidgetData, int selectPosition,
-            List<EditorItemList> stackWidgetList)?
+    TResult Function(bool isLoading, List<Map<String, dynamic>> documentData,
+            int selectPosition, FleatherController? controller)?
         idle,
     required TResult orElse(),
   }) =>
@@ -61,26 +64,27 @@ mixin _$EditorState {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $EditorStateCopyWith<EditorState> get copyWith =>
+  $EditorPageStateCopyWith<EditorPageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EditorStateCopyWith<$Res> {
-  factory $EditorStateCopyWith(
-          EditorState value, $Res Function(EditorState) then) =
-      _$EditorStateCopyWithImpl<$Res, EditorState>;
+abstract class $EditorPageStateCopyWith<$Res> {
+  factory $EditorPageStateCopyWith(
+          EditorPageState value, $Res Function(EditorPageState) then) =
+      _$EditorPageStateCopyWithImpl<$Res, EditorPageState>;
   @useResult
   $Res call(
-      {List<EditorItemList> stackWidgetData,
+      {bool isLoading,
+      List<Map<String, dynamic>> documentData,
       int selectPosition,
-      List<EditorItemList> stackWidgetList});
+      FleatherController? controller});
 }
 
 /// @nodoc
-class _$EditorStateCopyWithImpl<$Res, $Val extends EditorState>
-    implements $EditorStateCopyWith<$Res> {
-  _$EditorStateCopyWithImpl(this._value, this._then);
+class _$EditorPageStateCopyWithImpl<$Res, $Val extends EditorPageState>
+    implements $EditorPageStateCopyWith<$Res> {
+  _$EditorPageStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -90,42 +94,49 @@ class _$EditorStateCopyWithImpl<$Res, $Val extends EditorState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? stackWidgetData = null,
+    Object? isLoading = null,
+    Object? documentData = null,
     Object? selectPosition = null,
-    Object? stackWidgetList = null,
+    Object? controller = freezed,
   }) {
     return _then(_value.copyWith(
-      stackWidgetData: null == stackWidgetData
-          ? _value.stackWidgetData
-          : stackWidgetData // ignore: cast_nullable_to_non_nullable
-              as List<EditorItemList>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      documentData: null == documentData
+          ? _value.documentData
+          : documentData // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>,
       selectPosition: null == selectPosition
           ? _value.selectPosition
           : selectPosition // ignore: cast_nullable_to_non_nullable
               as int,
-      stackWidgetList: null == stackWidgetList
-          ? _value.stackWidgetList
-          : stackWidgetList // ignore: cast_nullable_to_non_nullable
-              as List<EditorItemList>,
+      controller: freezed == controller
+          ? _value.controller
+          : controller // ignore: cast_nullable_to_non_nullable
+              as FleatherController?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_IdleCopyWith<$Res> implements $EditorStateCopyWith<$Res> {
+abstract class _$$_IdleCopyWith<$Res>
+    implements $EditorPageStateCopyWith<$Res> {
   factory _$$_IdleCopyWith(_$_Idle value, $Res Function(_$_Idle) then) =
       __$$_IdleCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {List<EditorItemList> stackWidgetData,
+      {bool isLoading,
+      List<Map<String, dynamic>> documentData,
       int selectPosition,
-      List<EditorItemList> stackWidgetList});
+      FleatherController? controller});
 }
 
 /// @nodoc
 class __$$_IdleCopyWithImpl<$Res>
-    extends _$EditorStateCopyWithImpl<$Res, _$_Idle>
+    extends _$EditorPageStateCopyWithImpl<$Res, _$_Idle>
     implements _$$_IdleCopyWith<$Res> {
   __$$_IdleCopyWithImpl(_$_Idle _value, $Res Function(_$_Idle) _then)
       : super(_value, _then);
@@ -133,23 +144,28 @@ class __$$_IdleCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? stackWidgetData = null,
+    Object? isLoading = null,
+    Object? documentData = null,
     Object? selectPosition = null,
-    Object? stackWidgetList = null,
+    Object? controller = freezed,
   }) {
     return _then(_$_Idle(
-      stackWidgetData: null == stackWidgetData
-          ? _value._stackWidgetData
-          : stackWidgetData // ignore: cast_nullable_to_non_nullable
-              as List<EditorItemList>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      documentData: null == documentData
+          ? _value._documentData
+          : documentData // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>,
       selectPosition: null == selectPosition
           ? _value.selectPosition
           : selectPosition // ignore: cast_nullable_to_non_nullable
               as int,
-      stackWidgetList: null == stackWidgetList
-          ? _value._stackWidgetList
-          : stackWidgetList // ignore: cast_nullable_to_non_nullable
-              as List<EditorItemList>,
+      controller: freezed == controller
+          ? _value.controller
+          : controller // ignore: cast_nullable_to_non_nullable
+              as FleatherController?,
     ));
   }
 }
@@ -158,36 +174,33 @@ class __$$_IdleCopyWithImpl<$Res>
 
 class _$_Idle implements _Idle {
   const _$_Idle(
-      {final List<EditorItemList> stackWidgetData = const [],
+      {this.isLoading = false,
+      final List<Map<String, dynamic>> documentData = const [],
       this.selectPosition = 0,
-      final List<EditorItemList> stackWidgetList = const []})
-      : _stackWidgetData = stackWidgetData,
-        _stackWidgetList = stackWidgetList;
+      this.controller})
+      : _documentData = documentData;
 
-  final List<EditorItemList> _stackWidgetData;
   @override
   @JsonKey()
-  List<EditorItemList> get stackWidgetData {
-    if (_stackWidgetData is EqualUnmodifiableListView) return _stackWidgetData;
+  final bool isLoading;
+  final List<Map<String, dynamic>> _documentData;
+  @override
+  @JsonKey()
+  List<Map<String, dynamic>> get documentData {
+    if (_documentData is EqualUnmodifiableListView) return _documentData;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_stackWidgetData);
+    return EqualUnmodifiableListView(_documentData);
   }
 
   @override
   @JsonKey()
   final int selectPosition;
-  final List<EditorItemList> _stackWidgetList;
   @override
-  @JsonKey()
-  List<EditorItemList> get stackWidgetList {
-    if (_stackWidgetList is EqualUnmodifiableListView) return _stackWidgetList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_stackWidgetList);
-  }
+  final FleatherController? controller;
 
   @override
   String toString() {
-    return 'EditorState.idle(stackWidgetData: $stackWidgetData, selectPosition: $selectPosition, stackWidgetList: $stackWidgetList)';
+    return 'EditorPageState.idle(isLoading: $isLoading, documentData: $documentData, selectPosition: $selectPosition, controller: $controller)';
   }
 
   @override
@@ -195,20 +208,23 @@ class _$_Idle implements _Idle {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Idle &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             const DeepCollectionEquality()
-                .equals(other._stackWidgetData, _stackWidgetData) &&
+                .equals(other._documentData, _documentData) &&
             (identical(other.selectPosition, selectPosition) ||
                 other.selectPosition == selectPosition) &&
-            const DeepCollectionEquality()
-                .equals(other._stackWidgetList, _stackWidgetList));
+            (identical(other.controller, controller) ||
+                other.controller == controller));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_stackWidgetData),
+      isLoading,
+      const DeepCollectionEquality().hash(_documentData),
       selectPosition,
-      const DeepCollectionEquality().hash(_stackWidgetList));
+      controller);
 
   @JsonKey(ignore: true)
   @override
@@ -219,33 +235,36 @@ class _$_Idle implements _Idle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<EditorItemList> stackWidgetData,
-            int selectPosition, List<EditorItemList> stackWidgetList)
+    required TResult Function(
+            bool isLoading,
+            List<Map<String, dynamic>> documentData,
+            int selectPosition,
+            FleatherController? controller)
         idle,
   }) {
-    return idle(stackWidgetData, selectPosition, stackWidgetList);
+    return idle(isLoading, documentData, selectPosition, controller);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<EditorItemList> stackWidgetData, int selectPosition,
-            List<EditorItemList> stackWidgetList)?
+    TResult? Function(bool isLoading, List<Map<String, dynamic>> documentData,
+            int selectPosition, FleatherController? controller)?
         idle,
   }) {
-    return idle?.call(stackWidgetData, selectPosition, stackWidgetList);
+    return idle?.call(isLoading, documentData, selectPosition, controller);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<EditorItemList> stackWidgetData, int selectPosition,
-            List<EditorItemList> stackWidgetList)?
+    TResult Function(bool isLoading, List<Map<String, dynamic>> documentData,
+            int selectPosition, FleatherController? controller)?
         idle,
     required TResult orElse(),
   }) {
     if (idle != null) {
-      return idle(stackWidgetData, selectPosition, stackWidgetList);
+      return idle(isLoading, documentData, selectPosition, controller);
     }
     return orElse();
   }
@@ -279,59 +298,67 @@ class _$_Idle implements _Idle {
   }
 }
 
-abstract class _Idle implements EditorState {
+abstract class _Idle implements EditorPageState {
   const factory _Idle(
-      {final List<EditorItemList> stackWidgetData,
+      {final bool isLoading,
+      final List<Map<String, dynamic>> documentData,
       final int selectPosition,
-      final List<EditorItemList> stackWidgetList}) = _$_Idle;
+      final FleatherController? controller}) = _$_Idle;
 
   @override
-  List<EditorItemList> get stackWidgetData;
+  bool get isLoading;
+  @override
+  List<Map<String, dynamic>> get documentData;
   @override
   int get selectPosition;
   @override
-  List<EditorItemList> get stackWidgetList;
+  FleatherController? get controller;
   @override
   @JsonKey(ignore: true)
   _$$_IdleCopyWith<_$_Idle> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$EditorEvent {
+mixin _$EditorPageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position) addTool,
-    required TResult Function(EditorItemLayoutType type) addBlocTool,
-    required TResult Function(String widgetType, String tag) removeTool,
-    required TResult Function(int position, String widgetType) switchPosition,
-    required TResult Function(int position, EditorItemList stackWidget)
-        recordAudio,
-    required TResult Function(int position, EditorItemList stackWidget)
-        playAudio,
+    required TResult Function(String widgetType, int position, bool inline)
+        addTool,
+    required TResult Function(String widgetType, int position) removeTool,
+    required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function() saveDocument,
+    required TResult Function() exitDocument,
+    required TResult Function() recordAudio,
+    required TResult Function() playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position)? addTool,
-    TResult? Function(EditorItemLayoutType type)? addBlocTool,
-    TResult? Function(String widgetType, String tag)? removeTool,
-    TResult? Function(int position, String widgetType)? switchPosition,
-    TResult? Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult? Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(String widgetType, int position)? removeTool,
+    TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function()? saveDocument,
+    TResult? Function()? exitDocument,
+    TResult? Function()? recordAudio,
+    TResult? Function()? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position)? addTool,
-    TResult Function(EditorItemLayoutType type)? addBlocTool,
-    TResult Function(String widgetType, String tag)? removeTool,
-    TResult Function(int position, String widgetType)? switchPosition,
-    TResult Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(String widgetType, int position)? removeTool,
+    TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function()? saveDocument,
+    TResult Function()? exitDocument,
+    TResult Function()? recordAudio,
+    TResult Function()? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) =>
@@ -339,9 +366,11 @@ mixin _$EditorEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddTool value) addTool,
-    required TResult Function(_AddBlocTool value) addBlocTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_ReadDocument value) readDocument,
+    required TResult Function(_SaveDocument value) saveDocument,
+    required TResult Function(_ExitDocument value) exitDocument,
     required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
@@ -350,9 +379,11 @@ mixin _$EditorEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddTool value)? addTool,
-    TResult? Function(_AddBlocTool value)? addBlocTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_ReadDocument value)? readDocument,
+    TResult? Function(_SaveDocument value)? saveDocument,
+    TResult? Function(_ExitDocument value)? exitDocument,
     TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
@@ -361,9 +392,11 @@ mixin _$EditorEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddTool value)? addTool,
-    TResult Function(_AddBlocTool value)? addBlocTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_ReadDocument value)? readDocument,
+    TResult Function(_SaveDocument value)? saveDocument,
+    TResult Function(_ExitDocument value)? exitDocument,
     TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
@@ -373,16 +406,16 @@ mixin _$EditorEvent {
 }
 
 /// @nodoc
-abstract class $EditorEventCopyWith<$Res> {
-  factory $EditorEventCopyWith(
-          EditorEvent value, $Res Function(EditorEvent) then) =
-      _$EditorEventCopyWithImpl<$Res, EditorEvent>;
+abstract class $EditorPageEventCopyWith<$Res> {
+  factory $EditorPageEventCopyWith(
+          EditorPageEvent value, $Res Function(EditorPageEvent) then) =
+      _$EditorPageEventCopyWithImpl<$Res, EditorPageEvent>;
 }
 
 /// @nodoc
-class _$EditorEventCopyWithImpl<$Res, $Val extends EditorEvent>
-    implements $EditorEventCopyWith<$Res> {
-  _$EditorEventCopyWithImpl(this._value, this._then);
+class _$EditorPageEventCopyWithImpl<$Res, $Val extends EditorPageEvent>
+    implements $EditorPageEventCopyWith<$Res> {
+  _$EditorPageEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -396,12 +429,12 @@ abstract class _$$_AddToolCopyWith<$Res> {
           _$_AddTool value, $Res Function(_$_AddTool) then) =
       __$$_AddToolCopyWithImpl<$Res>;
   @useResult
-  $Res call({String widgetType, int position});
+  $Res call({String widgetType, int position, bool inline});
 }
 
 /// @nodoc
 class __$$_AddToolCopyWithImpl<$Res>
-    extends _$EditorEventCopyWithImpl<$Res, _$_AddTool>
+    extends _$EditorPageEventCopyWithImpl<$Res, _$_AddTool>
     implements _$$_AddToolCopyWith<$Res> {
   __$$_AddToolCopyWithImpl(_$_AddTool _value, $Res Function(_$_AddTool) _then)
       : super(_value, _then);
@@ -411,6 +444,7 @@ class __$$_AddToolCopyWithImpl<$Res>
   $Res call({
     Object? widgetType = null,
     Object? position = null,
+    Object? inline = null,
   }) {
     return _then(_$_AddTool(
       null == widgetType
@@ -421,6 +455,10 @@ class __$$_AddToolCopyWithImpl<$Res>
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as int,
+      null == inline
+          ? _value.inline
+          : inline // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -428,16 +466,18 @@ class __$$_AddToolCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AddTool implements _AddTool {
-  const _$_AddTool(this.widgetType, this.position);
+  const _$_AddTool(this.widgetType, this.position, this.inline);
 
   @override
   final String widgetType;
   @override
   final int position;
+  @override
+  final bool inline;
 
   @override
   String toString() {
-    return 'EditorEvent.addTool(widgetType: $widgetType, position: $position)';
+    return 'EditorPageEvent.addTool(widgetType: $widgetType, position: $position, inline: $inline)';
   }
 
   @override
@@ -448,11 +488,12 @@ class _$_AddTool implements _AddTool {
             (identical(other.widgetType, widgetType) ||
                 other.widgetType == widgetType) &&
             (identical(other.position, position) ||
-                other.position == position));
+                other.position == position) &&
+            (identical(other.inline, inline) || other.inline == inline));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, widgetType, position);
+  int get hashCode => Object.hash(runtimeType, widgetType, position, inline);
 
   @JsonKey(ignore: true)
   @override
@@ -463,49 +504,54 @@ class _$_AddTool implements _AddTool {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position) addTool,
-    required TResult Function(EditorItemLayoutType type) addBlocTool,
-    required TResult Function(String widgetType, String tag) removeTool,
-    required TResult Function(int position, String widgetType) switchPosition,
-    required TResult Function(int position, EditorItemList stackWidget)
-        recordAudio,
-    required TResult Function(int position, EditorItemList stackWidget)
-        playAudio,
+    required TResult Function(String widgetType, int position, bool inline)
+        addTool,
+    required TResult Function(String widgetType, int position) removeTool,
+    required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function() saveDocument,
+    required TResult Function() exitDocument,
+    required TResult Function() recordAudio,
+    required TResult Function() playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
-    return addTool(widgetType, position);
+    return addTool(widgetType, position, inline);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position)? addTool,
-    TResult? Function(EditorItemLayoutType type)? addBlocTool,
-    TResult? Function(String widgetType, String tag)? removeTool,
-    TResult? Function(int position, String widgetType)? switchPosition,
-    TResult? Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult? Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(String widgetType, int position)? removeTool,
+    TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function()? saveDocument,
+    TResult? Function()? exitDocument,
+    TResult? Function()? recordAudio,
+    TResult? Function()? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
-    return addTool?.call(widgetType, position);
+    return addTool?.call(widgetType, position, inline);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position)? addTool,
-    TResult Function(EditorItemLayoutType type)? addBlocTool,
-    TResult Function(String widgetType, String tag)? removeTool,
-    TResult Function(int position, String widgetType)? switchPosition,
-    TResult Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(String widgetType, int position)? removeTool,
+    TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function()? saveDocument,
+    TResult Function()? exitDocument,
+    TResult Function()? recordAudio,
+    TResult Function()? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
     if (addTool != null) {
-      return addTool(widgetType, position);
+      return addTool(widgetType, position, inline);
     }
     return orElse();
   }
@@ -514,9 +560,11 @@ class _$_AddTool implements _AddTool {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddTool value) addTool,
-    required TResult Function(_AddBlocTool value) addBlocTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_ReadDocument value) readDocument,
+    required TResult Function(_SaveDocument value) saveDocument,
+    required TResult Function(_ExitDocument value) exitDocument,
     required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
@@ -528,9 +576,11 @@ class _$_AddTool implements _AddTool {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddTool value)? addTool,
-    TResult? Function(_AddBlocTool value)? addBlocTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_ReadDocument value)? readDocument,
+    TResult? Function(_SaveDocument value)? saveDocument,
+    TResult? Function(_ExitDocument value)? exitDocument,
     TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
@@ -542,9 +592,11 @@ class _$_AddTool implements _AddTool {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddTool value)? addTool,
-    TResult Function(_AddBlocTool value)? addBlocTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_ReadDocument value)? readDocument,
+    TResult Function(_SaveDocument value)? saveDocument,
+    TResult Function(_ExitDocument value)? exitDocument,
     TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
@@ -557,183 +609,16 @@ class _$_AddTool implements _AddTool {
   }
 }
 
-abstract class _AddTool implements EditorEvent {
-  const factory _AddTool(final String widgetType, final int position) =
+abstract class _AddTool implements EditorPageEvent {
+  const factory _AddTool(
+          final String widgetType, final int position, final bool inline) =
       _$_AddTool;
 
   String get widgetType;
   int get position;
+  bool get inline;
   @JsonKey(ignore: true)
   _$$_AddToolCopyWith<_$_AddTool> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_AddBlocToolCopyWith<$Res> {
-  factory _$$_AddBlocToolCopyWith(
-          _$_AddBlocTool value, $Res Function(_$_AddBlocTool) then) =
-      __$$_AddBlocToolCopyWithImpl<$Res>;
-  @useResult
-  $Res call({EditorItemLayoutType type});
-}
-
-/// @nodoc
-class __$$_AddBlocToolCopyWithImpl<$Res>
-    extends _$EditorEventCopyWithImpl<$Res, _$_AddBlocTool>
-    implements _$$_AddBlocToolCopyWith<$Res> {
-  __$$_AddBlocToolCopyWithImpl(
-      _$_AddBlocTool _value, $Res Function(_$_AddBlocTool) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = null,
-  }) {
-    return _then(_$_AddBlocTool(
-      null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as EditorItemLayoutType,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_AddBlocTool implements _AddBlocTool {
-  const _$_AddBlocTool(this.type);
-
-// EditorItemList stackWidget,
-  @override
-  final EditorItemLayoutType type;
-
-  @override
-  String toString() {
-    return 'EditorEvent.addBlocTool(type: $type)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AddBlocTool &&
-            (identical(other.type, type) || other.type == type));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, type);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_AddBlocToolCopyWith<_$_AddBlocTool> get copyWith =>
-      __$$_AddBlocToolCopyWithImpl<_$_AddBlocTool>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position) addTool,
-    required TResult Function(EditorItemLayoutType type) addBlocTool,
-    required TResult Function(String widgetType, String tag) removeTool,
-    required TResult Function(int position, String widgetType) switchPosition,
-    required TResult Function(int position, EditorItemList stackWidget)
-        recordAudio,
-    required TResult Function(int position, EditorItemList stackWidget)
-        playAudio,
-    required TResult Function(String widgetType, EditorItemList stackWidget)
-        updateTool,
-  }) {
-    return addBlocTool(type);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position)? addTool,
-    TResult? Function(EditorItemLayoutType type)? addBlocTool,
-    TResult? Function(String widgetType, String tag)? removeTool,
-    TResult? Function(int position, String widgetType)? switchPosition,
-    TResult? Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult? Function(int position, EditorItemList stackWidget)? playAudio,
-    TResult? Function(String widgetType, EditorItemList stackWidget)?
-        updateTool,
-  }) {
-    return addBlocTool?.call(type);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position)? addTool,
-    TResult Function(EditorItemLayoutType type)? addBlocTool,
-    TResult Function(String widgetType, String tag)? removeTool,
-    TResult Function(int position, String widgetType)? switchPosition,
-    TResult Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult Function(int position, EditorItemList stackWidget)? playAudio,
-    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
-    required TResult orElse(),
-  }) {
-    if (addBlocTool != null) {
-      return addBlocTool(type);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AddTool value) addTool,
-    required TResult Function(_AddBlocTool value) addBlocTool,
-    required TResult Function(_RemoveTool value) removeTool,
-    required TResult Function(_SwitchPosition value) switchPosition,
-    required TResult Function(_RecordAudio value) recordAudio,
-    required TResult Function(_PlayAudio value) playAudio,
-    required TResult Function(_UpdateTool value) updateTool,
-  }) {
-    return addBlocTool(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddTool value)? addTool,
-    TResult? Function(_AddBlocTool value)? addBlocTool,
-    TResult? Function(_RemoveTool value)? removeTool,
-    TResult? Function(_SwitchPosition value)? switchPosition,
-    TResult? Function(_RecordAudio value)? recordAudio,
-    TResult? Function(_PlayAudio value)? playAudio,
-    TResult? Function(_UpdateTool value)? updateTool,
-  }) {
-    return addBlocTool?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddTool value)? addTool,
-    TResult Function(_AddBlocTool value)? addBlocTool,
-    TResult Function(_RemoveTool value)? removeTool,
-    TResult Function(_SwitchPosition value)? switchPosition,
-    TResult Function(_RecordAudio value)? recordAudio,
-    TResult Function(_PlayAudio value)? playAudio,
-    TResult Function(_UpdateTool value)? updateTool,
-    required TResult orElse(),
-  }) {
-    if (addBlocTool != null) {
-      return addBlocTool(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AddBlocTool implements EditorEvent {
-  const factory _AddBlocTool(final EditorItemLayoutType type) = _$_AddBlocTool;
-
-// EditorItemList stackWidget,
-  EditorItemLayoutType get type;
-  @JsonKey(ignore: true)
-  _$$_AddBlocToolCopyWith<_$_AddBlocTool> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -743,12 +628,12 @@ abstract class _$$_RemoveToolCopyWith<$Res> {
           _$_RemoveTool value, $Res Function(_$_RemoveTool) then) =
       __$$_RemoveToolCopyWithImpl<$Res>;
   @useResult
-  $Res call({String widgetType, String tag});
+  $Res call({String widgetType, int position});
 }
 
 /// @nodoc
 class __$$_RemoveToolCopyWithImpl<$Res>
-    extends _$EditorEventCopyWithImpl<$Res, _$_RemoveTool>
+    extends _$EditorPageEventCopyWithImpl<$Res, _$_RemoveTool>
     implements _$$_RemoveToolCopyWith<$Res> {
   __$$_RemoveToolCopyWithImpl(
       _$_RemoveTool _value, $Res Function(_$_RemoveTool) _then)
@@ -758,17 +643,17 @@ class __$$_RemoveToolCopyWithImpl<$Res>
   @override
   $Res call({
     Object? widgetType = null,
-    Object? tag = null,
+    Object? position = null,
   }) {
     return _then(_$_RemoveTool(
       null == widgetType
           ? _value.widgetType
           : widgetType // ignore: cast_nullable_to_non_nullable
               as String,
-      null == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
-              as String,
+      null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -776,16 +661,16 @@ class __$$_RemoveToolCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RemoveTool implements _RemoveTool {
-  const _$_RemoveTool(this.widgetType, this.tag);
+  const _$_RemoveTool(this.widgetType, this.position);
 
   @override
   final String widgetType;
   @override
-  final String tag;
+  final int position;
 
   @override
   String toString() {
-    return 'EditorEvent.removeTool(widgetType: $widgetType, tag: $tag)';
+    return 'EditorPageEvent.removeTool(widgetType: $widgetType, position: $position)';
   }
 
   @override
@@ -795,11 +680,12 @@ class _$_RemoveTool implements _RemoveTool {
             other is _$_RemoveTool &&
             (identical(other.widgetType, widgetType) ||
                 other.widgetType == widgetType) &&
-            (identical(other.tag, tag) || other.tag == tag));
+            (identical(other.position, position) ||
+                other.position == position));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, widgetType, tag);
+  int get hashCode => Object.hash(runtimeType, widgetType, position);
 
   @JsonKey(ignore: true)
   @override
@@ -810,49 +696,54 @@ class _$_RemoveTool implements _RemoveTool {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position) addTool,
-    required TResult Function(EditorItemLayoutType type) addBlocTool,
-    required TResult Function(String widgetType, String tag) removeTool,
-    required TResult Function(int position, String widgetType) switchPosition,
-    required TResult Function(int position, EditorItemList stackWidget)
-        recordAudio,
-    required TResult Function(int position, EditorItemList stackWidget)
-        playAudio,
+    required TResult Function(String widgetType, int position, bool inline)
+        addTool,
+    required TResult Function(String widgetType, int position) removeTool,
+    required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function() saveDocument,
+    required TResult Function() exitDocument,
+    required TResult Function() recordAudio,
+    required TResult Function() playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
-    return removeTool(widgetType, tag);
+    return removeTool(widgetType, position);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position)? addTool,
-    TResult? Function(EditorItemLayoutType type)? addBlocTool,
-    TResult? Function(String widgetType, String tag)? removeTool,
-    TResult? Function(int position, String widgetType)? switchPosition,
-    TResult? Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult? Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(String widgetType, int position)? removeTool,
+    TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function()? saveDocument,
+    TResult? Function()? exitDocument,
+    TResult? Function()? recordAudio,
+    TResult? Function()? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
-    return removeTool?.call(widgetType, tag);
+    return removeTool?.call(widgetType, position);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position)? addTool,
-    TResult Function(EditorItemLayoutType type)? addBlocTool,
-    TResult Function(String widgetType, String tag)? removeTool,
-    TResult Function(int position, String widgetType)? switchPosition,
-    TResult Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(String widgetType, int position)? removeTool,
+    TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function()? saveDocument,
+    TResult Function()? exitDocument,
+    TResult Function()? recordAudio,
+    TResult Function()? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
     if (removeTool != null) {
-      return removeTool(widgetType, tag);
+      return removeTool(widgetType, position);
     }
     return orElse();
   }
@@ -861,9 +752,11 @@ class _$_RemoveTool implements _RemoveTool {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddTool value) addTool,
-    required TResult Function(_AddBlocTool value) addBlocTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_ReadDocument value) readDocument,
+    required TResult Function(_SaveDocument value) saveDocument,
+    required TResult Function(_ExitDocument value) exitDocument,
     required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
@@ -875,9 +768,11 @@ class _$_RemoveTool implements _RemoveTool {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddTool value)? addTool,
-    TResult? Function(_AddBlocTool value)? addBlocTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_ReadDocument value)? readDocument,
+    TResult? Function(_SaveDocument value)? saveDocument,
+    TResult? Function(_ExitDocument value)? exitDocument,
     TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
@@ -889,9 +784,11 @@ class _$_RemoveTool implements _RemoveTool {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddTool value)? addTool,
-    TResult Function(_AddBlocTool value)? addBlocTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_ReadDocument value)? readDocument,
+    TResult Function(_SaveDocument value)? saveDocument,
+    TResult Function(_ExitDocument value)? exitDocument,
     TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
@@ -904,12 +801,12 @@ class _$_RemoveTool implements _RemoveTool {
   }
 }
 
-abstract class _RemoveTool implements EditorEvent {
-  const factory _RemoveTool(final String widgetType, final String tag) =
+abstract class _RemoveTool implements EditorPageEvent {
+  const factory _RemoveTool(final String widgetType, final int position) =
       _$_RemoveTool;
 
   String get widgetType;
-  String get tag;
+  int get position;
   @JsonKey(ignore: true)
   _$$_RemoveToolCopyWith<_$_RemoveTool> get copyWith =>
       throw _privateConstructorUsedError;
@@ -921,12 +818,12 @@ abstract class _$$_SwitchPositionCopyWith<$Res> {
           _$_SwitchPosition value, $Res Function(_$_SwitchPosition) then) =
       __$$_SwitchPositionCopyWithImpl<$Res>;
   @useResult
-  $Res call({int position, String widgetType});
+  $Res call({String widgetType, int position});
 }
 
 /// @nodoc
 class __$$_SwitchPositionCopyWithImpl<$Res>
-    extends _$EditorEventCopyWithImpl<$Res, _$_SwitchPosition>
+    extends _$EditorPageEventCopyWithImpl<$Res, _$_SwitchPosition>
     implements _$$_SwitchPositionCopyWith<$Res> {
   __$$_SwitchPositionCopyWithImpl(
       _$_SwitchPosition _value, $Res Function(_$_SwitchPosition) _then)
@@ -935,18 +832,18 @@ class __$$_SwitchPositionCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? position = null,
     Object? widgetType = null,
+    Object? position = null,
   }) {
     return _then(_$_SwitchPosition(
-      null == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as int,
       null == widgetType
           ? _value.widgetType
           : widgetType // ignore: cast_nullable_to_non_nullable
               as String,
+      null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -954,16 +851,16 @@ class __$$_SwitchPositionCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SwitchPosition implements _SwitchPosition {
-  const _$_SwitchPosition(this.position, this.widgetType);
+  const _$_SwitchPosition(this.widgetType, this.position);
 
   @override
-  final int position;
-  @override
   final String widgetType;
+  @override
+  final int position;
 
   @override
   String toString() {
-    return 'EditorEvent.switchPosition(position: $position, widgetType: $widgetType)';
+    return 'EditorPageEvent.switchPosition(widgetType: $widgetType, position: $position)';
   }
 
   @override
@@ -971,14 +868,14 @@ class _$_SwitchPosition implements _SwitchPosition {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SwitchPosition &&
-            (identical(other.position, position) ||
-                other.position == position) &&
             (identical(other.widgetType, widgetType) ||
-                other.widgetType == widgetType));
+                other.widgetType == widgetType) &&
+            (identical(other.position, position) ||
+                other.position == position));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, position, widgetType);
+  int get hashCode => Object.hash(runtimeType, widgetType, position);
 
   @JsonKey(ignore: true)
   @override
@@ -989,49 +886,54 @@ class _$_SwitchPosition implements _SwitchPosition {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position) addTool,
-    required TResult Function(EditorItemLayoutType type) addBlocTool,
-    required TResult Function(String widgetType, String tag) removeTool,
-    required TResult Function(int position, String widgetType) switchPosition,
-    required TResult Function(int position, EditorItemList stackWidget)
-        recordAudio,
-    required TResult Function(int position, EditorItemList stackWidget)
-        playAudio,
+    required TResult Function(String widgetType, int position, bool inline)
+        addTool,
+    required TResult Function(String widgetType, int position) removeTool,
+    required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function() saveDocument,
+    required TResult Function() exitDocument,
+    required TResult Function() recordAudio,
+    required TResult Function() playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
-    return switchPosition(position, widgetType);
+    return switchPosition(widgetType, position);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position)? addTool,
-    TResult? Function(EditorItemLayoutType type)? addBlocTool,
-    TResult? Function(String widgetType, String tag)? removeTool,
-    TResult? Function(int position, String widgetType)? switchPosition,
-    TResult? Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult? Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(String widgetType, int position)? removeTool,
+    TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function()? saveDocument,
+    TResult? Function()? exitDocument,
+    TResult? Function()? recordAudio,
+    TResult? Function()? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
-    return switchPosition?.call(position, widgetType);
+    return switchPosition?.call(widgetType, position);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position)? addTool,
-    TResult Function(EditorItemLayoutType type)? addBlocTool,
-    TResult Function(String widgetType, String tag)? removeTool,
-    TResult Function(int position, String widgetType)? switchPosition,
-    TResult Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(String widgetType, int position)? removeTool,
+    TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function()? saveDocument,
+    TResult Function()? exitDocument,
+    TResult Function()? recordAudio,
+    TResult Function()? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
     if (switchPosition != null) {
-      return switchPosition(position, widgetType);
+      return switchPosition(widgetType, position);
     }
     return orElse();
   }
@@ -1040,9 +942,11 @@ class _$_SwitchPosition implements _SwitchPosition {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddTool value) addTool,
-    required TResult Function(_AddBlocTool value) addBlocTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_ReadDocument value) readDocument,
+    required TResult Function(_SaveDocument value) saveDocument,
+    required TResult Function(_ExitDocument value) exitDocument,
     required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
@@ -1054,9 +958,11 @@ class _$_SwitchPosition implements _SwitchPosition {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddTool value)? addTool,
-    TResult? Function(_AddBlocTool value)? addBlocTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_ReadDocument value)? readDocument,
+    TResult? Function(_SaveDocument value)? saveDocument,
+    TResult? Function(_ExitDocument value)? exitDocument,
     TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
@@ -1068,9 +974,11 @@ class _$_SwitchPosition implements _SwitchPosition {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddTool value)? addTool,
-    TResult Function(_AddBlocTool value)? addBlocTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_ReadDocument value)? readDocument,
+    TResult Function(_SaveDocument value)? saveDocument,
+    TResult Function(_ExitDocument value)? exitDocument,
     TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
@@ -1083,134 +991,135 @@ class _$_SwitchPosition implements _SwitchPosition {
   }
 }
 
-abstract class _SwitchPosition implements EditorEvent {
-  const factory _SwitchPosition(final int position, final String widgetType) =
+abstract class _SwitchPosition implements EditorPageEvent {
+  const factory _SwitchPosition(final String widgetType, final int position) =
       _$_SwitchPosition;
 
-  int get position;
   String get widgetType;
+  int get position;
   @JsonKey(ignore: true)
   _$$_SwitchPositionCopyWith<_$_SwitchPosition> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_RecordAudioCopyWith<$Res> {
-  factory _$$_RecordAudioCopyWith(
-          _$_RecordAudio value, $Res Function(_$_RecordAudio) then) =
-      __$$_RecordAudioCopyWithImpl<$Res>;
+abstract class _$$_ReadDocumentCopyWith<$Res> {
+  factory _$$_ReadDocumentCopyWith(
+          _$_ReadDocument value, $Res Function(_$_ReadDocument) then) =
+      __$$_ReadDocumentCopyWithImpl<$Res>;
   @useResult
-  $Res call({int position, EditorItemList stackWidget});
+  $Res call({List<Map<String, dynamic>> data});
 }
 
 /// @nodoc
-class __$$_RecordAudioCopyWithImpl<$Res>
-    extends _$EditorEventCopyWithImpl<$Res, _$_RecordAudio>
-    implements _$$_RecordAudioCopyWith<$Res> {
-  __$$_RecordAudioCopyWithImpl(
-      _$_RecordAudio _value, $Res Function(_$_RecordAudio) _then)
+class __$$_ReadDocumentCopyWithImpl<$Res>
+    extends _$EditorPageEventCopyWithImpl<$Res, _$_ReadDocument>
+    implements _$$_ReadDocumentCopyWith<$Res> {
+  __$$_ReadDocumentCopyWithImpl(
+      _$_ReadDocument _value, $Res Function(_$_ReadDocument) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? position = null,
-    Object? stackWidget = null,
+    Object? data = null,
   }) {
-    return _then(_$_RecordAudio(
-      null == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as int,
-      null == stackWidget
-          ? _value.stackWidget
-          : stackWidget // ignore: cast_nullable_to_non_nullable
-              as EditorItemList,
+    return _then(_$_ReadDocument(
+      null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_RecordAudio implements _RecordAudio {
-  const _$_RecordAudio(this.position, this.stackWidget);
+class _$_ReadDocument implements _ReadDocument {
+  const _$_ReadDocument(final List<Map<String, dynamic>> data) : _data = data;
 
+  final List<Map<String, dynamic>> _data;
   @override
-  final int position;
-  @override
-  final EditorItemList stackWidget;
+  List<Map<String, dynamic>> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
 
   @override
   String toString() {
-    return 'EditorEvent.recordAudio(position: $position, stackWidget: $stackWidget)';
+    return 'EditorPageEvent.readDocument(data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RecordAudio &&
-            (identical(other.position, position) ||
-                other.position == position) &&
-            (identical(other.stackWidget, stackWidget) ||
-                other.stackWidget == stackWidget));
+            other is _$_ReadDocument &&
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, position, stackWidget);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RecordAudioCopyWith<_$_RecordAudio> get copyWith =>
-      __$$_RecordAudioCopyWithImpl<_$_RecordAudio>(this, _$identity);
+  _$$_ReadDocumentCopyWith<_$_ReadDocument> get copyWith =>
+      __$$_ReadDocumentCopyWithImpl<_$_ReadDocument>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position) addTool,
-    required TResult Function(EditorItemLayoutType type) addBlocTool,
-    required TResult Function(String widgetType, String tag) removeTool,
-    required TResult Function(int position, String widgetType) switchPosition,
-    required TResult Function(int position, EditorItemList stackWidget)
-        recordAudio,
-    required TResult Function(int position, EditorItemList stackWidget)
-        playAudio,
+    required TResult Function(String widgetType, int position, bool inline)
+        addTool,
+    required TResult Function(String widgetType, int position) removeTool,
+    required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function() saveDocument,
+    required TResult Function() exitDocument,
+    required TResult Function() recordAudio,
+    required TResult Function() playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
-    return recordAudio(position, stackWidget);
+    return readDocument(data);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position)? addTool,
-    TResult? Function(EditorItemLayoutType type)? addBlocTool,
-    TResult? Function(String widgetType, String tag)? removeTool,
-    TResult? Function(int position, String widgetType)? switchPosition,
-    TResult? Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult? Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(String widgetType, int position)? removeTool,
+    TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function()? saveDocument,
+    TResult? Function()? exitDocument,
+    TResult? Function()? recordAudio,
+    TResult? Function()? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
-    return recordAudio?.call(position, stackWidget);
+    return readDocument?.call(data);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position)? addTool,
-    TResult Function(EditorItemLayoutType type)? addBlocTool,
-    TResult Function(String widgetType, String tag)? removeTool,
-    TResult Function(int position, String widgetType)? switchPosition,
-    TResult Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(String widgetType, int position)? removeTool,
+    TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function()? saveDocument,
+    TResult Function()? exitDocument,
+    TResult Function()? recordAudio,
+    TResult Function()? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
-    if (recordAudio != null) {
-      return recordAudio(position, stackWidget);
+    if (readDocument != null) {
+      return readDocument(data);
     }
     return orElse();
   }
@@ -1219,9 +1128,458 @@ class _$_RecordAudio implements _RecordAudio {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddTool value) addTool,
-    required TResult Function(_AddBlocTool value) addBlocTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_ReadDocument value) readDocument,
+    required TResult Function(_SaveDocument value) saveDocument,
+    required TResult Function(_ExitDocument value) exitDocument,
+    required TResult Function(_RecordAudio value) recordAudio,
+    required TResult Function(_PlayAudio value) playAudio,
+    required TResult Function(_UpdateTool value) updateTool,
+  }) {
+    return readDocument(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddTool value)? addTool,
+    TResult? Function(_RemoveTool value)? removeTool,
+    TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_ReadDocument value)? readDocument,
+    TResult? Function(_SaveDocument value)? saveDocument,
+    TResult? Function(_ExitDocument value)? exitDocument,
+    TResult? Function(_RecordAudio value)? recordAudio,
+    TResult? Function(_PlayAudio value)? playAudio,
+    TResult? Function(_UpdateTool value)? updateTool,
+  }) {
+    return readDocument?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddTool value)? addTool,
+    TResult Function(_RemoveTool value)? removeTool,
+    TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_ReadDocument value)? readDocument,
+    TResult Function(_SaveDocument value)? saveDocument,
+    TResult Function(_ExitDocument value)? exitDocument,
+    TResult Function(_RecordAudio value)? recordAudio,
+    TResult Function(_PlayAudio value)? playAudio,
+    TResult Function(_UpdateTool value)? updateTool,
+    required TResult orElse(),
+  }) {
+    if (readDocument != null) {
+      return readDocument(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ReadDocument implements EditorPageEvent {
+  const factory _ReadDocument(final List<Map<String, dynamic>> data) =
+      _$_ReadDocument;
+
+  List<Map<String, dynamic>> get data;
+  @JsonKey(ignore: true)
+  _$$_ReadDocumentCopyWith<_$_ReadDocument> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_SaveDocumentCopyWith<$Res> {
+  factory _$$_SaveDocumentCopyWith(
+          _$_SaveDocument value, $Res Function(_$_SaveDocument) then) =
+      __$$_SaveDocumentCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SaveDocumentCopyWithImpl<$Res>
+    extends _$EditorPageEventCopyWithImpl<$Res, _$_SaveDocument>
+    implements _$$_SaveDocumentCopyWith<$Res> {
+  __$$_SaveDocumentCopyWithImpl(
+      _$_SaveDocument _value, $Res Function(_$_SaveDocument) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_SaveDocument implements _SaveDocument {
+  const _$_SaveDocument();
+
+  @override
+  String toString() {
+    return 'EditorPageEvent.saveDocument()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_SaveDocument);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String widgetType, int position, bool inline)
+        addTool,
+    required TResult Function(String widgetType, int position) removeTool,
+    required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function() saveDocument,
+    required TResult Function() exitDocument,
+    required TResult Function() recordAudio,
+    required TResult Function() playAudio,
+    required TResult Function(String widgetType, EditorItemList stackWidget)
+        updateTool,
+  }) {
+    return saveDocument();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(String widgetType, int position)? removeTool,
+    TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function()? saveDocument,
+    TResult? Function()? exitDocument,
+    TResult? Function()? recordAudio,
+    TResult? Function()? playAudio,
+    TResult? Function(String widgetType, EditorItemList stackWidget)?
+        updateTool,
+  }) {
+    return saveDocument?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(String widgetType, int position)? removeTool,
+    TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function()? saveDocument,
+    TResult Function()? exitDocument,
+    TResult Function()? recordAudio,
+    TResult Function()? playAudio,
+    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    required TResult orElse(),
+  }) {
+    if (saveDocument != null) {
+      return saveDocument();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddTool value) addTool,
+    required TResult Function(_RemoveTool value) removeTool,
+    required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_ReadDocument value) readDocument,
+    required TResult Function(_SaveDocument value) saveDocument,
+    required TResult Function(_ExitDocument value) exitDocument,
+    required TResult Function(_RecordAudio value) recordAudio,
+    required TResult Function(_PlayAudio value) playAudio,
+    required TResult Function(_UpdateTool value) updateTool,
+  }) {
+    return saveDocument(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddTool value)? addTool,
+    TResult? Function(_RemoveTool value)? removeTool,
+    TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_ReadDocument value)? readDocument,
+    TResult? Function(_SaveDocument value)? saveDocument,
+    TResult? Function(_ExitDocument value)? exitDocument,
+    TResult? Function(_RecordAudio value)? recordAudio,
+    TResult? Function(_PlayAudio value)? playAudio,
+    TResult? Function(_UpdateTool value)? updateTool,
+  }) {
+    return saveDocument?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddTool value)? addTool,
+    TResult Function(_RemoveTool value)? removeTool,
+    TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_ReadDocument value)? readDocument,
+    TResult Function(_SaveDocument value)? saveDocument,
+    TResult Function(_ExitDocument value)? exitDocument,
+    TResult Function(_RecordAudio value)? recordAudio,
+    TResult Function(_PlayAudio value)? playAudio,
+    TResult Function(_UpdateTool value)? updateTool,
+    required TResult orElse(),
+  }) {
+    if (saveDocument != null) {
+      return saveDocument(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SaveDocument implements EditorPageEvent {
+  const factory _SaveDocument() = _$_SaveDocument;
+}
+
+/// @nodoc
+abstract class _$$_ExitDocumentCopyWith<$Res> {
+  factory _$$_ExitDocumentCopyWith(
+          _$_ExitDocument value, $Res Function(_$_ExitDocument) then) =
+      __$$_ExitDocumentCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ExitDocumentCopyWithImpl<$Res>
+    extends _$EditorPageEventCopyWithImpl<$Res, _$_ExitDocument>
+    implements _$$_ExitDocumentCopyWith<$Res> {
+  __$$_ExitDocumentCopyWithImpl(
+      _$_ExitDocument _value, $Res Function(_$_ExitDocument) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ExitDocument implements _ExitDocument {
+  const _$_ExitDocument();
+
+  @override
+  String toString() {
+    return 'EditorPageEvent.exitDocument()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ExitDocument);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String widgetType, int position, bool inline)
+        addTool,
+    required TResult Function(String widgetType, int position) removeTool,
+    required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function() saveDocument,
+    required TResult Function() exitDocument,
+    required TResult Function() recordAudio,
+    required TResult Function() playAudio,
+    required TResult Function(String widgetType, EditorItemList stackWidget)
+        updateTool,
+  }) {
+    return exitDocument();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(String widgetType, int position)? removeTool,
+    TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function()? saveDocument,
+    TResult? Function()? exitDocument,
+    TResult? Function()? recordAudio,
+    TResult? Function()? playAudio,
+    TResult? Function(String widgetType, EditorItemList stackWidget)?
+        updateTool,
+  }) {
+    return exitDocument?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(String widgetType, int position)? removeTool,
+    TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function()? saveDocument,
+    TResult Function()? exitDocument,
+    TResult Function()? recordAudio,
+    TResult Function()? playAudio,
+    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    required TResult orElse(),
+  }) {
+    if (exitDocument != null) {
+      return exitDocument();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddTool value) addTool,
+    required TResult Function(_RemoveTool value) removeTool,
+    required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_ReadDocument value) readDocument,
+    required TResult Function(_SaveDocument value) saveDocument,
+    required TResult Function(_ExitDocument value) exitDocument,
+    required TResult Function(_RecordAudio value) recordAudio,
+    required TResult Function(_PlayAudio value) playAudio,
+    required TResult Function(_UpdateTool value) updateTool,
+  }) {
+    return exitDocument(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddTool value)? addTool,
+    TResult? Function(_RemoveTool value)? removeTool,
+    TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_ReadDocument value)? readDocument,
+    TResult? Function(_SaveDocument value)? saveDocument,
+    TResult? Function(_ExitDocument value)? exitDocument,
+    TResult? Function(_RecordAudio value)? recordAudio,
+    TResult? Function(_PlayAudio value)? playAudio,
+    TResult? Function(_UpdateTool value)? updateTool,
+  }) {
+    return exitDocument?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddTool value)? addTool,
+    TResult Function(_RemoveTool value)? removeTool,
+    TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_ReadDocument value)? readDocument,
+    TResult Function(_SaveDocument value)? saveDocument,
+    TResult Function(_ExitDocument value)? exitDocument,
+    TResult Function(_RecordAudio value)? recordAudio,
+    TResult Function(_PlayAudio value)? playAudio,
+    TResult Function(_UpdateTool value)? updateTool,
+    required TResult orElse(),
+  }) {
+    if (exitDocument != null) {
+      return exitDocument(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ExitDocument implements EditorPageEvent {
+  const factory _ExitDocument() = _$_ExitDocument;
+}
+
+/// @nodoc
+abstract class _$$_RecordAudioCopyWith<$Res> {
+  factory _$$_RecordAudioCopyWith(
+          _$_RecordAudio value, $Res Function(_$_RecordAudio) then) =
+      __$$_RecordAudioCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_RecordAudioCopyWithImpl<$Res>
+    extends _$EditorPageEventCopyWithImpl<$Res, _$_RecordAudio>
+    implements _$$_RecordAudioCopyWith<$Res> {
+  __$$_RecordAudioCopyWithImpl(
+      _$_RecordAudio _value, $Res Function(_$_RecordAudio) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_RecordAudio implements _RecordAudio {
+  const _$_RecordAudio();
+
+  @override
+  String toString() {
+    return 'EditorPageEvent.recordAudio()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_RecordAudio);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String widgetType, int position, bool inline)
+        addTool,
+    required TResult Function(String widgetType, int position) removeTool,
+    required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function() saveDocument,
+    required TResult Function() exitDocument,
+    required TResult Function() recordAudio,
+    required TResult Function() playAudio,
+    required TResult Function(String widgetType, EditorItemList stackWidget)
+        updateTool,
+  }) {
+    return recordAudio();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(String widgetType, int position)? removeTool,
+    TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function()? saveDocument,
+    TResult? Function()? exitDocument,
+    TResult? Function()? recordAudio,
+    TResult? Function()? playAudio,
+    TResult? Function(String widgetType, EditorItemList stackWidget)?
+        updateTool,
+  }) {
+    return recordAudio?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(String widgetType, int position)? removeTool,
+    TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function()? saveDocument,
+    TResult Function()? exitDocument,
+    TResult Function()? recordAudio,
+    TResult Function()? playAudio,
+    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    required TResult orElse(),
+  }) {
+    if (recordAudio != null) {
+      return recordAudio();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddTool value) addTool,
+    required TResult Function(_RemoveTool value) removeTool,
+    required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_ReadDocument value) readDocument,
+    required TResult Function(_SaveDocument value) saveDocument,
+    required TResult Function(_ExitDocument value) exitDocument,
     required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
@@ -1233,9 +1591,11 @@ class _$_RecordAudio implements _RecordAudio {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddTool value)? addTool,
-    TResult? Function(_AddBlocTool value)? addBlocTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_ReadDocument value)? readDocument,
+    TResult? Function(_SaveDocument value)? saveDocument,
+    TResult? Function(_ExitDocument value)? exitDocument,
     TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
@@ -1247,9 +1607,11 @@ class _$_RecordAudio implements _RecordAudio {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddTool value)? addTool,
-    TResult Function(_AddBlocTool value)? addBlocTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_ReadDocument value)? readDocument,
+    TResult Function(_SaveDocument value)? saveDocument,
+    TResult Function(_ExitDocument value)? exitDocument,
     TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
@@ -1262,15 +1624,8 @@ class _$_RecordAudio implements _RecordAudio {
   }
 }
 
-abstract class _RecordAudio implements EditorEvent {
-  const factory _RecordAudio(
-      final int position, final EditorItemList stackWidget) = _$_RecordAudio;
-
-  int get position;
-  EditorItemList get stackWidget;
-  @JsonKey(ignore: true)
-  _$$_RecordAudioCopyWith<_$_RecordAudio> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _RecordAudio implements EditorPageEvent {
+  const factory _RecordAudio() = _$_RecordAudio;
 }
 
 /// @nodoc
@@ -1278,118 +1633,87 @@ abstract class _$$_PlayAudioCopyWith<$Res> {
   factory _$$_PlayAudioCopyWith(
           _$_PlayAudio value, $Res Function(_$_PlayAudio) then) =
       __$$_PlayAudioCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int position, EditorItemList stackWidget});
 }
 
 /// @nodoc
 class __$$_PlayAudioCopyWithImpl<$Res>
-    extends _$EditorEventCopyWithImpl<$Res, _$_PlayAudio>
+    extends _$EditorPageEventCopyWithImpl<$Res, _$_PlayAudio>
     implements _$$_PlayAudioCopyWith<$Res> {
   __$$_PlayAudioCopyWithImpl(
       _$_PlayAudio _value, $Res Function(_$_PlayAudio) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? position = null,
-    Object? stackWidget = null,
-  }) {
-    return _then(_$_PlayAudio(
-      null == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as int,
-      null == stackWidget
-          ? _value.stackWidget
-          : stackWidget // ignore: cast_nullable_to_non_nullable
-              as EditorItemList,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_PlayAudio implements _PlayAudio {
-  const _$_PlayAudio(this.position, this.stackWidget);
-
-  @override
-  final int position;
-  @override
-  final EditorItemList stackWidget;
+  const _$_PlayAudio();
 
   @override
   String toString() {
-    return 'EditorEvent.playAudio(position: $position, stackWidget: $stackWidget)';
+    return 'EditorPageEvent.playAudio()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_PlayAudio &&
-            (identical(other.position, position) ||
-                other.position == position) &&
-            (identical(other.stackWidget, stackWidget) ||
-                other.stackWidget == stackWidget));
+        (other.runtimeType == runtimeType && other is _$_PlayAudio);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, position, stackWidget);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_PlayAudioCopyWith<_$_PlayAudio> get copyWith =>
-      __$$_PlayAudioCopyWithImpl<_$_PlayAudio>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position) addTool,
-    required TResult Function(EditorItemLayoutType type) addBlocTool,
-    required TResult Function(String widgetType, String tag) removeTool,
-    required TResult Function(int position, String widgetType) switchPosition,
-    required TResult Function(int position, EditorItemList stackWidget)
-        recordAudio,
-    required TResult Function(int position, EditorItemList stackWidget)
-        playAudio,
+    required TResult Function(String widgetType, int position, bool inline)
+        addTool,
+    required TResult Function(String widgetType, int position) removeTool,
+    required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function() saveDocument,
+    required TResult Function() exitDocument,
+    required TResult Function() recordAudio,
+    required TResult Function() playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
-    return playAudio(position, stackWidget);
+    return playAudio();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position)? addTool,
-    TResult? Function(EditorItemLayoutType type)? addBlocTool,
-    TResult? Function(String widgetType, String tag)? removeTool,
-    TResult? Function(int position, String widgetType)? switchPosition,
-    TResult? Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult? Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(String widgetType, int position)? removeTool,
+    TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function()? saveDocument,
+    TResult? Function()? exitDocument,
+    TResult? Function()? recordAudio,
+    TResult? Function()? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
-    return playAudio?.call(position, stackWidget);
+    return playAudio?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position)? addTool,
-    TResult Function(EditorItemLayoutType type)? addBlocTool,
-    TResult Function(String widgetType, String tag)? removeTool,
-    TResult Function(int position, String widgetType)? switchPosition,
-    TResult Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(String widgetType, int position)? removeTool,
+    TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function()? saveDocument,
+    TResult Function()? exitDocument,
+    TResult Function()? recordAudio,
+    TResult Function()? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
     if (playAudio != null) {
-      return playAudio(position, stackWidget);
+      return playAudio();
     }
     return orElse();
   }
@@ -1398,9 +1722,11 @@ class _$_PlayAudio implements _PlayAudio {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddTool value) addTool,
-    required TResult Function(_AddBlocTool value) addBlocTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_ReadDocument value) readDocument,
+    required TResult Function(_SaveDocument value) saveDocument,
+    required TResult Function(_ExitDocument value) exitDocument,
     required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
@@ -1412,9 +1738,11 @@ class _$_PlayAudio implements _PlayAudio {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddTool value)? addTool,
-    TResult? Function(_AddBlocTool value)? addBlocTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_ReadDocument value)? readDocument,
+    TResult? Function(_SaveDocument value)? saveDocument,
+    TResult? Function(_ExitDocument value)? exitDocument,
     TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
@@ -1426,9 +1754,11 @@ class _$_PlayAudio implements _PlayAudio {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddTool value)? addTool,
-    TResult Function(_AddBlocTool value)? addBlocTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_ReadDocument value)? readDocument,
+    TResult Function(_SaveDocument value)? saveDocument,
+    TResult Function(_ExitDocument value)? exitDocument,
     TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
@@ -1441,15 +1771,8 @@ class _$_PlayAudio implements _PlayAudio {
   }
 }
 
-abstract class _PlayAudio implements EditorEvent {
-  const factory _PlayAudio(
-      final int position, final EditorItemList stackWidget) = _$_PlayAudio;
-
-  int get position;
-  EditorItemList get stackWidget;
-  @JsonKey(ignore: true)
-  _$$_PlayAudioCopyWith<_$_PlayAudio> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _PlayAudio implements EditorPageEvent {
+  const factory _PlayAudio() = _$_PlayAudio;
 }
 
 /// @nodoc
@@ -1463,7 +1786,7 @@ abstract class _$$_UpdateToolCopyWith<$Res> {
 
 /// @nodoc
 class __$$_UpdateToolCopyWithImpl<$Res>
-    extends _$EditorEventCopyWithImpl<$Res, _$_UpdateTool>
+    extends _$EditorPageEventCopyWithImpl<$Res, _$_UpdateTool>
     implements _$$_UpdateToolCopyWith<$Res> {
   __$$_UpdateToolCopyWithImpl(
       _$_UpdateTool _value, $Res Function(_$_UpdateTool) _then)
@@ -1500,7 +1823,7 @@ class _$_UpdateTool implements _UpdateTool {
 
   @override
   String toString() {
-    return 'EditorEvent.updateTool(widgetType: $widgetType, stackWidget: $stackWidget)';
+    return 'EditorPageEvent.updateTool(widgetType: $widgetType, stackWidget: $stackWidget)';
   }
 
   @override
@@ -1526,14 +1849,15 @@ class _$_UpdateTool implements _UpdateTool {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position) addTool,
-    required TResult Function(EditorItemLayoutType type) addBlocTool,
-    required TResult Function(String widgetType, String tag) removeTool,
-    required TResult Function(int position, String widgetType) switchPosition,
-    required TResult Function(int position, EditorItemList stackWidget)
-        recordAudio,
-    required TResult Function(int position, EditorItemList stackWidget)
-        playAudio,
+    required TResult Function(String widgetType, int position, bool inline)
+        addTool,
+    required TResult Function(String widgetType, int position) removeTool,
+    required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function() saveDocument,
+    required TResult Function() exitDocument,
+    required TResult Function() recordAudio,
+    required TResult Function() playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
@@ -1543,12 +1867,14 @@ class _$_UpdateTool implements _UpdateTool {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position)? addTool,
-    TResult? Function(EditorItemLayoutType type)? addBlocTool,
-    TResult? Function(String widgetType, String tag)? removeTool,
-    TResult? Function(int position, String widgetType)? switchPosition,
-    TResult? Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult? Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(String widgetType, int position)? removeTool,
+    TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function()? saveDocument,
+    TResult? Function()? exitDocument,
+    TResult? Function()? recordAudio,
+    TResult? Function()? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
@@ -1558,12 +1884,14 @@ class _$_UpdateTool implements _UpdateTool {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position)? addTool,
-    TResult Function(EditorItemLayoutType type)? addBlocTool,
-    TResult Function(String widgetType, String tag)? removeTool,
-    TResult Function(int position, String widgetType)? switchPosition,
-    TResult Function(int position, EditorItemList stackWidget)? recordAudio,
-    TResult Function(int position, EditorItemList stackWidget)? playAudio,
+    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(String widgetType, int position)? removeTool,
+    TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function()? saveDocument,
+    TResult Function()? exitDocument,
+    TResult Function()? recordAudio,
+    TResult Function()? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
@@ -1577,9 +1905,11 @@ class _$_UpdateTool implements _UpdateTool {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddTool value) addTool,
-    required TResult Function(_AddBlocTool value) addBlocTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_ReadDocument value) readDocument,
+    required TResult Function(_SaveDocument value) saveDocument,
+    required TResult Function(_ExitDocument value) exitDocument,
     required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
@@ -1591,9 +1921,11 @@ class _$_UpdateTool implements _UpdateTool {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddTool value)? addTool,
-    TResult? Function(_AddBlocTool value)? addBlocTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_ReadDocument value)? readDocument,
+    TResult? Function(_SaveDocument value)? saveDocument,
+    TResult? Function(_ExitDocument value)? exitDocument,
     TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
@@ -1605,9 +1937,11 @@ class _$_UpdateTool implements _UpdateTool {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddTool value)? addTool,
-    TResult Function(_AddBlocTool value)? addBlocTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_ReadDocument value)? readDocument,
+    TResult Function(_SaveDocument value)? saveDocument,
+    TResult Function(_ExitDocument value)? exitDocument,
     TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
@@ -1620,7 +1954,7 @@ class _$_UpdateTool implements _UpdateTool {
   }
 }
 
-abstract class _UpdateTool implements EditorEvent {
+abstract class _UpdateTool implements EditorPageEvent {
   const factory _UpdateTool(
           final String widgetType, final EditorItemList stackWidget) =
       _$_UpdateTool;

@@ -8,7 +8,16 @@ abstract class NotesRepository {
   Future<Either<NotesFailure, List<NotesItemListModel>>> getCachedNotesItem({
     required List<NotesItemListModel> notesList,
   });
-  Future<Either<NotesFailure, List<NotesItemListModel>>> cacheNotesItem({
+  Future<Either<NotesFailure, void>> cacheNotesItem({
     required List<NotesItemListModel> notesList,
+  });
+  Future<Either<NotesFailure, NotesItemListModel>> readNoteItem({
+    required NotesItemListModel note,
+  });
+  Future<Either<NotesFailure, NotesItemListModel>> editNoteItem({
+    required NotesItemListModel note,
+  });
+  Future<Either<NotesFailure, void>> deleteNoteItem({
+    required NotesItemListModel note,
   });
 }

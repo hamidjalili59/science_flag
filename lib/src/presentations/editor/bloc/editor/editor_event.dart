@@ -1,29 +1,28 @@
 part of 'editor_bloc.dart';
 
 @freezed
-class EditorEvent with _$EditorEvent {
-  const factory EditorEvent.addTool(
+class EditorPageEvent with _$EditorPageEvent {
+  const factory EditorPageEvent.addTool(
     String widgetType,
     int position,
-    // List<EditorItemList> stackWidget,
+    bool inline,
   ) = _AddTool;
-  const factory EditorEvent.addBlocTool(
-    // EditorItemList stackWidget,
-    EditorItemLayoutType type,
-  ) = _AddBlocTool;
-  const factory EditorEvent.removeTool(
+  const factory EditorPageEvent.removeTool(
     String widgetType,
-    String tag,
-  ) = _RemoveTool;
-  const factory EditorEvent.switchPosition(
     int position,
+  ) = _RemoveTool;
+  const factory EditorPageEvent.switchPosition(
     String widgetType,
+    int position,
   ) = _SwitchPosition;
-  const factory EditorEvent.recordAudio(
-      int position, EditorItemList stackWidget) = _RecordAudio;
-  const factory EditorEvent.playAudio(
-      int position, EditorItemList stackWidget) = _PlayAudio;
-  const factory EditorEvent.updateTool(
+  const factory EditorPageEvent.readDocument(
+    List<Map<String, dynamic>> data,
+  ) = _ReadDocument;
+  const factory EditorPageEvent.saveDocument() = _SaveDocument;
+  const factory EditorPageEvent.exitDocument() = _ExitDocument;
+  const factory EditorPageEvent.recordAudio() = _RecordAudio;
+  const factory EditorPageEvent.playAudio() = _PlayAudio;
+  const factory EditorPageEvent.updateTool(
     String widgetType,
     EditorItemList stackWidget,
   ) = _UpdateTool;

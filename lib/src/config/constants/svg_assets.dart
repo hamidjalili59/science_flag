@@ -11,6 +11,9 @@ class SVGAssets {
   static String get search => 'search'.svg;
   static String get math_1 => 'math_1'.svg;
   static String get math_2 => 'math_2'.svg;
+  static String get math_3 => 'math_3'.svg;
+  static String get math_4 => 'math_4'.svg;
+  static String get formula => 'formula'.svg;
   static String get modify => 'modify'.svg;
   static String get slide => 'slide'.svg;
   static String get course => 'course'.svg;
