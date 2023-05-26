@@ -15,7 +15,7 @@ class EditorRepositoryImpl extends EditorRepository {
   @override
   Future<Either<EditorFailure, void>> deleteNote(
       {required EditorItemList editorItemList, required String? fileName}) {
-    // TODO: implement deleteNote
+    _remoteDS;
     throw UnimplementedError();
   }
 
