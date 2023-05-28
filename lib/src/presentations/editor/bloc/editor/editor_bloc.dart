@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:base_project/src/config/routes/router.dart';
 import 'package:base_project/src/config/utils/function_helper.dart';
 import 'package:base_project/src/features/core/models/tuple.dart' as tuple;
@@ -19,6 +20,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:math_keyboard/math_keyboard.dart';
 import 'package:ndialog/ndialog.dart';
+import 'package:path_provider/path_provider.dart';
 
 part 'editor_state.dart';
 part 'editor_event.dart';
@@ -47,37 +49,43 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
     _AddTool event,
     Emitter<EditorPageState> emit,
   ) async {
+    final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
+    emit(EditorPageState.idle(
+        controller: state.controller, isLoading: true, name: state.name));
     if (event.widgetType == 'text') {
-      emit(EditorPageState.idle(controller: state.controller, isLoading: true));
       state.controller!.document.insert(
           event.position,
           EmbeddableObject('widget',
               inline: true, data: {'width': 50.0, 'height': 60.0}));
-      emit(
-          EditorPageState.idle(controller: state.controller, isLoading: false));
+      emit(EditorPageState.idle(
+          controller: state.controller, isLoading: false, name: state.name));
     } else if (event.widgetType == 'camera') {
-      emit(EditorPageState.idle(controller: state.controller, isLoading: true));
       getIt.get<AppRouter>().popUntilRouteWithName('Editor');
       final imagesPath = await CunningDocumentScanner.getPictures();
+      await File(imagesPath!.first)
+          .copy('${appDocumentsDir.path}/camera${event.position}');
       state.controller!.document.insert(
           event.position,
-          EmbeddableObject('camera',
-              inline: true,
-              data: {'length': imagesPath!.length, 'images': imagesPath}));
-      emit(
-          EditorPageState.idle(controller: state.controller, isLoading: false));
+          EmbeddableObject('camera', inline: false, data: {
+            'length': imagesPath.length,
+            'images': '${appDocumentsDir.path}/camera${event.position}'
+          }));
+      emit(EditorPageState.idle(
+          controller: state.controller, isLoading: false, name: state.name));
     } else if (event.widgetType == 'gallary') {
-      emit(EditorPageState.idle(controller: state.controller, isLoading: true));
       getIt.get<AppRouter>().popUntilRouteWithName('Editor');
+
       XFile? imageFile = await FunctionHelper().imagePickerMethod();
+      await File(imageFile.path)
+          .copy('${appDocumentsDir.path}/gallary${event.position}');
       state.controller!.document.insert(
           event.position,
-          EmbeddableObject('gallary',
-              inline: true, data: {'image': imageFile.path}));
-      emit(
-          EditorPageState.idle(controller: state.controller, isLoading: false));
+          EmbeddableObject('gallary', inline: false, data: {
+            'image': '${appDocumentsDir.path}/gallary${event.position}'
+          }));
+      emit(EditorPageState.idle(
+          controller: state.controller, isLoading: false, name: state.name));
     } else if (event.widgetType == 'formula') {
-      emit(EditorPageState.idle(controller: state.controller, isLoading: true));
       getIt.get<AppRouter>().popUntilRouteWithName('Editor');
       await NDialog(
         title: Text(
@@ -115,8 +123,8 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
         ),
       ).show(getIt.get<AppRouter>().navigatorKey.currentContext!,
           dismissable: false);
-      emit(
-          EditorPageState.idle(controller: state.controller, isLoading: false));
+      emit(EditorPageState.idle(
+          controller: state.controller, isLoading: false, name: state.name));
     } else {}
   }
 
@@ -141,9 +149,9 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
   FutureOr<void> _onReadDocument(
       _ReadDocument event, Emitter<EditorPageState> emit) async {
     try {
-      emit(const EditorPageState.idle(isLoading: true));
+      emit(EditorPageState.idle(isLoading: true, name: state.name));
       await _readNodeUsecase
-          .call(param: const tuple.Tuple1<String>('hamid'))
+          .call(param: tuple.Tuple1<String>(event.name!))
           .then(
             (value) => value.fold(
               (l) async {
@@ -166,19 +174,21 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
                   emit(EditorPageState.idle(
                     isLoading: false,
                     controller: controller,
+                    name: event.name!,
                   ));
                 } catch (err, _) {
                   final controller = FleatherController();
                   emit(EditorPageState.idle(
                     isLoading: false,
                     controller: controller,
+                    name: event.name!,
                   ));
                 }
               },
               (r) async {
                 try {
                   final result = json.decode(r);
-
+                  FunctionHelper().logger.i(result.toString());
                   final heuristics = ParchmentHeuristics(
                     formatRules: [],
                     insertRules: [
@@ -194,11 +204,13 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
                   emit(EditorPageState.idle(
                     isLoading: false,
                     controller: controller,
+                    name: event.name!,
                   ));
                 } catch (err, _) {
                   final controller = FleatherController();
                   emit(EditorPageState.idle(
                     isLoading: false,
+                    name: event.name!,
                     controller: controller,
                   ));
                 }
@@ -224,12 +236,14 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
         emit(EditorPageState.idle(
           isLoading: false,
           controller: controller,
+          name: event.name!,
         ));
       } catch (err, _) {
         final controller = FleatherController();
         emit(EditorPageState.idle(
           isLoading: false,
           controller: controller,
+          name: event.name!,
         ));
       }
     }
@@ -239,7 +253,7 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
       _SaveDocument event, Emitter<EditorPageState> emit) async {
     List<dynamic> tempDoc = state.controller!.document.toDelta().toJson();
     await _saveNodeUsecase.call(
-        param: tuple.Tuple2(json.encode(tempDoc), 'hamid'));
+        param: tuple.Tuple2(json.encode(tempDoc), state.name));
 
     getIt.get<AppRouter>().pop();
   }

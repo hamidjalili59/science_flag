@@ -16,7 +16,7 @@ class EditorPageEvent with _$EditorPageEvent {
     int position,
   ) = _SwitchPosition;
   const factory EditorPageEvent.readDocument(
-    List<Map<String, dynamic>> data,
+    String? name,
   ) = _ReadDocument;
   const factory EditorPageEvent.saveDocument() = _SaveDocument;
   const factory EditorPageEvent.exitDocument() = _ExitDocument;

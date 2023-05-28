@@ -43,6 +43,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(const _Idle(isLoading: true));
     try {
+      emit(const AuthState.idle(isLoading: true));
       final handshakeResult =
           await _otpHandshakeUseCase(param: tuple.Tuple1(event.phoneNumber));
       await Future.delayed(const Duration(seconds: 2));
@@ -52,7 +53,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(const _Idle(isLoading: false));
         },
         (r) {
-          emit(_OtpHandshakeSuccess(r));
+          emit(const AuthState.idle(isLoading: false));
+          emit(_OtpHandshakeSuccess(r, isLoading: true));
         },
       );
     } catch (e) {

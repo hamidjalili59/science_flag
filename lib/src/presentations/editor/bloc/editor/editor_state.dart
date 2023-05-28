@@ -7,5 +7,6 @@ class EditorPageState with _$EditorPageState {
     @Default([]) List<Map<String, dynamic>> documentData,
     @Default(0) int selectPosition,
     FleatherController? controller,
+    @Default('new') String name,
   }) = _Idle;
 }

@@ -27,7 +27,6 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
   @override
   void initState() {
     super.initState();
-    getIt.get<EditorPageBloc>().add(const EditorPageEvent.readDocument([]));
   }
 
   @override
@@ -207,12 +206,12 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
     }
 
     if (node.value.type == 'camera') {
-      // Icons.rocket_launch_outlined
       return SizedBox(
         width: 0.65.sw,
         height: 0.35.sh,
-        child:
-            Image.file(File((node.value.data['images'] as List<String>).first)),
+        child: Image.file(File(node.value.data['images'])),
+        // child: Image.memory((node.value.data['images'])),
+        // child: const Icon(Icons.access_alarm_outlined),
       );
     }
     if (node.value.type == 'gallary') {
@@ -221,6 +220,7 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
         width: 0.8.sw,
         height: 0.4.sh,
         child: Image.file(File(node.value.data['image'])),
+        // Image.memory((node.value.data['images'] as Uint8List)),
       );
     }
 

@@ -1,5 +1,6 @@
 import 'package:base_project/src/config/constants/svg_assets.dart';
 import 'package:base_project/src/config/utils/general_dependencies.dart';
+import 'package:base_project/src/injectable/injectable.dart';
 import 'package:base_project/src/presentations/notes/bloc/notes/notes_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -92,8 +93,9 @@ class NotesPageBody extends StatelessWidget {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        StaticDependencies.autoRoutes
-                                            .pushNamed('/editor');
+                                        getIt.get<NotesBloc>().add(
+                                            NotesEvent.editNotesItem(
+                                                notes[position]));
                                       },
                                       child: SizedBox(
                                         width: 40.w,

@@ -334,30 +334,30 @@ mixin _$NotesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() refresh,
     required TResult Function() getNotesItem,
-    required TResult Function() createNotesItem,
-    required TResult Function() deleteNotesItem,
-    required TResult Function() readNotesItem,
-    required TResult Function() editNotesItem,
+    required TResult Function(NotesItemListModel? note) createNotesItem,
+    required TResult Function(NotesItemListModel? note) deleteNotesItem,
+    required TResult Function(NotesItemListModel? note) readNotesItem,
+    required TResult Function(NotesItemListModel? note) editNotesItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? refresh,
     TResult? Function()? getNotesItem,
-    TResult? Function()? createNotesItem,
-    TResult? Function()? deleteNotesItem,
-    TResult? Function()? readNotesItem,
-    TResult? Function()? editNotesItem,
+    TResult? Function(NotesItemListModel? note)? createNotesItem,
+    TResult? Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult? Function(NotesItemListModel? note)? readNotesItem,
+    TResult? Function(NotesItemListModel? note)? editNotesItem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? refresh,
     TResult Function()? getNotesItem,
-    TResult Function()? createNotesItem,
-    TResult Function()? deleteNotesItem,
-    TResult Function()? readNotesItem,
-    TResult Function()? editNotesItem,
+    TResult Function(NotesItemListModel? note)? createNotesItem,
+    TResult Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult Function(NotesItemListModel? note)? readNotesItem,
+    TResult Function(NotesItemListModel? note)? editNotesItem,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -451,10 +451,10 @@ class _$_Refresh implements _Refresh {
   TResult when<TResult extends Object?>({
     required TResult Function() refresh,
     required TResult Function() getNotesItem,
-    required TResult Function() createNotesItem,
-    required TResult Function() deleteNotesItem,
-    required TResult Function() readNotesItem,
-    required TResult Function() editNotesItem,
+    required TResult Function(NotesItemListModel? note) createNotesItem,
+    required TResult Function(NotesItemListModel? note) deleteNotesItem,
+    required TResult Function(NotesItemListModel? note) readNotesItem,
+    required TResult Function(NotesItemListModel? note) editNotesItem,
   }) {
     return refresh();
   }
@@ -464,10 +464,10 @@ class _$_Refresh implements _Refresh {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? refresh,
     TResult? Function()? getNotesItem,
-    TResult? Function()? createNotesItem,
-    TResult? Function()? deleteNotesItem,
-    TResult? Function()? readNotesItem,
-    TResult? Function()? editNotesItem,
+    TResult? Function(NotesItemListModel? note)? createNotesItem,
+    TResult? Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult? Function(NotesItemListModel? note)? readNotesItem,
+    TResult? Function(NotesItemListModel? note)? editNotesItem,
   }) {
     return refresh?.call();
   }
@@ -477,10 +477,10 @@ class _$_Refresh implements _Refresh {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? refresh,
     TResult Function()? getNotesItem,
-    TResult Function()? createNotesItem,
-    TResult Function()? deleteNotesItem,
-    TResult Function()? readNotesItem,
-    TResult Function()? editNotesItem,
+    TResult Function(NotesItemListModel? note)? createNotesItem,
+    TResult Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult Function(NotesItemListModel? note)? readNotesItem,
+    TResult Function(NotesItemListModel? note)? editNotesItem,
     required TResult orElse(),
   }) {
     if (refresh != null) {
@@ -577,10 +577,10 @@ class _$_GetNotesItem implements _GetNotesItem {
   TResult when<TResult extends Object?>({
     required TResult Function() refresh,
     required TResult Function() getNotesItem,
-    required TResult Function() createNotesItem,
-    required TResult Function() deleteNotesItem,
-    required TResult Function() readNotesItem,
-    required TResult Function() editNotesItem,
+    required TResult Function(NotesItemListModel? note) createNotesItem,
+    required TResult Function(NotesItemListModel? note) deleteNotesItem,
+    required TResult Function(NotesItemListModel? note) readNotesItem,
+    required TResult Function(NotesItemListModel? note) editNotesItem,
   }) {
     return getNotesItem();
   }
@@ -590,10 +590,10 @@ class _$_GetNotesItem implements _GetNotesItem {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? refresh,
     TResult? Function()? getNotesItem,
-    TResult? Function()? createNotesItem,
-    TResult? Function()? deleteNotesItem,
-    TResult? Function()? readNotesItem,
-    TResult? Function()? editNotesItem,
+    TResult? Function(NotesItemListModel? note)? createNotesItem,
+    TResult? Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult? Function(NotesItemListModel? note)? readNotesItem,
+    TResult? Function(NotesItemListModel? note)? editNotesItem,
   }) {
     return getNotesItem?.call();
   }
@@ -603,10 +603,10 @@ class _$_GetNotesItem implements _GetNotesItem {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? refresh,
     TResult Function()? getNotesItem,
-    TResult Function()? createNotesItem,
-    TResult Function()? deleteNotesItem,
-    TResult Function()? readNotesItem,
-    TResult Function()? editNotesItem,
+    TResult Function(NotesItemListModel? note)? createNotesItem,
+    TResult Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult Function(NotesItemListModel? note)? readNotesItem,
+    TResult Function(NotesItemListModel? note)? editNotesItem,
     required TResult orElse(),
   }) {
     if (getNotesItem != null) {
@@ -668,6 +668,10 @@ abstract class _$$_CreateNotesItemCopyWith<$Res> {
   factory _$$_CreateNotesItemCopyWith(
           _$_CreateNotesItem value, $Res Function(_$_CreateNotesItem) then) =
       __$$_CreateNotesItemCopyWithImpl<$Res>;
+  @useResult
+  $Res call({NotesItemListModel? note});
+
+  $NotesItemListModelCopyWith<$Res>? get note;
 }
 
 /// @nodoc
@@ -677,38 +681,74 @@ class __$$_CreateNotesItemCopyWithImpl<$Res>
   __$$_CreateNotesItemCopyWithImpl(
       _$_CreateNotesItem _value, $Res Function(_$_CreateNotesItem) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? note = freezed,
+  }) {
+    return _then(_$_CreateNotesItem(
+      freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as NotesItemListModel?,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NotesItemListModelCopyWith<$Res>? get note {
+    if (_value.note == null) {
+      return null;
+    }
+
+    return $NotesItemListModelCopyWith<$Res>(_value.note!, (value) {
+      return _then(_value.copyWith(note: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_CreateNotesItem implements _CreateNotesItem {
-  const _$_CreateNotesItem();
+  const _$_CreateNotesItem(this.note);
+
+  @override
+  final NotesItemListModel? note;
 
   @override
   String toString() {
-    return 'NotesEvent.createNotesItem()';
+    return 'NotesEvent.createNotesItem(note: $note)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_CreateNotesItem);
+        (other.runtimeType == runtimeType &&
+            other is _$_CreateNotesItem &&
+            (identical(other.note, note) || other.note == note));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, note);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CreateNotesItemCopyWith<_$_CreateNotesItem> get copyWith =>
+      __$$_CreateNotesItemCopyWithImpl<_$_CreateNotesItem>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() refresh,
     required TResult Function() getNotesItem,
-    required TResult Function() createNotesItem,
-    required TResult Function() deleteNotesItem,
-    required TResult Function() readNotesItem,
-    required TResult Function() editNotesItem,
+    required TResult Function(NotesItemListModel? note) createNotesItem,
+    required TResult Function(NotesItemListModel? note) deleteNotesItem,
+    required TResult Function(NotesItemListModel? note) readNotesItem,
+    required TResult Function(NotesItemListModel? note) editNotesItem,
   }) {
-    return createNotesItem();
+    return createNotesItem(note);
   }
 
   @override
@@ -716,12 +756,12 @@ class _$_CreateNotesItem implements _CreateNotesItem {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? refresh,
     TResult? Function()? getNotesItem,
-    TResult? Function()? createNotesItem,
-    TResult? Function()? deleteNotesItem,
-    TResult? Function()? readNotesItem,
-    TResult? Function()? editNotesItem,
+    TResult? Function(NotesItemListModel? note)? createNotesItem,
+    TResult? Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult? Function(NotesItemListModel? note)? readNotesItem,
+    TResult? Function(NotesItemListModel? note)? editNotesItem,
   }) {
-    return createNotesItem?.call();
+    return createNotesItem?.call(note);
   }
 
   @override
@@ -729,14 +769,14 @@ class _$_CreateNotesItem implements _CreateNotesItem {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? refresh,
     TResult Function()? getNotesItem,
-    TResult Function()? createNotesItem,
-    TResult Function()? deleteNotesItem,
-    TResult Function()? readNotesItem,
-    TResult Function()? editNotesItem,
+    TResult Function(NotesItemListModel? note)? createNotesItem,
+    TResult Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult Function(NotesItemListModel? note)? readNotesItem,
+    TResult Function(NotesItemListModel? note)? editNotesItem,
     required TResult orElse(),
   }) {
     if (createNotesItem != null) {
-      return createNotesItem();
+      return createNotesItem(note);
     }
     return orElse();
   }
@@ -786,7 +826,13 @@ class _$_CreateNotesItem implements _CreateNotesItem {
 }
 
 abstract class _CreateNotesItem implements NotesEvent {
-  const factory _CreateNotesItem() = _$_CreateNotesItem;
+  const factory _CreateNotesItem(final NotesItemListModel? note) =
+      _$_CreateNotesItem;
+
+  NotesItemListModel? get note;
+  @JsonKey(ignore: true)
+  _$$_CreateNotesItemCopyWith<_$_CreateNotesItem> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -794,6 +840,10 @@ abstract class _$$_DeleteNotesItemCopyWith<$Res> {
   factory _$$_DeleteNotesItemCopyWith(
           _$_DeleteNotesItem value, $Res Function(_$_DeleteNotesItem) then) =
       __$$_DeleteNotesItemCopyWithImpl<$Res>;
+  @useResult
+  $Res call({NotesItemListModel? note});
+
+  $NotesItemListModelCopyWith<$Res>? get note;
 }
 
 /// @nodoc
@@ -803,38 +853,74 @@ class __$$_DeleteNotesItemCopyWithImpl<$Res>
   __$$_DeleteNotesItemCopyWithImpl(
       _$_DeleteNotesItem _value, $Res Function(_$_DeleteNotesItem) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? note = freezed,
+  }) {
+    return _then(_$_DeleteNotesItem(
+      freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as NotesItemListModel?,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NotesItemListModelCopyWith<$Res>? get note {
+    if (_value.note == null) {
+      return null;
+    }
+
+    return $NotesItemListModelCopyWith<$Res>(_value.note!, (value) {
+      return _then(_value.copyWith(note: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_DeleteNotesItem implements _DeleteNotesItem {
-  const _$_DeleteNotesItem();
+  const _$_DeleteNotesItem(this.note);
+
+  @override
+  final NotesItemListModel? note;
 
   @override
   String toString() {
-    return 'NotesEvent.deleteNotesItem()';
+    return 'NotesEvent.deleteNotesItem(note: $note)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_DeleteNotesItem);
+        (other.runtimeType == runtimeType &&
+            other is _$_DeleteNotesItem &&
+            (identical(other.note, note) || other.note == note));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, note);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DeleteNotesItemCopyWith<_$_DeleteNotesItem> get copyWith =>
+      __$$_DeleteNotesItemCopyWithImpl<_$_DeleteNotesItem>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() refresh,
     required TResult Function() getNotesItem,
-    required TResult Function() createNotesItem,
-    required TResult Function() deleteNotesItem,
-    required TResult Function() readNotesItem,
-    required TResult Function() editNotesItem,
+    required TResult Function(NotesItemListModel? note) createNotesItem,
+    required TResult Function(NotesItemListModel? note) deleteNotesItem,
+    required TResult Function(NotesItemListModel? note) readNotesItem,
+    required TResult Function(NotesItemListModel? note) editNotesItem,
   }) {
-    return deleteNotesItem();
+    return deleteNotesItem(note);
   }
 
   @override
@@ -842,12 +928,12 @@ class _$_DeleteNotesItem implements _DeleteNotesItem {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? refresh,
     TResult? Function()? getNotesItem,
-    TResult? Function()? createNotesItem,
-    TResult? Function()? deleteNotesItem,
-    TResult? Function()? readNotesItem,
-    TResult? Function()? editNotesItem,
+    TResult? Function(NotesItemListModel? note)? createNotesItem,
+    TResult? Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult? Function(NotesItemListModel? note)? readNotesItem,
+    TResult? Function(NotesItemListModel? note)? editNotesItem,
   }) {
-    return deleteNotesItem?.call();
+    return deleteNotesItem?.call(note);
   }
 
   @override
@@ -855,14 +941,14 @@ class _$_DeleteNotesItem implements _DeleteNotesItem {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? refresh,
     TResult Function()? getNotesItem,
-    TResult Function()? createNotesItem,
-    TResult Function()? deleteNotesItem,
-    TResult Function()? readNotesItem,
-    TResult Function()? editNotesItem,
+    TResult Function(NotesItemListModel? note)? createNotesItem,
+    TResult Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult Function(NotesItemListModel? note)? readNotesItem,
+    TResult Function(NotesItemListModel? note)? editNotesItem,
     required TResult orElse(),
   }) {
     if (deleteNotesItem != null) {
-      return deleteNotesItem();
+      return deleteNotesItem(note);
     }
     return orElse();
   }
@@ -912,7 +998,13 @@ class _$_DeleteNotesItem implements _DeleteNotesItem {
 }
 
 abstract class _DeleteNotesItem implements NotesEvent {
-  const factory _DeleteNotesItem() = _$_DeleteNotesItem;
+  const factory _DeleteNotesItem(final NotesItemListModel? note) =
+      _$_DeleteNotesItem;
+
+  NotesItemListModel? get note;
+  @JsonKey(ignore: true)
+  _$$_DeleteNotesItemCopyWith<_$_DeleteNotesItem> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -920,6 +1012,10 @@ abstract class _$$_ReadNotesItemCopyWith<$Res> {
   factory _$$_ReadNotesItemCopyWith(
           _$_ReadNotesItem value, $Res Function(_$_ReadNotesItem) then) =
       __$$_ReadNotesItemCopyWithImpl<$Res>;
+  @useResult
+  $Res call({NotesItemListModel? note});
+
+  $NotesItemListModelCopyWith<$Res>? get note;
 }
 
 /// @nodoc
@@ -929,38 +1025,74 @@ class __$$_ReadNotesItemCopyWithImpl<$Res>
   __$$_ReadNotesItemCopyWithImpl(
       _$_ReadNotesItem _value, $Res Function(_$_ReadNotesItem) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? note = freezed,
+  }) {
+    return _then(_$_ReadNotesItem(
+      freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as NotesItemListModel?,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NotesItemListModelCopyWith<$Res>? get note {
+    if (_value.note == null) {
+      return null;
+    }
+
+    return $NotesItemListModelCopyWith<$Res>(_value.note!, (value) {
+      return _then(_value.copyWith(note: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_ReadNotesItem implements _ReadNotesItem {
-  const _$_ReadNotesItem();
+  const _$_ReadNotesItem(this.note);
+
+  @override
+  final NotesItemListModel? note;
 
   @override
   String toString() {
-    return 'NotesEvent.readNotesItem()';
+    return 'NotesEvent.readNotesItem(note: $note)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ReadNotesItem);
+        (other.runtimeType == runtimeType &&
+            other is _$_ReadNotesItem &&
+            (identical(other.note, note) || other.note == note));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, note);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ReadNotesItemCopyWith<_$_ReadNotesItem> get copyWith =>
+      __$$_ReadNotesItemCopyWithImpl<_$_ReadNotesItem>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() refresh,
     required TResult Function() getNotesItem,
-    required TResult Function() createNotesItem,
-    required TResult Function() deleteNotesItem,
-    required TResult Function() readNotesItem,
-    required TResult Function() editNotesItem,
+    required TResult Function(NotesItemListModel? note) createNotesItem,
+    required TResult Function(NotesItemListModel? note) deleteNotesItem,
+    required TResult Function(NotesItemListModel? note) readNotesItem,
+    required TResult Function(NotesItemListModel? note) editNotesItem,
   }) {
-    return readNotesItem();
+    return readNotesItem(note);
   }
 
   @override
@@ -968,12 +1100,12 @@ class _$_ReadNotesItem implements _ReadNotesItem {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? refresh,
     TResult? Function()? getNotesItem,
-    TResult? Function()? createNotesItem,
-    TResult? Function()? deleteNotesItem,
-    TResult? Function()? readNotesItem,
-    TResult? Function()? editNotesItem,
+    TResult? Function(NotesItemListModel? note)? createNotesItem,
+    TResult? Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult? Function(NotesItemListModel? note)? readNotesItem,
+    TResult? Function(NotesItemListModel? note)? editNotesItem,
   }) {
-    return readNotesItem?.call();
+    return readNotesItem?.call(note);
   }
 
   @override
@@ -981,14 +1113,14 @@ class _$_ReadNotesItem implements _ReadNotesItem {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? refresh,
     TResult Function()? getNotesItem,
-    TResult Function()? createNotesItem,
-    TResult Function()? deleteNotesItem,
-    TResult Function()? readNotesItem,
-    TResult Function()? editNotesItem,
+    TResult Function(NotesItemListModel? note)? createNotesItem,
+    TResult Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult Function(NotesItemListModel? note)? readNotesItem,
+    TResult Function(NotesItemListModel? note)? editNotesItem,
     required TResult orElse(),
   }) {
     if (readNotesItem != null) {
-      return readNotesItem();
+      return readNotesItem(note);
     }
     return orElse();
   }
@@ -1038,7 +1170,13 @@ class _$_ReadNotesItem implements _ReadNotesItem {
 }
 
 abstract class _ReadNotesItem implements NotesEvent {
-  const factory _ReadNotesItem() = _$_ReadNotesItem;
+  const factory _ReadNotesItem(final NotesItemListModel? note) =
+      _$_ReadNotesItem;
+
+  NotesItemListModel? get note;
+  @JsonKey(ignore: true)
+  _$$_ReadNotesItemCopyWith<_$_ReadNotesItem> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1046,6 +1184,10 @@ abstract class _$$_EditNotesItemCopyWith<$Res> {
   factory _$$_EditNotesItemCopyWith(
           _$_EditNotesItem value, $Res Function(_$_EditNotesItem) then) =
       __$$_EditNotesItemCopyWithImpl<$Res>;
+  @useResult
+  $Res call({NotesItemListModel? note});
+
+  $NotesItemListModelCopyWith<$Res>? get note;
 }
 
 /// @nodoc
@@ -1055,38 +1197,74 @@ class __$$_EditNotesItemCopyWithImpl<$Res>
   __$$_EditNotesItemCopyWithImpl(
       _$_EditNotesItem _value, $Res Function(_$_EditNotesItem) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? note = freezed,
+  }) {
+    return _then(_$_EditNotesItem(
+      freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as NotesItemListModel?,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NotesItemListModelCopyWith<$Res>? get note {
+    if (_value.note == null) {
+      return null;
+    }
+
+    return $NotesItemListModelCopyWith<$Res>(_value.note!, (value) {
+      return _then(_value.copyWith(note: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_EditNotesItem implements _EditNotesItem {
-  const _$_EditNotesItem();
+  const _$_EditNotesItem(this.note);
+
+  @override
+  final NotesItemListModel? note;
 
   @override
   String toString() {
-    return 'NotesEvent.editNotesItem()';
+    return 'NotesEvent.editNotesItem(note: $note)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_EditNotesItem);
+        (other.runtimeType == runtimeType &&
+            other is _$_EditNotesItem &&
+            (identical(other.note, note) || other.note == note));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, note);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_EditNotesItemCopyWith<_$_EditNotesItem> get copyWith =>
+      __$$_EditNotesItemCopyWithImpl<_$_EditNotesItem>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() refresh,
     required TResult Function() getNotesItem,
-    required TResult Function() createNotesItem,
-    required TResult Function() deleteNotesItem,
-    required TResult Function() readNotesItem,
-    required TResult Function() editNotesItem,
+    required TResult Function(NotesItemListModel? note) createNotesItem,
+    required TResult Function(NotesItemListModel? note) deleteNotesItem,
+    required TResult Function(NotesItemListModel? note) readNotesItem,
+    required TResult Function(NotesItemListModel? note) editNotesItem,
   }) {
-    return editNotesItem();
+    return editNotesItem(note);
   }
 
   @override
@@ -1094,12 +1272,12 @@ class _$_EditNotesItem implements _EditNotesItem {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? refresh,
     TResult? Function()? getNotesItem,
-    TResult? Function()? createNotesItem,
-    TResult? Function()? deleteNotesItem,
-    TResult? Function()? readNotesItem,
-    TResult? Function()? editNotesItem,
+    TResult? Function(NotesItemListModel? note)? createNotesItem,
+    TResult? Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult? Function(NotesItemListModel? note)? readNotesItem,
+    TResult? Function(NotesItemListModel? note)? editNotesItem,
   }) {
-    return editNotesItem?.call();
+    return editNotesItem?.call(note);
   }
 
   @override
@@ -1107,14 +1285,14 @@ class _$_EditNotesItem implements _EditNotesItem {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? refresh,
     TResult Function()? getNotesItem,
-    TResult Function()? createNotesItem,
-    TResult Function()? deleteNotesItem,
-    TResult Function()? readNotesItem,
-    TResult Function()? editNotesItem,
+    TResult Function(NotesItemListModel? note)? createNotesItem,
+    TResult Function(NotesItemListModel? note)? deleteNotesItem,
+    TResult Function(NotesItemListModel? note)? readNotesItem,
+    TResult Function(NotesItemListModel? note)? editNotesItem,
     required TResult orElse(),
   }) {
     if (editNotesItem != null) {
-      return editNotesItem();
+      return editNotesItem(note);
     }
     return orElse();
   }
@@ -1164,5 +1342,11 @@ class _$_EditNotesItem implements _EditNotesItem {
 }
 
 abstract class _EditNotesItem implements NotesEvent {
-  const factory _EditNotesItem() = _$_EditNotesItem;
+  const factory _EditNotesItem(final NotesItemListModel? note) =
+      _$_EditNotesItem;
+
+  NotesItemListModel? get note;
+  @JsonKey(ignore: true)
+  _$$_EditNotesItemCopyWith<_$_EditNotesItem> get copyWith =>
+      throw _privateConstructorUsedError;
 }
