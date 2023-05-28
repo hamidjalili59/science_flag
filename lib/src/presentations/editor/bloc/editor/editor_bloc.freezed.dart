@@ -21,27 +21,29 @@ mixin _$EditorPageState {
       throw _privateConstructorUsedError;
   int get selectPosition => throw _privateConstructorUsedError;
   FleatherController? get controller => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
             bool isLoading,
             List<Map<String, dynamic>> documentData,
             int selectPosition,
-            FleatherController? controller)
+            FleatherController? controller,
+            String name)
         idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isLoading, List<Map<String, dynamic>> documentData,
-            int selectPosition, FleatherController? controller)?
+            int selectPosition, FleatherController? controller, String name)?
         idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoading, List<Map<String, dynamic>> documentData,
-            int selectPosition, FleatherController? controller)?
+            int selectPosition, FleatherController? controller, String name)?
         idle,
     required TResult orElse(),
   }) =>
@@ -78,7 +80,8 @@ abstract class $EditorPageStateCopyWith<$Res> {
       {bool isLoading,
       List<Map<String, dynamic>> documentData,
       int selectPosition,
-      FleatherController? controller});
+      FleatherController? controller,
+      String name});
 }
 
 /// @nodoc
@@ -98,6 +101,7 @@ class _$EditorPageStateCopyWithImpl<$Res, $Val extends EditorPageState>
     Object? documentData = null,
     Object? selectPosition = null,
     Object? controller = freezed,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -116,6 +120,10 @@ class _$EditorPageStateCopyWithImpl<$Res, $Val extends EditorPageState>
           ? _value.controller
           : controller // ignore: cast_nullable_to_non_nullable
               as FleatherController?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -131,7 +139,8 @@ abstract class _$$_IdleCopyWith<$Res>
       {bool isLoading,
       List<Map<String, dynamic>> documentData,
       int selectPosition,
-      FleatherController? controller});
+      FleatherController? controller,
+      String name});
 }
 
 /// @nodoc
@@ -148,6 +157,7 @@ class __$$_IdleCopyWithImpl<$Res>
     Object? documentData = null,
     Object? selectPosition = null,
     Object? controller = freezed,
+    Object? name = null,
   }) {
     return _then(_$_Idle(
       isLoading: null == isLoading
@@ -166,6 +176,10 @@ class __$$_IdleCopyWithImpl<$Res>
           ? _value.controller
           : controller // ignore: cast_nullable_to_non_nullable
               as FleatherController?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -177,7 +191,8 @@ class _$_Idle implements _Idle {
       {this.isLoading = false,
       final List<Map<String, dynamic>> documentData = const [],
       this.selectPosition = 0,
-      this.controller})
+      this.controller,
+      this.name = 'new'})
       : _documentData = documentData;
 
   @override
@@ -197,10 +212,13 @@ class _$_Idle implements _Idle {
   final int selectPosition;
   @override
   final FleatherController? controller;
+  @override
+  @JsonKey()
+  final String name;
 
   @override
   String toString() {
-    return 'EditorPageState.idle(isLoading: $isLoading, documentData: $documentData, selectPosition: $selectPosition, controller: $controller)';
+    return 'EditorPageState.idle(isLoading: $isLoading, documentData: $documentData, selectPosition: $selectPosition, controller: $controller, name: $name)';
   }
 
   @override
@@ -215,7 +233,8 @@ class _$_Idle implements _Idle {
             (identical(other.selectPosition, selectPosition) ||
                 other.selectPosition == selectPosition) &&
             (identical(other.controller, controller) ||
-                other.controller == controller));
+                other.controller == controller) &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
@@ -224,7 +243,8 @@ class _$_Idle implements _Idle {
       isLoading,
       const DeepCollectionEquality().hash(_documentData),
       selectPosition,
-      controller);
+      controller,
+      name);
 
   @JsonKey(ignore: true)
   @override
@@ -239,32 +259,34 @@ class _$_Idle implements _Idle {
             bool isLoading,
             List<Map<String, dynamic>> documentData,
             int selectPosition,
-            FleatherController? controller)
+            FleatherController? controller,
+            String name)
         idle,
   }) {
-    return idle(isLoading, documentData, selectPosition, controller);
+    return idle(isLoading, documentData, selectPosition, controller, name);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isLoading, List<Map<String, dynamic>> documentData,
-            int selectPosition, FleatherController? controller)?
+            int selectPosition, FleatherController? controller, String name)?
         idle,
   }) {
-    return idle?.call(isLoading, documentData, selectPosition, controller);
+    return idle?.call(
+        isLoading, documentData, selectPosition, controller, name);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoading, List<Map<String, dynamic>> documentData,
-            int selectPosition, FleatherController? controller)?
+            int selectPosition, FleatherController? controller, String name)?
         idle,
     required TResult orElse(),
   }) {
     if (idle != null) {
-      return idle(isLoading, documentData, selectPosition, controller);
+      return idle(isLoading, documentData, selectPosition, controller, name);
     }
     return orElse();
   }
@@ -303,7 +325,8 @@ abstract class _Idle implements EditorPageState {
       {final bool isLoading,
       final List<Map<String, dynamic>> documentData,
       final int selectPosition,
-      final FleatherController? controller}) = _$_Idle;
+      final FleatherController? controller,
+      final String name}) = _$_Idle;
 
   @override
   bool get isLoading;
@@ -313,6 +336,8 @@ abstract class _Idle implements EditorPageState {
   int get selectPosition;
   @override
   FleatherController? get controller;
+  @override
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_IdleCopyWith<_$_Idle> get copyWith => throw _privateConstructorUsedError;
@@ -326,7 +351,7 @@ mixin _$EditorPageEvent {
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
-    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function() recordAudio,
@@ -340,7 +365,7 @@ mixin _$EditorPageEvent {
     TResult? Function(String widgetType, int position, bool inline)? addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
-    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function()? recordAudio,
@@ -354,7 +379,7 @@ mixin _$EditorPageEvent {
     TResult Function(String widgetType, int position, bool inline)? addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
-    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function()? recordAudio,
@@ -508,7 +533,7 @@ class _$_AddTool implements _AddTool {
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
-    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function() recordAudio,
@@ -525,7 +550,7 @@ class _$_AddTool implements _AddTool {
     TResult? Function(String widgetType, int position, bool inline)? addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
-    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function()? recordAudio,
@@ -542,7 +567,7 @@ class _$_AddTool implements _AddTool {
     TResult Function(String widgetType, int position, bool inline)? addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
-    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function()? recordAudio,
@@ -700,7 +725,7 @@ class _$_RemoveTool implements _RemoveTool {
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
-    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function() recordAudio,
@@ -717,7 +742,7 @@ class _$_RemoveTool implements _RemoveTool {
     TResult? Function(String widgetType, int position, bool inline)? addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
-    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function()? recordAudio,
@@ -734,7 +759,7 @@ class _$_RemoveTool implements _RemoveTool {
     TResult Function(String widgetType, int position, bool inline)? addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
-    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function()? recordAudio,
@@ -890,7 +915,7 @@ class _$_SwitchPosition implements _SwitchPosition {
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
-    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function() recordAudio,
@@ -907,7 +932,7 @@ class _$_SwitchPosition implements _SwitchPosition {
     TResult? Function(String widgetType, int position, bool inline)? addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
-    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function()? recordAudio,
@@ -924,7 +949,7 @@ class _$_SwitchPosition implements _SwitchPosition {
     TResult Function(String widgetType, int position, bool inline)? addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
-    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function()? recordAudio,
@@ -1008,7 +1033,7 @@ abstract class _$$_ReadDocumentCopyWith<$Res> {
           _$_ReadDocument value, $Res Function(_$_ReadDocument) then) =
       __$$_ReadDocumentCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Map<String, dynamic>> data});
+  $Res call({String? name});
 }
 
 /// @nodoc
@@ -1022,13 +1047,13 @@ class __$$_ReadDocumentCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? name = freezed,
   }) {
     return _then(_$_ReadDocument(
-      null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+      freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -1036,19 +1061,14 @@ class __$$_ReadDocumentCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ReadDocument implements _ReadDocument {
-  const _$_ReadDocument(final List<Map<String, dynamic>> data) : _data = data;
+  const _$_ReadDocument(this.name);
 
-  final List<Map<String, dynamic>> _data;
   @override
-  List<Map<String, dynamic>> get data {
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
-  }
+  final String? name;
 
   @override
   String toString() {
-    return 'EditorPageEvent.readDocument(data: $data)';
+    return 'EditorPageEvent.readDocument(name: $name)';
   }
 
   @override
@@ -1056,12 +1076,11 @@ class _$_ReadDocument implements _ReadDocument {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ReadDocument &&
-            const DeepCollectionEquality().equals(other._data, _data));
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+  int get hashCode => Object.hash(runtimeType, name);
 
   @JsonKey(ignore: true)
   @override
@@ -1076,7 +1095,7 @@ class _$_ReadDocument implements _ReadDocument {
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
-    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function() recordAudio,
@@ -1084,7 +1103,7 @@ class _$_ReadDocument implements _ReadDocument {
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
-    return readDocument(data);
+    return readDocument(name);
   }
 
   @override
@@ -1093,7 +1112,7 @@ class _$_ReadDocument implements _ReadDocument {
     TResult? Function(String widgetType, int position, bool inline)? addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
-    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function()? recordAudio,
@@ -1101,7 +1120,7 @@ class _$_ReadDocument implements _ReadDocument {
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
-    return readDocument?.call(data);
+    return readDocument?.call(name);
   }
 
   @override
@@ -1110,7 +1129,7 @@ class _$_ReadDocument implements _ReadDocument {
     TResult Function(String widgetType, int position, bool inline)? addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
-    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function()? recordAudio,
@@ -1119,7 +1138,7 @@ class _$_ReadDocument implements _ReadDocument {
     required TResult orElse(),
   }) {
     if (readDocument != null) {
-      return readDocument(data);
+      return readDocument(name);
     }
     return orElse();
   }
@@ -1178,10 +1197,9 @@ class _$_ReadDocument implements _ReadDocument {
 }
 
 abstract class _ReadDocument implements EditorPageEvent {
-  const factory _ReadDocument(final List<Map<String, dynamic>> data) =
-      _$_ReadDocument;
+  const factory _ReadDocument(final String? name) = _$_ReadDocument;
 
-  List<Map<String, dynamic>> get data;
+  String? get name;
   @JsonKey(ignore: true)
   _$$_ReadDocumentCopyWith<_$_ReadDocument> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1229,7 +1247,7 @@ class _$_SaveDocument implements _SaveDocument {
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
-    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function() recordAudio,
@@ -1246,7 +1264,7 @@ class _$_SaveDocument implements _SaveDocument {
     TResult? Function(String widgetType, int position, bool inline)? addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
-    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function()? recordAudio,
@@ -1263,7 +1281,7 @@ class _$_SaveDocument implements _SaveDocument {
     TResult Function(String widgetType, int position, bool inline)? addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
-    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function()? recordAudio,
@@ -1376,7 +1394,7 @@ class _$_ExitDocument implements _ExitDocument {
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
-    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function() recordAudio,
@@ -1393,7 +1411,7 @@ class _$_ExitDocument implements _ExitDocument {
     TResult? Function(String widgetType, int position, bool inline)? addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
-    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function()? recordAudio,
@@ -1410,7 +1428,7 @@ class _$_ExitDocument implements _ExitDocument {
     TResult Function(String widgetType, int position, bool inline)? addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
-    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function()? recordAudio,
@@ -1523,7 +1541,7 @@ class _$_RecordAudio implements _RecordAudio {
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
-    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function() recordAudio,
@@ -1540,7 +1558,7 @@ class _$_RecordAudio implements _RecordAudio {
     TResult? Function(String widgetType, int position, bool inline)? addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
-    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function()? recordAudio,
@@ -1557,7 +1575,7 @@ class _$_RecordAudio implements _RecordAudio {
     TResult Function(String widgetType, int position, bool inline)? addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
-    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function()? recordAudio,
@@ -1670,7 +1688,7 @@ class _$_PlayAudio implements _PlayAudio {
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
-    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function() recordAudio,
@@ -1687,7 +1705,7 @@ class _$_PlayAudio implements _PlayAudio {
     TResult? Function(String widgetType, int position, bool inline)? addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
-    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function()? recordAudio,
@@ -1704,7 +1722,7 @@ class _$_PlayAudio implements _PlayAudio {
     TResult Function(String widgetType, int position, bool inline)? addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
-    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function()? recordAudio,
@@ -1853,7 +1871,7 @@ class _$_UpdateTool implements _UpdateTool {
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
-    required TResult Function(List<Map<String, dynamic>> data) readDocument,
+    required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function() recordAudio,
@@ -1870,7 +1888,7 @@ class _$_UpdateTool implements _UpdateTool {
     TResult? Function(String widgetType, int position, bool inline)? addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
-    TResult? Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function()? recordAudio,
@@ -1887,7 +1905,7 @@ class _$_UpdateTool implements _UpdateTool {
     TResult Function(String widgetType, int position, bool inline)? addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
-    TResult Function(List<Map<String, dynamic>> data)? readDocument,
+    TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function()? recordAudio,

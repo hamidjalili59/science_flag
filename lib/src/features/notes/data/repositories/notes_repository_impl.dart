@@ -55,9 +55,12 @@ class NotesRepositoryImpl extends NotesRepository {
                   return left<NotesFailure, List<NotesItemListModel>>(
                       const NotesFailure.missingToken());
                 }
+                if (r.data == null) {
+                  return left(const NotesFailure.nullParam());
+                }
                 return right(
                   List<NotesItemListModel>.from(
-                    (jsonDecode(r.data ?? '{}') as List<dynamic>)
+                    (jsonDecode(r.data!) as List<dynamic>)
                         .map(
                             (dynamic note) => NotesItemListModel.fromJson(note))
                         .toList(),

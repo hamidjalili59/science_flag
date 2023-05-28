@@ -115,6 +115,9 @@ class AuthPage extends StatelessWidget {
                                   SizedBox(height: 40.h),
                                   InkWell(
                                     onTap: () {
+                                      if (isLoading) {
+                                        return;
+                                      }
                                       _authBloc.add(
                                         AuthEvent.cacheAuthData(
                                           OtpVerifyResponse(
@@ -205,10 +208,14 @@ class AuthPage extends StatelessWidget {
                                   SizedBox(height: 40.h),
                                   InkWell(
                                     onTap: () {
-                                      Future.delayed(const Duration(seconds: 1))
+                                      if (isLoading) {
+                                        return;
+                                      }
+                                      Future.delayed(
+                                              const Duration(milliseconds: 150))
                                           .then((value) => getIt
                                               .get<AppRouter>()
-                                              .pushNamed('/home'));
+                                              .replaceNamed('/home'));
                                       // _authBloc.add(
                                       //   AuthEvent.otpHandshake(
                                       //     double.parse(

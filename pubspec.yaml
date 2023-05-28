@@ -43,6 +43,7 @@ dependencies:
     path: ./packages/math_keyboard
   ndialog: ^4.3.0
   parchment: ^1.8.0
+  path_provider: ^2.0.15
   permission_handler: ^10.2.0
   quill_delta: ^3.0.0-nullsafety.2
   shimmer: ^2.0.0
