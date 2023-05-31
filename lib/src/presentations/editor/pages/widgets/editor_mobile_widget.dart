@@ -53,16 +53,14 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
                 ),
                 content: SizedBox(
                   width: 0.35.sw,
-                  height: 0.24.sh,
+                  height: 0.33.sh,
                   child: ListView(
                     padding: EdgeInsets.zero,
                     children: [
                       InkWell(
                         onTap: () => getIt.get<EditorPageBloc>().add(
-                            EditorPageEvent.addTool(
-                                'formula',
-                                editorState.controller!.selection.baseOffset,
-                                false)),
+                            EditorPageEvent.addTool('formula',
+                                editorState.controller!.selection, false)),
                         child: Container(
                           height: 55,
                           decoration: BoxDecoration(
@@ -84,10 +82,8 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
                       SizedBox(height: 10.h),
                       InkWell(
                         onTap: () => getIt.get<EditorPageBloc>().add(
-                            EditorPageEvent.addTool(
-                                'gallary',
-                                editorState.controller!.selection.baseOffset,
-                                false)),
+                            EditorPageEvent.addTool('gallary',
+                                editorState.controller!.selection, false)),
                         child: Container(
                           height: 55,
                           decoration: BoxDecoration(
@@ -111,10 +107,8 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
                       SizedBox(height: 10.h),
                       InkWell(
                         onTap: () => getIt.get<EditorPageBloc>().add(
-                            EditorPageEvent.addTool(
-                                'camera',
-                                editorState.controller!.selection.baseOffset,
-                                false)),
+                            EditorPageEvent.addTool('camera',
+                                editorState.controller!.selection, false)),
                         child: Container(
                           height: 55,
                           decoration: BoxDecoration(
@@ -134,6 +128,31 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 10.h),
+                      InkWell(
+                        onTap: () => getIt.get<EditorPageBloc>().add(
+                            EditorPageEvent.addTool('voice',
+                                editorState.controller!.selection, false)),
+                        child: Container(
+                          height: 55,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black38),
+                              borderRadius: BorderRadius.circular(8.r)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              const SizedBox(
+                                width: 35,
+                                height: 25,
+                                child: Icon(Icons.mic_rounded),
+                              ),
+                              SizedBox(width: 0.25.sw),
+                              const Text('ضبط صدا'),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 5.h),
                     ],
                   ),
                 ),
@@ -221,6 +240,45 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
         height: 0.4.sh,
         child: Image.file(File(node.value.data['image'])),
         // Image.memory((node.value.data['images'] as Uint8List)),
+      );
+    }
+
+    if (node.value.type == 'voice') {
+      // Icons.rocket_launch_outlined
+      return BlocBuilder<EditorPageBloc, EditorPageState>(
+        bloc: getIt.get<EditorPageBloc>(),
+        builder: (context, state) {
+          return InkWell(
+            onTap: state.isPlaying
+                ? () {
+                    getIt
+                        .get<EditorPageBloc>()
+                        .add(const EditorPageEvent.playAudio(false, ''));
+                  }
+                : () {
+                    getIt.get<EditorPageBloc>().add(
+                          EditorPageEvent.playAudio(
+                            true,
+                            node.value.data['audio'],
+                          ),
+                        );
+                  },
+            child: SizedBox(
+              width: 25.w,
+              height: 25.w,
+              child: FittedBox(
+                fit: BoxFit.fitHeight,
+                child: Icon(
+                  state.isPlaying &&
+                          state.controller!.selection.baseOffset ==
+                              node.documentOffset
+                      ? Icons.stop_rounded
+                      : Icons.play_arrow_rounded,
+                ),
+              ),
+            ),
+          );
+        },
       );
     }
 
