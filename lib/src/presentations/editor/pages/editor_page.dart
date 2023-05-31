@@ -50,19 +50,3 @@ class EditorPage extends StatelessWidget {
     );
   }
 }
-
-class AppbarEditorPageWidget extends StatelessWidget {
-  final String image;
-  const AppbarEditorPageWidget({
-    super.key,
-    required this.image,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.0.w),
-      child: SizedBox(width: 30, child: Image.asset(image)),
-    );
-  }
-}

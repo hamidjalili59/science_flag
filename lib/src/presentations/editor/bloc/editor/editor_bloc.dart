@@ -9,6 +9,7 @@ import 'package:base_project/src/features/editor/domain/use_cases/read_node_edit
 import 'package:base_project/src/features/editor/domain/use_cases/save_note_usecase.dart';
 import 'package:base_project/src/injectable/injectable.dart';
 import 'package:base_project/src/presentations/editor/pages/widgets/editor_mobile_widget.dart';
+import 'package:base_project/src/presentations/editor/pages/widgets/record_dialog_widget.dart';
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:math_keyboard/math_keyboard.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:record/record.dart';
 
 part 'editor_state.dart';
 part 'editor_event.dart';
@@ -38,6 +41,8 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
     on<_SaveDocument>(_onSaveDocument);
     on<_UpdateTool>(_onUpdateTool);
     on<_SwitchPosition>(_onSwitchPosition);
+    on<_RecordAudio>(_onRecordAudioEvent);
+    on<_PlayAudio>(_onPlayAudioEvent);
   }
   @override
   void onEvent(EditorPageEvent event) {
@@ -54,7 +59,7 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
         controller: state.controller, isLoading: true, name: state.name));
     if (event.widgetType == 'text') {
       state.controller!.document.insert(
-          event.position,
+          event.textSelection.baseOffset,
           EmbeddableObject('widget',
               inline: true, data: {'width': 50.0, 'height': 60.0}));
       emit(EditorPageState.idle(
@@ -62,13 +67,14 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
     } else if (event.widgetType == 'camera') {
       getIt.get<AppRouter>().popUntilRouteWithName('Editor');
       final imagesPath = await CunningDocumentScanner.getPictures();
-      await File(imagesPath!.first)
-          .copy('${appDocumentsDir.path}/camera${event.position}');
+      await File(imagesPath!.first).copy(
+          '${appDocumentsDir.path}/camera${event.textSelection.baseOffset}');
       state.controller!.document.insert(
-          event.position,
+          event.textSelection.baseOffset,
           EmbeddableObject('camera', inline: false, data: {
             'length': imagesPath.length,
-            'images': '${appDocumentsDir.path}/camera${event.position}'
+            'images':
+                '${appDocumentsDir.path}/camera${event.textSelection.baseOffset}'
           }));
       emit(EditorPageState.idle(
           controller: state.controller, isLoading: false, name: state.name));
@@ -76,12 +82,13 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
       getIt.get<AppRouter>().popUntilRouteWithName('Editor');
 
       XFile? imageFile = await FunctionHelper().imagePickerMethod();
-      await File(imageFile.path)
-          .copy('${appDocumentsDir.path}/gallary${event.position}');
+      await File(imageFile.path).copy(
+          '${appDocumentsDir.path}/gallary${event.textSelection.baseOffset}');
       state.controller!.document.insert(
-          event.position,
+          event.textSelection.baseOffset,
           EmbeddableObject('gallary', inline: false, data: {
-            'image': '${appDocumentsDir.path}/gallary${event.position}'
+            'image':
+                '${appDocumentsDir.path}/gallary${event.textSelection.baseOffset}'
           }));
       emit(EditorPageState.idle(
           controller: state.controller, isLoading: false, name: state.name));
@@ -113,7 +120,7 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
                 (String value) {}, // Respond to changes in the input field.
             onSubmitted: (String value) {
               state.controller!.document.insert(
-                  event.position,
+                  event.textSelection.baseOffset,
                   EmbeddableObject('formula',
                       inline: true, data: {'value': value, 'size': 18.0}));
               getIt.get<AppRouter>().popUntilRouteWithName('Editor');
@@ -125,6 +132,48 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
           dismissable: false);
       emit(EditorPageState.idle(
           controller: state.controller, isLoading: false, name: state.name));
+    } else if (event.widgetType == 'voice') {
+      getIt.get<AppRouter>().popUntilRouteWithName('Editor');
+      emit(EditorPageState.idle(
+          controller: state.controller, isLoading: false, name: state.name));
+      if (!getIt.isRegistered<Record>()) {
+        getIt.registerSingleton<Record>(Record());
+      }
+      if (!getIt.isRegistered<AudioPlayer>()) {
+        getIt.registerSingleton<AudioPlayer>(AudioPlayer());
+      }
+      await NDialog(
+        dialogStyle: DialogStyle(
+          backgroundColor: Colors.white38,
+        ),
+        content: RecordDialogWidget(
+          appDocumentsDir: appDocumentsDir.path,
+          baseOffset: event.textSelection.baseOffset,
+        ),
+      )
+          .show(
+        getIt.get<AppRouter>().navigatorKey.currentContext!,
+        transitionType: DialogTransitionType.BottomToTop,
+        dismissable: false,
+      )
+          .whenComplete(() async {
+        if (await File(
+                '${appDocumentsDir.path}/voice${event.textSelection.baseOffset}')
+            .exists()) {
+          state.controller!.document.insert(
+              event.textSelection.baseOffset,
+              EmbeddableObject('voice', inline: true, data: {
+                'audio':
+                    '${appDocumentsDir.path}/voice${event.textSelection.baseOffset}'
+              }));
+          state.controller!.formatSelection(
+              ParchmentAttribute.backgroundColor.fromString('0x602BAAFF'));
+        }
+        getIt.get<Record>().dispose();
+        getIt.unregister<Record>();
+        getIt.get<AudioPlayer>().dispose();
+        getIt.unregister<AudioPlayer>();
+      });
     } else {}
   }
 
@@ -256,5 +305,72 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
         param: tuple.Tuple2(json.encode(tempDoc), state.name));
 
     getIt.get<AppRouter>().pop();
+  }
+
+  FutureOr<void> _onRecordAudioEvent(event, Emitter<EditorPageState> emit) {
+    emit(EditorPageState.idle(
+        controller: state.controller,
+        documentData: state.documentData,
+        inRecording: event.isRecording,
+        isLoading: false,
+        name: state.name,
+        selectPosition: state.selectPosition));
+  }
+
+  FutureOr<void> _onPlayAudioEvent(
+      _PlayAudio event, Emitter<EditorPageState> emit) async {
+    if (state.isPlaying) {
+      emit(
+        EditorPageState.idle(
+          controller: state.controller,
+          documentData: state.documentData,
+          inRecording: state.inRecording,
+          isLoading: false,
+          isPlaying: false,
+          name: state.name,
+          selectPosition: state.selectPosition,
+        ),
+      );
+      if (await File(event.path).exists()) {
+        getIt.get<AudioPlayer>().stop();
+        if (getIt.isRegistered<AudioPlayer>()) {
+          getIt.unregister<AudioPlayer>();
+        }
+      }
+    } else {
+      emit(
+        EditorPageState.idle(
+          controller: state.controller,
+          documentData: state.documentData,
+          inRecording: state.inRecording,
+          isLoading: false,
+          isPlaying: true,
+          name: state.name,
+          selectPosition: state.selectPosition,
+        ),
+      );
+      if (!getIt.isRegistered<AudioPlayer>()) {
+        getIt.registerSingleton<AudioPlayer>(AudioPlayer());
+      }
+      if (await File(event.path).exists()) {
+        await getIt.get<AudioPlayer>().setFilePath(event.path);
+        await getIt.get<AudioPlayer>().play();
+        await getIt.get<AudioPlayer>().stop();
+        emit(
+          EditorPageState.idle(
+            controller: state.controller,
+            documentData: state.documentData,
+            inRecording: state.inRecording,
+            isLoading: false,
+            isPlaying: false,
+            name: state.name,
+            selectPosition: state.selectPosition,
+          ),
+        );
+        if (getIt.isRegistered<AudioPlayer>()) {
+          getIt.unregister<AudioPlayer>();
+        }
+      }
+    }
   }
 }

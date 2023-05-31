@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$EditorPageState {
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get inRecording => throw _privateConstructorUsedError;
+  bool get isPlaying => throw _privateConstructorUsedError;
   List<Map<String, dynamic>> get documentData =>
       throw _privateConstructorUsedError;
   int get selectPosition => throw _privateConstructorUsedError;
@@ -26,6 +28,8 @@ mixin _$EditorPageState {
   TResult when<TResult extends Object?>({
     required TResult Function(
             bool isLoading,
+            bool inRecording,
+            bool isPlaying,
             List<Map<String, dynamic>> documentData,
             int selectPosition,
             FleatherController? controller,
@@ -35,15 +39,27 @@ mixin _$EditorPageState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading, List<Map<String, dynamic>> documentData,
-            int selectPosition, FleatherController? controller, String name)?
+    TResult? Function(
+            bool isLoading,
+            bool inRecording,
+            bool isPlaying,
+            List<Map<String, dynamic>> documentData,
+            int selectPosition,
+            FleatherController? controller,
+            String name)?
         idle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading, List<Map<String, dynamic>> documentData,
-            int selectPosition, FleatherController? controller, String name)?
+    TResult Function(
+            bool isLoading,
+            bool inRecording,
+            bool isPlaying,
+            List<Map<String, dynamic>> documentData,
+            int selectPosition,
+            FleatherController? controller,
+            String name)?
         idle,
     required TResult orElse(),
   }) =>
@@ -78,6 +94,8 @@ abstract class $EditorPageStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isLoading,
+      bool inRecording,
+      bool isPlaying,
       List<Map<String, dynamic>> documentData,
       int selectPosition,
       FleatherController? controller,
@@ -98,6 +116,8 @@ class _$EditorPageStateCopyWithImpl<$Res, $Val extends EditorPageState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? inRecording = null,
+    Object? isPlaying = null,
     Object? documentData = null,
     Object? selectPosition = null,
     Object? controller = freezed,
@@ -107,6 +127,14 @@ class _$EditorPageStateCopyWithImpl<$Res, $Val extends EditorPageState>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      inRecording: null == inRecording
+          ? _value.inRecording
+          : inRecording // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPlaying: null == isPlaying
+          ? _value.isPlaying
+          : isPlaying // ignore: cast_nullable_to_non_nullable
               as bool,
       documentData: null == documentData
           ? _value.documentData
@@ -137,6 +165,8 @@ abstract class _$$_IdleCopyWith<$Res>
   @useResult
   $Res call(
       {bool isLoading,
+      bool inRecording,
+      bool isPlaying,
       List<Map<String, dynamic>> documentData,
       int selectPosition,
       FleatherController? controller,
@@ -154,6 +184,8 @@ class __$$_IdleCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? inRecording = null,
+    Object? isPlaying = null,
     Object? documentData = null,
     Object? selectPosition = null,
     Object? controller = freezed,
@@ -163,6 +195,14 @@ class __$$_IdleCopyWithImpl<$Res>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      inRecording: null == inRecording
+          ? _value.inRecording
+          : inRecording // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPlaying: null == isPlaying
+          ? _value.isPlaying
+          : isPlaying // ignore: cast_nullable_to_non_nullable
               as bool,
       documentData: null == documentData
           ? _value._documentData
@@ -189,6 +229,8 @@ class __$$_IdleCopyWithImpl<$Res>
 class _$_Idle implements _Idle {
   const _$_Idle(
       {this.isLoading = false,
+      this.inRecording = false,
+      this.isPlaying = false,
       final List<Map<String, dynamic>> documentData = const [],
       this.selectPosition = 0,
       this.controller,
@@ -198,6 +240,12 @@ class _$_Idle implements _Idle {
   @override
   @JsonKey()
   final bool isLoading;
+  @override
+  @JsonKey()
+  final bool inRecording;
+  @override
+  @JsonKey()
+  final bool isPlaying;
   final List<Map<String, dynamic>> _documentData;
   @override
   @JsonKey()
@@ -218,7 +266,7 @@ class _$_Idle implements _Idle {
 
   @override
   String toString() {
-    return 'EditorPageState.idle(isLoading: $isLoading, documentData: $documentData, selectPosition: $selectPosition, controller: $controller, name: $name)';
+    return 'EditorPageState.idle(isLoading: $isLoading, inRecording: $inRecording, isPlaying: $isPlaying, documentData: $documentData, selectPosition: $selectPosition, controller: $controller, name: $name)';
   }
 
   @override
@@ -228,6 +276,10 @@ class _$_Idle implements _Idle {
             other is _$_Idle &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.inRecording, inRecording) ||
+                other.inRecording == inRecording) &&
+            (identical(other.isPlaying, isPlaying) ||
+                other.isPlaying == isPlaying) &&
             const DeepCollectionEquality()
                 .equals(other._documentData, _documentData) &&
             (identical(other.selectPosition, selectPosition) ||
@@ -241,6 +293,8 @@ class _$_Idle implements _Idle {
   int get hashCode => Object.hash(
       runtimeType,
       isLoading,
+      inRecording,
+      isPlaying,
       const DeepCollectionEquality().hash(_documentData),
       selectPosition,
       controller,
@@ -257,36 +311,52 @@ class _$_Idle implements _Idle {
   TResult when<TResult extends Object?>({
     required TResult Function(
             bool isLoading,
+            bool inRecording,
+            bool isPlaying,
             List<Map<String, dynamic>> documentData,
             int selectPosition,
             FleatherController? controller,
             String name)
         idle,
   }) {
-    return idle(isLoading, documentData, selectPosition, controller, name);
+    return idle(isLoading, inRecording, isPlaying, documentData, selectPosition,
+        controller, name);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading, List<Map<String, dynamic>> documentData,
-            int selectPosition, FleatherController? controller, String name)?
+    TResult? Function(
+            bool isLoading,
+            bool inRecording,
+            bool isPlaying,
+            List<Map<String, dynamic>> documentData,
+            int selectPosition,
+            FleatherController? controller,
+            String name)?
         idle,
   }) {
-    return idle?.call(
-        isLoading, documentData, selectPosition, controller, name);
+    return idle?.call(isLoading, inRecording, isPlaying, documentData,
+        selectPosition, controller, name);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading, List<Map<String, dynamic>> documentData,
-            int selectPosition, FleatherController? controller, String name)?
+    TResult Function(
+            bool isLoading,
+            bool inRecording,
+            bool isPlaying,
+            List<Map<String, dynamic>> documentData,
+            int selectPosition,
+            FleatherController? controller,
+            String name)?
         idle,
     required TResult orElse(),
   }) {
     if (idle != null) {
-      return idle(isLoading, documentData, selectPosition, controller, name);
+      return idle(isLoading, inRecording, isPlaying, documentData,
+          selectPosition, controller, name);
     }
     return orElse();
   }
@@ -323,6 +393,8 @@ class _$_Idle implements _Idle {
 abstract class _Idle implements EditorPageState {
   const factory _Idle(
       {final bool isLoading,
+      final bool inRecording,
+      final bool isPlaying,
       final List<Map<String, dynamic>> documentData,
       final int selectPosition,
       final FleatherController? controller,
@@ -330,6 +402,10 @@ abstract class _Idle implements EditorPageState {
 
   @override
   bool get isLoading;
+  @override
+  bool get inRecording;
+  @override
+  bool get isPlaying;
   @override
   List<Map<String, dynamic>> get documentData;
   @override
@@ -347,43 +423,48 @@ abstract class _Idle implements EditorPageState {
 mixin _$EditorPageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position, bool inline)
+    required TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(bool isRecording) recordAudio,
     required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
-    required TResult Function() recordAudio,
-    required TResult Function() playAudio,
+    required TResult Function(bool play, String path) playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(bool isRecording)? recordAudio,
     TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
-    TResult? Function()? recordAudio,
-    TResult? Function()? playAudio,
+    TResult? Function(bool play, String path)? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(bool isRecording)? recordAudio,
     TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
-    TResult Function()? recordAudio,
-    TResult Function()? playAudio,
+    TResult Function(bool play, String path)? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) =>
@@ -393,10 +474,10 @@ mixin _$EditorPageEvent {
     required TResult Function(_AddTool value) addTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_ReadDocument value) readDocument,
     required TResult Function(_SaveDocument value) saveDocument,
     required TResult Function(_ExitDocument value) exitDocument,
-    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
   }) =>
@@ -406,10 +487,10 @@ mixin _$EditorPageEvent {
     TResult? Function(_AddTool value)? addTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_ReadDocument value)? readDocument,
     TResult? Function(_SaveDocument value)? saveDocument,
     TResult? Function(_ExitDocument value)? exitDocument,
-    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
   }) =>
@@ -419,10 +500,10 @@ mixin _$EditorPageEvent {
     TResult Function(_AddTool value)? addTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_ReadDocument value)? readDocument,
     TResult Function(_SaveDocument value)? saveDocument,
     TResult Function(_ExitDocument value)? exitDocument,
-    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
     required TResult orElse(),
@@ -454,7 +535,7 @@ abstract class _$$_AddToolCopyWith<$Res> {
           _$_AddTool value, $Res Function(_$_AddTool) then) =
       __$$_AddToolCopyWithImpl<$Res>;
   @useResult
-  $Res call({String widgetType, int position, bool inline});
+  $Res call({String widgetType, TextSelection textSelection, bool inline});
 }
 
 /// @nodoc
@@ -468,7 +549,7 @@ class __$$_AddToolCopyWithImpl<$Res>
   @override
   $Res call({
     Object? widgetType = null,
-    Object? position = null,
+    Object? textSelection = null,
     Object? inline = null,
   }) {
     return _then(_$_AddTool(
@@ -476,10 +557,10 @@ class __$$_AddToolCopyWithImpl<$Res>
           ? _value.widgetType
           : widgetType // ignore: cast_nullable_to_non_nullable
               as String,
-      null == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as int,
+      null == textSelection
+          ? _value.textSelection
+          : textSelection // ignore: cast_nullable_to_non_nullable
+              as TextSelection,
       null == inline
           ? _value.inline
           : inline // ignore: cast_nullable_to_non_nullable
@@ -491,18 +572,18 @@ class __$$_AddToolCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AddTool implements _AddTool {
-  const _$_AddTool(this.widgetType, this.position, this.inline);
+  const _$_AddTool(this.widgetType, this.textSelection, this.inline);
 
   @override
   final String widgetType;
   @override
-  final int position;
+  final TextSelection textSelection;
   @override
   final bool inline;
 
   @override
   String toString() {
-    return 'EditorPageEvent.addTool(widgetType: $widgetType, position: $position, inline: $inline)';
+    return 'EditorPageEvent.addTool(widgetType: $widgetType, textSelection: $textSelection, inline: $inline)';
   }
 
   @override
@@ -512,13 +593,14 @@ class _$_AddTool implements _AddTool {
             other is _$_AddTool &&
             (identical(other.widgetType, widgetType) ||
                 other.widgetType == widgetType) &&
-            (identical(other.position, position) ||
-                other.position == position) &&
+            (identical(other.textSelection, textSelection) ||
+                other.textSelection == textSelection) &&
             (identical(other.inline, inline) || other.inline == inline));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, widgetType, position, inline);
+  int get hashCode =>
+      Object.hash(runtimeType, widgetType, textSelection, inline);
 
   @JsonKey(ignore: true)
   @override
@@ -529,54 +611,59 @@ class _$_AddTool implements _AddTool {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position, bool inline)
+    required TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(bool isRecording) recordAudio,
     required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
-    required TResult Function() recordAudio,
-    required TResult Function() playAudio,
+    required TResult Function(bool play, String path) playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
-    return addTool(widgetType, position, inline);
+    return addTool(widgetType, textSelection, inline);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(bool isRecording)? recordAudio,
     TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
-    TResult? Function()? recordAudio,
-    TResult? Function()? playAudio,
+    TResult? Function(bool play, String path)? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
-    return addTool?.call(widgetType, position, inline);
+    return addTool?.call(widgetType, textSelection, inline);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(bool isRecording)? recordAudio,
     TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
-    TResult Function()? recordAudio,
-    TResult Function()? playAudio,
+    TResult Function(bool play, String path)? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
     if (addTool != null) {
-      return addTool(widgetType, position, inline);
+      return addTool(widgetType, textSelection, inline);
     }
     return orElse();
   }
@@ -587,10 +674,10 @@ class _$_AddTool implements _AddTool {
     required TResult Function(_AddTool value) addTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_ReadDocument value) readDocument,
     required TResult Function(_SaveDocument value) saveDocument,
     required TResult Function(_ExitDocument value) exitDocument,
-    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
   }) {
@@ -603,10 +690,10 @@ class _$_AddTool implements _AddTool {
     TResult? Function(_AddTool value)? addTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_ReadDocument value)? readDocument,
     TResult? Function(_SaveDocument value)? saveDocument,
     TResult? Function(_ExitDocument value)? exitDocument,
-    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
   }) {
@@ -619,10 +706,10 @@ class _$_AddTool implements _AddTool {
     TResult Function(_AddTool value)? addTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_ReadDocument value)? readDocument,
     TResult Function(_SaveDocument value)? saveDocument,
     TResult Function(_ExitDocument value)? exitDocument,
-    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
     required TResult orElse(),
@@ -635,12 +722,11 @@ class _$_AddTool implements _AddTool {
 }
 
 abstract class _AddTool implements EditorPageEvent {
-  const factory _AddTool(
-          final String widgetType, final int position, final bool inline) =
-      _$_AddTool;
+  const factory _AddTool(final String widgetType,
+      final TextSelection textSelection, final bool inline) = _$_AddTool;
 
   String get widgetType;
-  int get position;
+  TextSelection get textSelection;
   bool get inline;
   @JsonKey(ignore: true)
   _$$_AddToolCopyWith<_$_AddTool> get copyWith =>
@@ -721,15 +807,16 @@ class _$_RemoveTool implements _RemoveTool {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position, bool inline)
+    required TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(bool isRecording) recordAudio,
     required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
-    required TResult Function() recordAudio,
-    required TResult Function() playAudio,
+    required TResult Function(bool play, String path) playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
@@ -739,14 +826,16 @@ class _$_RemoveTool implements _RemoveTool {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(bool isRecording)? recordAudio,
     TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
-    TResult? Function()? recordAudio,
-    TResult? Function()? playAudio,
+    TResult? Function(bool play, String path)? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
@@ -756,14 +845,16 @@ class _$_RemoveTool implements _RemoveTool {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(bool isRecording)? recordAudio,
     TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
-    TResult Function()? recordAudio,
-    TResult Function()? playAudio,
+    TResult Function(bool play, String path)? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
@@ -779,10 +870,10 @@ class _$_RemoveTool implements _RemoveTool {
     required TResult Function(_AddTool value) addTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_ReadDocument value) readDocument,
     required TResult Function(_SaveDocument value) saveDocument,
     required TResult Function(_ExitDocument value) exitDocument,
-    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
   }) {
@@ -795,10 +886,10 @@ class _$_RemoveTool implements _RemoveTool {
     TResult? Function(_AddTool value)? addTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_ReadDocument value)? readDocument,
     TResult? Function(_SaveDocument value)? saveDocument,
     TResult? Function(_ExitDocument value)? exitDocument,
-    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
   }) {
@@ -811,10 +902,10 @@ class _$_RemoveTool implements _RemoveTool {
     TResult Function(_AddTool value)? addTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_ReadDocument value)? readDocument,
     TResult Function(_SaveDocument value)? saveDocument,
     TResult Function(_ExitDocument value)? exitDocument,
-    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
     required TResult orElse(),
@@ -911,15 +1002,16 @@ class _$_SwitchPosition implements _SwitchPosition {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position, bool inline)
+    required TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(bool isRecording) recordAudio,
     required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
-    required TResult Function() recordAudio,
-    required TResult Function() playAudio,
+    required TResult Function(bool play, String path) playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
@@ -929,14 +1021,16 @@ class _$_SwitchPosition implements _SwitchPosition {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(bool isRecording)? recordAudio,
     TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
-    TResult? Function()? recordAudio,
-    TResult? Function()? playAudio,
+    TResult? Function(bool play, String path)? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
@@ -946,14 +1040,16 @@ class _$_SwitchPosition implements _SwitchPosition {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(bool isRecording)? recordAudio,
     TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
-    TResult Function()? recordAudio,
-    TResult Function()? playAudio,
+    TResult Function(bool play, String path)? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
@@ -969,10 +1065,10 @@ class _$_SwitchPosition implements _SwitchPosition {
     required TResult Function(_AddTool value) addTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_ReadDocument value) readDocument,
     required TResult Function(_SaveDocument value) saveDocument,
     required TResult Function(_ExitDocument value) exitDocument,
-    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
   }) {
@@ -985,10 +1081,10 @@ class _$_SwitchPosition implements _SwitchPosition {
     TResult? Function(_AddTool value)? addTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_ReadDocument value)? readDocument,
     TResult? Function(_SaveDocument value)? saveDocument,
     TResult? Function(_ExitDocument value)? exitDocument,
-    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
   }) {
@@ -1001,10 +1097,10 @@ class _$_SwitchPosition implements _SwitchPosition {
     TResult Function(_AddTool value)? addTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_ReadDocument value)? readDocument,
     TResult Function(_SaveDocument value)? saveDocument,
     TResult Function(_ExitDocument value)? exitDocument,
-    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
     required TResult orElse(),
@@ -1024,6 +1120,190 @@ abstract class _SwitchPosition implements EditorPageEvent {
   int get position;
   @JsonKey(ignore: true)
   _$$_SwitchPositionCopyWith<_$_SwitchPosition> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_RecordAudioCopyWith<$Res> {
+  factory _$$_RecordAudioCopyWith(
+          _$_RecordAudio value, $Res Function(_$_RecordAudio) then) =
+      __$$_RecordAudioCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isRecording});
+}
+
+/// @nodoc
+class __$$_RecordAudioCopyWithImpl<$Res>
+    extends _$EditorPageEventCopyWithImpl<$Res, _$_RecordAudio>
+    implements _$$_RecordAudioCopyWith<$Res> {
+  __$$_RecordAudioCopyWithImpl(
+      _$_RecordAudio _value, $Res Function(_$_RecordAudio) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isRecording = null,
+  }) {
+    return _then(_$_RecordAudio(
+      null == isRecording
+          ? _value.isRecording
+          : isRecording // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RecordAudio implements _RecordAudio {
+  const _$_RecordAudio(this.isRecording);
+
+  @override
+  final bool isRecording;
+
+  @override
+  String toString() {
+    return 'EditorPageEvent.recordAudio(isRecording: $isRecording)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RecordAudio &&
+            (identical(other.isRecording, isRecording) ||
+                other.isRecording == isRecording));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isRecording);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RecordAudioCopyWith<_$_RecordAudio> get copyWith =>
+      __$$_RecordAudioCopyWithImpl<_$_RecordAudio>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)
+        addTool,
+    required TResult Function(String widgetType, int position) removeTool,
+    required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(bool isRecording) recordAudio,
+    required TResult Function(String? name) readDocument,
+    required TResult Function() saveDocument,
+    required TResult Function() exitDocument,
+    required TResult Function(bool play, String path) playAudio,
+    required TResult Function(String widgetType, EditorItemList stackWidget)
+        updateTool,
+  }) {
+    return recordAudio(isRecording);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
+    TResult? Function(String widgetType, int position)? removeTool,
+    TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(bool isRecording)? recordAudio,
+    TResult? Function(String? name)? readDocument,
+    TResult? Function()? saveDocument,
+    TResult? Function()? exitDocument,
+    TResult? Function(bool play, String path)? playAudio,
+    TResult? Function(String widgetType, EditorItemList stackWidget)?
+        updateTool,
+  }) {
+    return recordAudio?.call(isRecording);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
+    TResult Function(String widgetType, int position)? removeTool,
+    TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(bool isRecording)? recordAudio,
+    TResult Function(String? name)? readDocument,
+    TResult Function()? saveDocument,
+    TResult Function()? exitDocument,
+    TResult Function(bool play, String path)? playAudio,
+    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    required TResult orElse(),
+  }) {
+    if (recordAudio != null) {
+      return recordAudio(isRecording);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddTool value) addTool,
+    required TResult Function(_RemoveTool value) removeTool,
+    required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_RecordAudio value) recordAudio,
+    required TResult Function(_ReadDocument value) readDocument,
+    required TResult Function(_SaveDocument value) saveDocument,
+    required TResult Function(_ExitDocument value) exitDocument,
+    required TResult Function(_PlayAudio value) playAudio,
+    required TResult Function(_UpdateTool value) updateTool,
+  }) {
+    return recordAudio(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddTool value)? addTool,
+    TResult? Function(_RemoveTool value)? removeTool,
+    TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_RecordAudio value)? recordAudio,
+    TResult? Function(_ReadDocument value)? readDocument,
+    TResult? Function(_SaveDocument value)? saveDocument,
+    TResult? Function(_ExitDocument value)? exitDocument,
+    TResult? Function(_PlayAudio value)? playAudio,
+    TResult? Function(_UpdateTool value)? updateTool,
+  }) {
+    return recordAudio?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddTool value)? addTool,
+    TResult Function(_RemoveTool value)? removeTool,
+    TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_RecordAudio value)? recordAudio,
+    TResult Function(_ReadDocument value)? readDocument,
+    TResult Function(_SaveDocument value)? saveDocument,
+    TResult Function(_ExitDocument value)? exitDocument,
+    TResult Function(_PlayAudio value)? playAudio,
+    TResult Function(_UpdateTool value)? updateTool,
+    required TResult orElse(),
+  }) {
+    if (recordAudio != null) {
+      return recordAudio(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RecordAudio implements EditorPageEvent {
+  const factory _RecordAudio(final bool isRecording) = _$_RecordAudio;
+
+  bool get isRecording;
+  @JsonKey(ignore: true)
+  _$$_RecordAudioCopyWith<_$_RecordAudio> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1091,15 +1371,16 @@ class _$_ReadDocument implements _ReadDocument {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position, bool inline)
+    required TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(bool isRecording) recordAudio,
     required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
-    required TResult Function() recordAudio,
-    required TResult Function() playAudio,
+    required TResult Function(bool play, String path) playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
@@ -1109,14 +1390,16 @@ class _$_ReadDocument implements _ReadDocument {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(bool isRecording)? recordAudio,
     TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
-    TResult? Function()? recordAudio,
-    TResult? Function()? playAudio,
+    TResult? Function(bool play, String path)? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
@@ -1126,14 +1409,16 @@ class _$_ReadDocument implements _ReadDocument {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(bool isRecording)? recordAudio,
     TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
-    TResult Function()? recordAudio,
-    TResult Function()? playAudio,
+    TResult Function(bool play, String path)? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
@@ -1149,10 +1434,10 @@ class _$_ReadDocument implements _ReadDocument {
     required TResult Function(_AddTool value) addTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_ReadDocument value) readDocument,
     required TResult Function(_SaveDocument value) saveDocument,
     required TResult Function(_ExitDocument value) exitDocument,
-    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
   }) {
@@ -1165,10 +1450,10 @@ class _$_ReadDocument implements _ReadDocument {
     TResult? Function(_AddTool value)? addTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_ReadDocument value)? readDocument,
     TResult? Function(_SaveDocument value)? saveDocument,
     TResult? Function(_ExitDocument value)? exitDocument,
-    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
   }) {
@@ -1181,10 +1466,10 @@ class _$_ReadDocument implements _ReadDocument {
     TResult Function(_AddTool value)? addTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_ReadDocument value)? readDocument,
     TResult Function(_SaveDocument value)? saveDocument,
     TResult Function(_ExitDocument value)? exitDocument,
-    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
     required TResult orElse(),
@@ -1243,15 +1528,16 @@ class _$_SaveDocument implements _SaveDocument {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position, bool inline)
+    required TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(bool isRecording) recordAudio,
     required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
-    required TResult Function() recordAudio,
-    required TResult Function() playAudio,
+    required TResult Function(bool play, String path) playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
@@ -1261,14 +1547,16 @@ class _$_SaveDocument implements _SaveDocument {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(bool isRecording)? recordAudio,
     TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
-    TResult? Function()? recordAudio,
-    TResult? Function()? playAudio,
+    TResult? Function(bool play, String path)? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
@@ -1278,14 +1566,16 @@ class _$_SaveDocument implements _SaveDocument {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(bool isRecording)? recordAudio,
     TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
-    TResult Function()? recordAudio,
-    TResult Function()? playAudio,
+    TResult Function(bool play, String path)? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
@@ -1301,10 +1591,10 @@ class _$_SaveDocument implements _SaveDocument {
     required TResult Function(_AddTool value) addTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_ReadDocument value) readDocument,
     required TResult Function(_SaveDocument value) saveDocument,
     required TResult Function(_ExitDocument value) exitDocument,
-    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
   }) {
@@ -1317,10 +1607,10 @@ class _$_SaveDocument implements _SaveDocument {
     TResult? Function(_AddTool value)? addTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_ReadDocument value)? readDocument,
     TResult? Function(_SaveDocument value)? saveDocument,
     TResult? Function(_ExitDocument value)? exitDocument,
-    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
   }) {
@@ -1333,10 +1623,10 @@ class _$_SaveDocument implements _SaveDocument {
     TResult Function(_AddTool value)? addTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_ReadDocument value)? readDocument,
     TResult Function(_SaveDocument value)? saveDocument,
     TResult Function(_ExitDocument value)? exitDocument,
-    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
     required TResult orElse(),
@@ -1390,15 +1680,16 @@ class _$_ExitDocument implements _ExitDocument {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position, bool inline)
+    required TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(bool isRecording) recordAudio,
     required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
-    required TResult Function() recordAudio,
-    required TResult Function() playAudio,
+    required TResult Function(bool play, String path) playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
@@ -1408,14 +1699,16 @@ class _$_ExitDocument implements _ExitDocument {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(bool isRecording)? recordAudio,
     TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
-    TResult? Function()? recordAudio,
-    TResult? Function()? playAudio,
+    TResult? Function(bool play, String path)? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
@@ -1425,14 +1718,16 @@ class _$_ExitDocument implements _ExitDocument {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(bool isRecording)? recordAudio,
     TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
-    TResult Function()? recordAudio,
-    TResult Function()? playAudio,
+    TResult Function(bool play, String path)? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
@@ -1448,10 +1743,10 @@ class _$_ExitDocument implements _ExitDocument {
     required TResult Function(_AddTool value) addTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_ReadDocument value) readDocument,
     required TResult Function(_SaveDocument value) saveDocument,
     required TResult Function(_ExitDocument value) exitDocument,
-    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
   }) {
@@ -1464,10 +1759,10 @@ class _$_ExitDocument implements _ExitDocument {
     TResult? Function(_AddTool value)? addTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_ReadDocument value)? readDocument,
     TResult? Function(_SaveDocument value)? saveDocument,
     TResult? Function(_ExitDocument value)? exitDocument,
-    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
   }) {
@@ -1480,10 +1775,10 @@ class _$_ExitDocument implements _ExitDocument {
     TResult Function(_AddTool value)? addTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_ReadDocument value)? readDocument,
     TResult Function(_SaveDocument value)? saveDocument,
     TResult Function(_ExitDocument value)? exitDocument,
-    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
     required TResult orElse(),
@@ -1500,157 +1795,12 @@ abstract class _ExitDocument implements EditorPageEvent {
 }
 
 /// @nodoc
-abstract class _$$_RecordAudioCopyWith<$Res> {
-  factory _$$_RecordAudioCopyWith(
-          _$_RecordAudio value, $Res Function(_$_RecordAudio) then) =
-      __$$_RecordAudioCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_RecordAudioCopyWithImpl<$Res>
-    extends _$EditorPageEventCopyWithImpl<$Res, _$_RecordAudio>
-    implements _$$_RecordAudioCopyWith<$Res> {
-  __$$_RecordAudioCopyWithImpl(
-      _$_RecordAudio _value, $Res Function(_$_RecordAudio) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_RecordAudio implements _RecordAudio {
-  const _$_RecordAudio();
-
-  @override
-  String toString() {
-    return 'EditorPageEvent.recordAudio()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_RecordAudio);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position, bool inline)
-        addTool,
-    required TResult Function(String widgetType, int position) removeTool,
-    required TResult Function(String widgetType, int position) switchPosition,
-    required TResult Function(String? name) readDocument,
-    required TResult Function() saveDocument,
-    required TResult Function() exitDocument,
-    required TResult Function() recordAudio,
-    required TResult Function() playAudio,
-    required TResult Function(String widgetType, EditorItemList stackWidget)
-        updateTool,
-  }) {
-    return recordAudio();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position, bool inline)? addTool,
-    TResult? Function(String widgetType, int position)? removeTool,
-    TResult? Function(String widgetType, int position)? switchPosition,
-    TResult? Function(String? name)? readDocument,
-    TResult? Function()? saveDocument,
-    TResult? Function()? exitDocument,
-    TResult? Function()? recordAudio,
-    TResult? Function()? playAudio,
-    TResult? Function(String widgetType, EditorItemList stackWidget)?
-        updateTool,
-  }) {
-    return recordAudio?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position, bool inline)? addTool,
-    TResult Function(String widgetType, int position)? removeTool,
-    TResult Function(String widgetType, int position)? switchPosition,
-    TResult Function(String? name)? readDocument,
-    TResult Function()? saveDocument,
-    TResult Function()? exitDocument,
-    TResult Function()? recordAudio,
-    TResult Function()? playAudio,
-    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
-    required TResult orElse(),
-  }) {
-    if (recordAudio != null) {
-      return recordAudio();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AddTool value) addTool,
-    required TResult Function(_RemoveTool value) removeTool,
-    required TResult Function(_SwitchPosition value) switchPosition,
-    required TResult Function(_ReadDocument value) readDocument,
-    required TResult Function(_SaveDocument value) saveDocument,
-    required TResult Function(_ExitDocument value) exitDocument,
-    required TResult Function(_RecordAudio value) recordAudio,
-    required TResult Function(_PlayAudio value) playAudio,
-    required TResult Function(_UpdateTool value) updateTool,
-  }) {
-    return recordAudio(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddTool value)? addTool,
-    TResult? Function(_RemoveTool value)? removeTool,
-    TResult? Function(_SwitchPosition value)? switchPosition,
-    TResult? Function(_ReadDocument value)? readDocument,
-    TResult? Function(_SaveDocument value)? saveDocument,
-    TResult? Function(_ExitDocument value)? exitDocument,
-    TResult? Function(_RecordAudio value)? recordAudio,
-    TResult? Function(_PlayAudio value)? playAudio,
-    TResult? Function(_UpdateTool value)? updateTool,
-  }) {
-    return recordAudio?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddTool value)? addTool,
-    TResult Function(_RemoveTool value)? removeTool,
-    TResult Function(_SwitchPosition value)? switchPosition,
-    TResult Function(_ReadDocument value)? readDocument,
-    TResult Function(_SaveDocument value)? saveDocument,
-    TResult Function(_ExitDocument value)? exitDocument,
-    TResult Function(_RecordAudio value)? recordAudio,
-    TResult Function(_PlayAudio value)? playAudio,
-    TResult Function(_UpdateTool value)? updateTool,
-    required TResult orElse(),
-  }) {
-    if (recordAudio != null) {
-      return recordAudio(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _RecordAudio implements EditorPageEvent {
-  const factory _RecordAudio() = _$_RecordAudio;
-}
-
-/// @nodoc
 abstract class _$$_PlayAudioCopyWith<$Res> {
   factory _$$_PlayAudioCopyWith(
           _$_PlayAudio value, $Res Function(_$_PlayAudio) then) =
       __$$_PlayAudioCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool play, String path});
 }
 
 /// @nodoc
@@ -1660,78 +1810,115 @@ class __$$_PlayAudioCopyWithImpl<$Res>
   __$$_PlayAudioCopyWithImpl(
       _$_PlayAudio _value, $Res Function(_$_PlayAudio) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? play = null,
+    Object? path = null,
+  }) {
+    return _then(_$_PlayAudio(
+      null == play
+          ? _value.play
+          : play // ignore: cast_nullable_to_non_nullable
+              as bool,
+      null == path
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_PlayAudio implements _PlayAudio {
-  const _$_PlayAudio();
+  const _$_PlayAudio(this.play, this.path);
+
+  @override
+  final bool play;
+  @override
+  final String path;
 
   @override
   String toString() {
-    return 'EditorPageEvent.playAudio()';
+    return 'EditorPageEvent.playAudio(play: $play, path: $path)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_PlayAudio);
+        (other.runtimeType == runtimeType &&
+            other is _$_PlayAudio &&
+            (identical(other.play, play) || other.play == play) &&
+            (identical(other.path, path) || other.path == path));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, play, path);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PlayAudioCopyWith<_$_PlayAudio> get copyWith =>
+      __$$_PlayAudioCopyWithImpl<_$_PlayAudio>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position, bool inline)
+    required TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(bool isRecording) recordAudio,
     required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
-    required TResult Function() recordAudio,
-    required TResult Function() playAudio,
+    required TResult Function(bool play, String path) playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
-    return playAudio();
+    return playAudio(play, path);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(bool isRecording)? recordAudio,
     TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
-    TResult? Function()? recordAudio,
-    TResult? Function()? playAudio,
+    TResult? Function(bool play, String path)? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
-    return playAudio?.call();
+    return playAudio?.call(play, path);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(bool isRecording)? recordAudio,
     TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
-    TResult Function()? recordAudio,
-    TResult Function()? playAudio,
+    TResult Function(bool play, String path)? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
     if (playAudio != null) {
-      return playAudio();
+      return playAudio(play, path);
     }
     return orElse();
   }
@@ -1742,10 +1929,10 @@ class _$_PlayAudio implements _PlayAudio {
     required TResult Function(_AddTool value) addTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_ReadDocument value) readDocument,
     required TResult Function(_SaveDocument value) saveDocument,
     required TResult Function(_ExitDocument value) exitDocument,
-    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
   }) {
@@ -1758,10 +1945,10 @@ class _$_PlayAudio implements _PlayAudio {
     TResult? Function(_AddTool value)? addTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_ReadDocument value)? readDocument,
     TResult? Function(_SaveDocument value)? saveDocument,
     TResult? Function(_ExitDocument value)? exitDocument,
-    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
   }) {
@@ -1774,10 +1961,10 @@ class _$_PlayAudio implements _PlayAudio {
     TResult Function(_AddTool value)? addTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_ReadDocument value)? readDocument,
     TResult Function(_SaveDocument value)? saveDocument,
     TResult Function(_ExitDocument value)? exitDocument,
-    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
     required TResult orElse(),
@@ -1790,7 +1977,13 @@ class _$_PlayAudio implements _PlayAudio {
 }
 
 abstract class _PlayAudio implements EditorPageEvent {
-  const factory _PlayAudio() = _$_PlayAudio;
+  const factory _PlayAudio(final bool play, final String path) = _$_PlayAudio;
+
+  bool get play;
+  String get path;
+  @JsonKey(ignore: true)
+  _$$_PlayAudioCopyWith<_$_PlayAudio> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1867,15 +2060,16 @@ class _$_UpdateTool implements _UpdateTool {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String widgetType, int position, bool inline)
+    required TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)
         addTool,
     required TResult Function(String widgetType, int position) removeTool,
     required TResult Function(String widgetType, int position) switchPosition,
+    required TResult Function(bool isRecording) recordAudio,
     required TResult Function(String? name) readDocument,
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
-    required TResult Function() recordAudio,
-    required TResult Function() playAudio,
+    required TResult Function(bool play, String path) playAudio,
     required TResult Function(String widgetType, EditorItemList stackWidget)
         updateTool,
   }) {
@@ -1885,14 +2079,16 @@ class _$_UpdateTool implements _UpdateTool {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String widgetType, int position, bool inline)? addTool,
+    TResult? Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult? Function(String widgetType, int position)? removeTool,
     TResult? Function(String widgetType, int position)? switchPosition,
+    TResult? Function(bool isRecording)? recordAudio,
     TResult? Function(String? name)? readDocument,
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
-    TResult? Function()? recordAudio,
-    TResult? Function()? playAudio,
+    TResult? Function(bool play, String path)? playAudio,
     TResult? Function(String widgetType, EditorItemList stackWidget)?
         updateTool,
   }) {
@@ -1902,14 +2098,16 @@ class _$_UpdateTool implements _UpdateTool {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String widgetType, int position, bool inline)? addTool,
+    TResult Function(
+            String widgetType, TextSelection textSelection, bool inline)?
+        addTool,
     TResult Function(String widgetType, int position)? removeTool,
     TResult Function(String widgetType, int position)? switchPosition,
+    TResult Function(bool isRecording)? recordAudio,
     TResult Function(String? name)? readDocument,
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
-    TResult Function()? recordAudio,
-    TResult Function()? playAudio,
+    TResult Function(bool play, String path)? playAudio,
     TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
     required TResult orElse(),
   }) {
@@ -1925,10 +2123,10 @@ class _$_UpdateTool implements _UpdateTool {
     required TResult Function(_AddTool value) addTool,
     required TResult Function(_RemoveTool value) removeTool,
     required TResult Function(_SwitchPosition value) switchPosition,
+    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_ReadDocument value) readDocument,
     required TResult Function(_SaveDocument value) saveDocument,
     required TResult Function(_ExitDocument value) exitDocument,
-    required TResult Function(_RecordAudio value) recordAudio,
     required TResult Function(_PlayAudio value) playAudio,
     required TResult Function(_UpdateTool value) updateTool,
   }) {
@@ -1941,10 +2139,10 @@ class _$_UpdateTool implements _UpdateTool {
     TResult? Function(_AddTool value)? addTool,
     TResult? Function(_RemoveTool value)? removeTool,
     TResult? Function(_SwitchPosition value)? switchPosition,
+    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_ReadDocument value)? readDocument,
     TResult? Function(_SaveDocument value)? saveDocument,
     TResult? Function(_ExitDocument value)? exitDocument,
-    TResult? Function(_RecordAudio value)? recordAudio,
     TResult? Function(_PlayAudio value)? playAudio,
     TResult? Function(_UpdateTool value)? updateTool,
   }) {
@@ -1957,10 +2155,10 @@ class _$_UpdateTool implements _UpdateTool {
     TResult Function(_AddTool value)? addTool,
     TResult Function(_RemoveTool value)? removeTool,
     TResult Function(_SwitchPosition value)? switchPosition,
+    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_ReadDocument value)? readDocument,
     TResult Function(_SaveDocument value)? saveDocument,
     TResult Function(_ExitDocument value)? exitDocument,
-    TResult Function(_RecordAudio value)? recordAudio,
     TResult Function(_PlayAudio value)? playAudio,
     TResult Function(_UpdateTool value)? updateTool,
     required TResult orElse(),

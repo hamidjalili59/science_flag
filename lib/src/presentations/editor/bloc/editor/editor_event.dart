@@ -4,7 +4,7 @@ part of 'editor_bloc.dart';
 class EditorPageEvent with _$EditorPageEvent {
   const factory EditorPageEvent.addTool(
     String widgetType,
-    int position,
+    TextSelection textSelection,
     bool inline,
   ) = _AddTool;
   const factory EditorPageEvent.removeTool(
@@ -15,13 +15,16 @@ class EditorPageEvent with _$EditorPageEvent {
     String widgetType,
     int position,
   ) = _SwitchPosition;
+  const factory EditorPageEvent.recordAudio(
+    bool isRecording,
+  ) = _RecordAudio;
+
   const factory EditorPageEvent.readDocument(
     String? name,
   ) = _ReadDocument;
   const factory EditorPageEvent.saveDocument() = _SaveDocument;
   const factory EditorPageEvent.exitDocument() = _ExitDocument;
-  const factory EditorPageEvent.recordAudio() = _RecordAudio;
-  const factory EditorPageEvent.playAudio() = _PlayAudio;
+  const factory EditorPageEvent.playAudio(bool play, String path) = _PlayAudio;
   const factory EditorPageEvent.updateTool(
     String widgetType,
     EditorItemList stackWidget,
