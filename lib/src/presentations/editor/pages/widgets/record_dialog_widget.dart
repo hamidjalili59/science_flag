@@ -7,10 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:record/record.dart';
 
 class RecordDialogWidget extends StatelessWidget {
-  final String appDocumentsDir;
-  final int baseOffset;
-  const RecordDialogWidget(
-      {super.key, required this.appDocumentsDir, required this.baseOffset});
+  final String path;
+  const RecordDialogWidget({super.key, required this.path});
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +44,6 @@ class RecordDialogWidget extends StatelessWidget {
                               .get<EditorPageBloc>()
                               .add(const EditorPageEvent.recordAudio(false));
                           await getIt.get<Record>().stop();
-
-                          // await getIt
-                          //     .get<AudioPlayer>()
-                          //     .setFilePath('$appDocumentsDir/voice$baseOffset');
                           getIt
                               .get<AppRouter>()
                               .popUntilRouteWithName('Editor');
@@ -60,7 +54,7 @@ class RecordDialogWidget extends StatelessWidget {
                               .add(const EditorPageEvent.recordAudio(true));
                           if (await getIt.get<Record>().hasPermission()) {
                             await getIt.get<Record>().start(
-                                  path: '$appDocumentsDir/voice$baseOffset',
+                                  path: path,
                                   encoder: AudioEncoder.aacLc, // by default
                                   bitRate: 128000, // by default
                                   samplingRate: 44100, // by default
@@ -74,6 +68,7 @@ class RecordDialogWidget extends StatelessWidget {
                           ? Icons.stop_rounded
                           : Icons.mic_rounded,
                       size: 32.r,
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                 ),

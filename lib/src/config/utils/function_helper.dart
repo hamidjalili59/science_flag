@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
+import 'package:math_keyboard/math_keyboard.dart';
+import 'package:ndialog/ndialog.dart';
 
 class FunctionHelper {
   static final FunctionHelper _singleton = FunctionHelper._();
@@ -70,6 +72,44 @@ class FunctionHelper {
     }
     await Future<void>.delayed(const Duration(milliseconds: 250));
     return Future.value(true);
+  }
+
+  Future<void> formulaDialogMethod(void Function(String)? onSubmitted) async {
+    await NDialog(
+      title: Text(
+        'فرمول را در کادر زیر وارد کنید',
+        style: Theme.of(getIt.get<AppRouter>().navigatorKey.currentContext!)
+            .textTheme
+            .titleSmall,
+        textAlign: TextAlign.center,
+      ),
+      content: MathField(
+        variables: const [
+          'f',
+          'g',
+          'x',
+          'y',
+          'z',
+          '=',
+          r'\beta',
+          r'\Delta',
+          r'\Sigma',
+          r'\smallint',
+          r'\gamma',
+          r'\lambda',
+          r'\phi',
+          r'\rho',
+          r'\omega',
+          r'\varepsilon',
+          r'\alpha',
+          r'\varDelta',
+          r'\nabla',
+          r'\emptyset',
+        ],
+        onSubmitted: onSubmitted,
+      ),
+    ).show(getIt.get<AppRouter>().navigatorKey.currentContext!,
+        dismissable: false);
   }
 
   // Future<bool> checkInternetConnection() async {

@@ -433,7 +433,8 @@ mixin _$EditorPageEvent {
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function(bool play, String path) playAudio,
-    required TResult Function(String widgetType, EditorItemList stackWidget)
+    required TResult Function(
+            String widgetType, int offset, int length, bool inline)
         updateTool,
   }) =>
       throw _privateConstructorUsedError;
@@ -449,7 +450,7 @@ mixin _$EditorPageEvent {
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function(bool play, String path)? playAudio,
-    TResult? Function(String widgetType, EditorItemList stackWidget)?
+    TResult? Function(String widgetType, int offset, int length, bool inline)?
         updateTool,
   }) =>
       throw _privateConstructorUsedError;
@@ -465,7 +466,8 @@ mixin _$EditorPageEvent {
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function(bool play, String path)? playAudio,
-    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    TResult Function(String widgetType, int offset, int length, bool inline)?
+        updateTool,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -621,7 +623,8 @@ class _$_AddTool implements _AddTool {
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function(bool play, String path) playAudio,
-    required TResult Function(String widgetType, EditorItemList stackWidget)
+    required TResult Function(
+            String widgetType, int offset, int length, bool inline)
         updateTool,
   }) {
     return addTool(widgetType, textSelection, inline);
@@ -640,7 +643,7 @@ class _$_AddTool implements _AddTool {
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function(bool play, String path)? playAudio,
-    TResult? Function(String widgetType, EditorItemList stackWidget)?
+    TResult? Function(String widgetType, int offset, int length, bool inline)?
         updateTool,
   }) {
     return addTool?.call(widgetType, textSelection, inline);
@@ -659,7 +662,8 @@ class _$_AddTool implements _AddTool {
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function(bool play, String path)? playAudio,
-    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    TResult Function(String widgetType, int offset, int length, bool inline)?
+        updateTool,
     required TResult orElse(),
   }) {
     if (addTool != null) {
@@ -817,7 +821,8 @@ class _$_RemoveTool implements _RemoveTool {
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function(bool play, String path) playAudio,
-    required TResult Function(String widgetType, EditorItemList stackWidget)
+    required TResult Function(
+            String widgetType, int offset, int length, bool inline)
         updateTool,
   }) {
     return removeTool(widgetType, position);
@@ -836,7 +841,7 @@ class _$_RemoveTool implements _RemoveTool {
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function(bool play, String path)? playAudio,
-    TResult? Function(String widgetType, EditorItemList stackWidget)?
+    TResult? Function(String widgetType, int offset, int length, bool inline)?
         updateTool,
   }) {
     return removeTool?.call(widgetType, position);
@@ -855,7 +860,8 @@ class _$_RemoveTool implements _RemoveTool {
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function(bool play, String path)? playAudio,
-    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    TResult Function(String widgetType, int offset, int length, bool inline)?
+        updateTool,
     required TResult orElse(),
   }) {
     if (removeTool != null) {
@@ -1012,7 +1018,8 @@ class _$_SwitchPosition implements _SwitchPosition {
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function(bool play, String path) playAudio,
-    required TResult Function(String widgetType, EditorItemList stackWidget)
+    required TResult Function(
+            String widgetType, int offset, int length, bool inline)
         updateTool,
   }) {
     return switchPosition(widgetType, position);
@@ -1031,7 +1038,7 @@ class _$_SwitchPosition implements _SwitchPosition {
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function(bool play, String path)? playAudio,
-    TResult? Function(String widgetType, EditorItemList stackWidget)?
+    TResult? Function(String widgetType, int offset, int length, bool inline)?
         updateTool,
   }) {
     return switchPosition?.call(widgetType, position);
@@ -1050,7 +1057,8 @@ class _$_SwitchPosition implements _SwitchPosition {
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function(bool play, String path)? playAudio,
-    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    TResult Function(String widgetType, int offset, int length, bool inline)?
+        updateTool,
     required TResult orElse(),
   }) {
     if (switchPosition != null) {
@@ -1198,7 +1206,8 @@ class _$_RecordAudio implements _RecordAudio {
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function(bool play, String path) playAudio,
-    required TResult Function(String widgetType, EditorItemList stackWidget)
+    required TResult Function(
+            String widgetType, int offset, int length, bool inline)
         updateTool,
   }) {
     return recordAudio(isRecording);
@@ -1217,7 +1226,7 @@ class _$_RecordAudio implements _RecordAudio {
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function(bool play, String path)? playAudio,
-    TResult? Function(String widgetType, EditorItemList stackWidget)?
+    TResult? Function(String widgetType, int offset, int length, bool inline)?
         updateTool,
   }) {
     return recordAudio?.call(isRecording);
@@ -1236,7 +1245,8 @@ class _$_RecordAudio implements _RecordAudio {
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function(bool play, String path)? playAudio,
-    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    TResult Function(String widgetType, int offset, int length, bool inline)?
+        updateTool,
     required TResult orElse(),
   }) {
     if (recordAudio != null) {
@@ -1381,7 +1391,8 @@ class _$_ReadDocument implements _ReadDocument {
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function(bool play, String path) playAudio,
-    required TResult Function(String widgetType, EditorItemList stackWidget)
+    required TResult Function(
+            String widgetType, int offset, int length, bool inline)
         updateTool,
   }) {
     return readDocument(name);
@@ -1400,7 +1411,7 @@ class _$_ReadDocument implements _ReadDocument {
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function(bool play, String path)? playAudio,
-    TResult? Function(String widgetType, EditorItemList stackWidget)?
+    TResult? Function(String widgetType, int offset, int length, bool inline)?
         updateTool,
   }) {
     return readDocument?.call(name);
@@ -1419,7 +1430,8 @@ class _$_ReadDocument implements _ReadDocument {
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function(bool play, String path)? playAudio,
-    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    TResult Function(String widgetType, int offset, int length, bool inline)?
+        updateTool,
     required TResult orElse(),
   }) {
     if (readDocument != null) {
@@ -1538,7 +1550,8 @@ class _$_SaveDocument implements _SaveDocument {
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function(bool play, String path) playAudio,
-    required TResult Function(String widgetType, EditorItemList stackWidget)
+    required TResult Function(
+            String widgetType, int offset, int length, bool inline)
         updateTool,
   }) {
     return saveDocument();
@@ -1557,7 +1570,7 @@ class _$_SaveDocument implements _SaveDocument {
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function(bool play, String path)? playAudio,
-    TResult? Function(String widgetType, EditorItemList stackWidget)?
+    TResult? Function(String widgetType, int offset, int length, bool inline)?
         updateTool,
   }) {
     return saveDocument?.call();
@@ -1576,7 +1589,8 @@ class _$_SaveDocument implements _SaveDocument {
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function(bool play, String path)? playAudio,
-    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    TResult Function(String widgetType, int offset, int length, bool inline)?
+        updateTool,
     required TResult orElse(),
   }) {
     if (saveDocument != null) {
@@ -1690,7 +1704,8 @@ class _$_ExitDocument implements _ExitDocument {
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function(bool play, String path) playAudio,
-    required TResult Function(String widgetType, EditorItemList stackWidget)
+    required TResult Function(
+            String widgetType, int offset, int length, bool inline)
         updateTool,
   }) {
     return exitDocument();
@@ -1709,7 +1724,7 @@ class _$_ExitDocument implements _ExitDocument {
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function(bool play, String path)? playAudio,
-    TResult? Function(String widgetType, EditorItemList stackWidget)?
+    TResult? Function(String widgetType, int offset, int length, bool inline)?
         updateTool,
   }) {
     return exitDocument?.call();
@@ -1728,7 +1743,8 @@ class _$_ExitDocument implements _ExitDocument {
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function(bool play, String path)? playAudio,
-    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    TResult Function(String widgetType, int offset, int length, bool inline)?
+        updateTool,
     required TResult orElse(),
   }) {
     if (exitDocument != null) {
@@ -1876,7 +1892,8 @@ class _$_PlayAudio implements _PlayAudio {
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function(bool play, String path) playAudio,
-    required TResult Function(String widgetType, EditorItemList stackWidget)
+    required TResult Function(
+            String widgetType, int offset, int length, bool inline)
         updateTool,
   }) {
     return playAudio(play, path);
@@ -1895,7 +1912,7 @@ class _$_PlayAudio implements _PlayAudio {
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function(bool play, String path)? playAudio,
-    TResult? Function(String widgetType, EditorItemList stackWidget)?
+    TResult? Function(String widgetType, int offset, int length, bool inline)?
         updateTool,
   }) {
     return playAudio?.call(play, path);
@@ -1914,7 +1931,8 @@ class _$_PlayAudio implements _PlayAudio {
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function(bool play, String path)? playAudio,
-    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    TResult Function(String widgetType, int offset, int length, bool inline)?
+        updateTool,
     required TResult orElse(),
   }) {
     if (playAudio != null) {
@@ -1992,7 +2010,7 @@ abstract class _$$_UpdateToolCopyWith<$Res> {
           _$_UpdateTool value, $Res Function(_$_UpdateTool) then) =
       __$$_UpdateToolCopyWithImpl<$Res>;
   @useResult
-  $Res call({String widgetType, EditorItemList stackWidget});
+  $Res call({String widgetType, int offset, int length, bool inline});
 }
 
 /// @nodoc
@@ -2007,17 +2025,27 @@ class __$$_UpdateToolCopyWithImpl<$Res>
   @override
   $Res call({
     Object? widgetType = null,
-    Object? stackWidget = null,
+    Object? offset = null,
+    Object? length = null,
+    Object? inline = null,
   }) {
     return _then(_$_UpdateTool(
       null == widgetType
           ? _value.widgetType
           : widgetType // ignore: cast_nullable_to_non_nullable
               as String,
-      null == stackWidget
-          ? _value.stackWidget
-          : stackWidget // ignore: cast_nullable_to_non_nullable
-              as EditorItemList,
+      null == offset
+          ? _value.offset
+          : offset // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == length
+          ? _value.length
+          : length // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == inline
+          ? _value.inline
+          : inline // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -2025,16 +2053,20 @@ class __$$_UpdateToolCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_UpdateTool implements _UpdateTool {
-  const _$_UpdateTool(this.widgetType, this.stackWidget);
+  const _$_UpdateTool(this.widgetType, this.offset, this.length, this.inline);
 
   @override
   final String widgetType;
   @override
-  final EditorItemList stackWidget;
+  final int offset;
+  @override
+  final int length;
+  @override
+  final bool inline;
 
   @override
   String toString() {
-    return 'EditorPageEvent.updateTool(widgetType: $widgetType, stackWidget: $stackWidget)';
+    return 'EditorPageEvent.updateTool(widgetType: $widgetType, offset: $offset, length: $length, inline: $inline)';
   }
 
   @override
@@ -2044,12 +2076,14 @@ class _$_UpdateTool implements _UpdateTool {
             other is _$_UpdateTool &&
             (identical(other.widgetType, widgetType) ||
                 other.widgetType == widgetType) &&
-            (identical(other.stackWidget, stackWidget) ||
-                other.stackWidget == stackWidget));
+            (identical(other.offset, offset) || other.offset == offset) &&
+            (identical(other.length, length) || other.length == length) &&
+            (identical(other.inline, inline) || other.inline == inline));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, widgetType, stackWidget);
+  int get hashCode =>
+      Object.hash(runtimeType, widgetType, offset, length, inline);
 
   @JsonKey(ignore: true)
   @override
@@ -2070,10 +2104,11 @@ class _$_UpdateTool implements _UpdateTool {
     required TResult Function() saveDocument,
     required TResult Function() exitDocument,
     required TResult Function(bool play, String path) playAudio,
-    required TResult Function(String widgetType, EditorItemList stackWidget)
+    required TResult Function(
+            String widgetType, int offset, int length, bool inline)
         updateTool,
   }) {
-    return updateTool(widgetType, stackWidget);
+    return updateTool(widgetType, offset, length, inline);
   }
 
   @override
@@ -2089,10 +2124,10 @@ class _$_UpdateTool implements _UpdateTool {
     TResult? Function()? saveDocument,
     TResult? Function()? exitDocument,
     TResult? Function(bool play, String path)? playAudio,
-    TResult? Function(String widgetType, EditorItemList stackWidget)?
+    TResult? Function(String widgetType, int offset, int length, bool inline)?
         updateTool,
   }) {
-    return updateTool?.call(widgetType, stackWidget);
+    return updateTool?.call(widgetType, offset, length, inline);
   }
 
   @override
@@ -2108,11 +2143,12 @@ class _$_UpdateTool implements _UpdateTool {
     TResult Function()? saveDocument,
     TResult Function()? exitDocument,
     TResult Function(bool play, String path)? playAudio,
-    TResult Function(String widgetType, EditorItemList stackWidget)? updateTool,
+    TResult Function(String widgetType, int offset, int length, bool inline)?
+        updateTool,
     required TResult orElse(),
   }) {
     if (updateTool != null) {
-      return updateTool(widgetType, stackWidget);
+      return updateTool(widgetType, offset, length, inline);
     }
     return orElse();
   }
@@ -2171,12 +2207,13 @@ class _$_UpdateTool implements _UpdateTool {
 }
 
 abstract class _UpdateTool implements EditorPageEvent {
-  const factory _UpdateTool(
-          final String widgetType, final EditorItemList stackWidget) =
-      _$_UpdateTool;
+  const factory _UpdateTool(final String widgetType, final int offset,
+      final int length, final bool inline) = _$_UpdateTool;
 
   String get widgetType;
-  EditorItemList get stackWidget;
+  int get offset;
+  int get length;
+  bool get inline;
   @JsonKey(ignore: true)
   _$$_UpdateToolCopyWith<_$_UpdateTool> get copyWith =>
       throw _privateConstructorUsedError;

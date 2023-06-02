@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:base_project/src/config/routes/router.dart';
 import 'package:base_project/src/config/utils/function_helper.dart';
 import 'package:base_project/src/features/core/models/tuple.dart' as tuple;
-import 'package:base_project/src/features/editor/domain/models/editor_item_list.dart';
 import 'package:base_project/src/features/editor/domain/use_cases/read_node_editor_usecase.dart';
 import 'package:base_project/src/features/editor/domain/use_cases/save_note_usecase.dart';
 import 'package:base_project/src/injectable/injectable.dart';
@@ -15,12 +14,10 @@ import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:math_keyboard/math_keyboard.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
@@ -46,7 +43,7 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
   }
   @override
   void onEvent(EditorPageEvent event) {
-    FunctionHelper().logMessage('>>>>> Home Bloc event: ${event.toString()}');
+    FunctionHelper().logMessage('>>>>> Editor Bloc event: ${event.toString()}');
     super.onEvent(event);
   }
 
@@ -55,100 +52,67 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
     Emitter<EditorPageState> emit,
   ) async {
     final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
-    emit(EditorPageState.idle(
-        controller: state.controller, isLoading: true, name: state.name));
+
     if (event.widgetType == 'text') {
       state.controller!.document.insert(
           event.textSelection.baseOffset,
           EmbeddableObject('widget',
               inline: true, data: {'width': 50.0, 'height': 60.0}));
-      emit(EditorPageState.idle(
-          controller: state.controller, isLoading: false, name: state.name));
+      emit(state.copyWith(isLoading: false));
     } else if (event.widgetType == 'camera') {
       getIt.get<AppRouter>().popUntilRouteWithName('Editor');
       final imagesPath = await CunningDocumentScanner.getPictures();
-      await File(imagesPath!.first).copy(
-          '${appDocumentsDir.path}/camera${event.textSelection.baseOffset}');
-      state.controller!.document.insert(
-          event.textSelection.baseOffset,
-          EmbeddableObject('camera', inline: false, data: {
-            'length': imagesPath.length,
-            'images':
-                '${appDocumentsDir.path}/camera${event.textSelection.baseOffset}'
-          }));
-      emit(EditorPageState.idle(
-          controller: state.controller, isLoading: false, name: state.name));
+      for (var i = 0; i < (imagesPath ?? []).length; i++) {
+        await insertDataToDelta(imagesPath![i], appDocumentsDir.path,
+            event.textSelection.baseOffset + i, 'camera');
+        // await File(imagesPath![i]).copy(
+        //     '${appDocumentsDir.path}/camera${event.textSelection.baseOffset + i}');
+        // state.controller!.document.insert(
+        //     event.textSelection.baseOffset + i,
+        //     EmbeddableObject('camera', inline: false, data: {
+        //       'length': imagesPath.length,
+        //       'images':
+        //           '${appDocumentsDir.path}/camera${event.textSelection.baseOffset + i}'
+        //     }));
+      }
+      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(isLoading: false));
     } else if (event.widgetType == 'gallary') {
       getIt.get<AppRouter>().popUntilRouteWithName('Editor');
 
       XFile? imageFile = await FunctionHelper().imagePickerMethod();
-      await File(imageFile.path).copy(
-          '${appDocumentsDir.path}/gallary${event.textSelection.baseOffset}');
-      state.controller!.document.insert(
-          event.textSelection.baseOffset,
-          EmbeddableObject('gallary', inline: false, data: {
-            'image':
-                '${appDocumentsDir.path}/gallary${event.textSelection.baseOffset}'
-          }));
-      emit(EditorPageState.idle(
-          controller: state.controller, isLoading: false, name: state.name));
+      (int, String) path = await insertDataToDelta(imageFile.path,
+          appDocumentsDir.path, event.textSelection.baseOffset, 'gallary');
+      state.controller!.document.insert(event.textSelection.baseOffset,
+          EmbeddableObject('gallary', inline: false, data: {'image': path.$2}));
+      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(isLoading: false));
     } else if (event.widgetType == 'formula') {
       getIt.get<AppRouter>().popUntilRouteWithName('Editor');
-      await NDialog(
-        title: Text(
-          'فرمول را در کادر زیر وارد کنید',
-          style: Theme.of(getIt.get<AppRouter>().navigatorKey.currentContext!)
-              .textTheme
-              .titleSmall,
-          textAlign: TextAlign.center,
-        ),
-        content: SizedBox(
-          width: 0.3.sw,
-          height: 0.1.sh,
-          child: MathField(
-            // No parameters are required.
-            keyboardType: MathKeyboardType
-                .expression, // Specify the keyboard type (expression or number only).
-            variables: const [
-              'x',
-              'y',
-              'z'
-            ], // Specify the variables the user can use (only in expression mode).
-            decoration:
-                const InputDecoration(), // Decorate the input field using the familiar InputDecoration.
-            onChanged:
-                (String value) {}, // Respond to changes in the input field.
-            onSubmitted: (String value) {
-              state.controller!.document.insert(
-                  event.textSelection.baseOffset,
-                  EmbeddableObject('formula',
-                      inline: true, data: {'value': value, 'size': 18.0}));
-              getIt.get<AppRouter>().popUntilRouteWithName('Editor');
-            }, // Respond to the user submitting their input.
-            autofocus: true, // Enable or disable autofocus of the input field.
-          ),
-        ),
-      ).show(getIt.get<AppRouter>().navigatorKey.currentContext!,
-          dismissable: false);
-      emit(EditorPageState.idle(
-          controller: state.controller, isLoading: false, name: state.name));
+      await FunctionHelper().formulaDialogMethod((value) {
+        state.controller!.document.insert(
+            event.textSelection.baseOffset,
+            EmbeddableObject('formula',
+                inline: true, data: {'value': value, 'size': 18.0}));
+        getIt.get<AppRouter>().popUntilRouteWithName('Editor');
+      });
+      emit(state.copyWith(isLoading: false));
     } else if (event.widgetType == 'voice') {
       getIt.get<AppRouter>().popUntilRouteWithName('Editor');
-      emit(EditorPageState.idle(
-          controller: state.controller, isLoading: false, name: state.name));
       if (!getIt.isRegistered<Record>()) {
         getIt.registerSingleton<Record>(Record());
       }
       if (!getIt.isRegistered<AudioPlayer>()) {
         getIt.registerSingleton<AudioPlayer>(AudioPlayer());
       }
+      (int, String) path = await insertDataToDelta(
+          '', appDocumentsDir.path, event.textSelection.baseOffset, 'voice');
       await NDialog(
         dialogStyle: DialogStyle(
           backgroundColor: Colors.white38,
         ),
         content: RecordDialogWidget(
-          appDocumentsDir: appDocumentsDir.path,
-          baseOffset: event.textSelection.baseOffset,
+          path: path.$2,
         ),
       )
           .show(
@@ -157,15 +121,11 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
         dismissable: false,
       )
           .whenComplete(() async {
-        if (await File(
-                '${appDocumentsDir.path}/voice${event.textSelection.baseOffset}')
-            .exists()) {
+        if (await File(path.$2).exists()) {
           state.controller!.document.insert(
-              event.textSelection.baseOffset,
-              EmbeddableObject('voice', inline: true, data: {
-                'audio':
-                    '${appDocumentsDir.path}/voice${event.textSelection.baseOffset}'
-              }));
+              path.$1,
+              EmbeddableObject('voice',
+                  inline: true, data: {'audio': path.$2}));
           state.controller!.formatSelection(
               ParchmentAttribute.backgroundColor.fromString('0x602BAAFF'));
         }
@@ -173,8 +133,11 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
         getIt.unregister<Record>();
         getIt.get<AudioPlayer>().dispose();
         getIt.unregister<AudioPlayer>();
+        emit(state.copyWith(isLoading: false));
       });
-    } else {}
+    } else {
+      emit(state.copyWith(isLoading: false));
+    }
   }
 
   FutureOr<void> _onRemoveTool(
@@ -189,10 +152,81 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
   FutureOr<void> _onUpdateTool(
     _UpdateTool event,
     Emitter<EditorPageState> emit,
-  ) {
+  ) async {
+    final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
+
     if (event.widgetType == 'text') {
     } else if (event.widgetType == 'camera') {
-    } else {}
+      final imagesPath = await CunningDocumentScanner.getPictures();
+      for (var i = 0; i < (imagesPath ?? []).length; i++) {
+        //!
+        await insertDataToDelta(
+            imagesPath![i], appDocumentsDir.path, event.offset + i, 'camera');
+      }
+
+      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(isLoading: false));
+    } else if (event.widgetType == 'gallary') {
+      XFile? imageFile = await FunctionHelper().imagePickerMethod();
+      (int, String) path = await insertDataToDelta(
+          imageFile.path, appDocumentsDir.path, event.offset, 'gallary');
+      state.controller!.document.insert(event.offset,
+          EmbeddableObject('gallary', inline: false, data: {'image': path.$2}));
+      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(isLoading: false));
+    } else if (event.widgetType == 'formula') {
+      getIt.get<AppRouter>().popUntilRouteWithName('Editor');
+      await FunctionHelper().formulaDialogMethod((value) {
+        state.controller!.document.replace(
+            event.offset,
+            event.length,
+            EmbeddableObject('formula',
+                inline: true, data: {'value': value, 'size': 18.0}));
+
+        getIt.get<AppRouter>().popUntilRouteWithName('Editor');
+      });
+      emit(state.copyWith(isLoading: false));
+    } else if (event.widgetType == 'voice') {
+      getIt.get<AppRouter>().popUntilRouteWithName('Editor');
+      if (!getIt.isRegistered<Record>()) {
+        getIt.registerSingleton<Record>(Record());
+      }
+      if (!getIt.isRegistered<AudioPlayer>()) {
+        getIt.registerSingleton<AudioPlayer>(AudioPlayer());
+      }
+      (int, String) path = await insertDataToDelta(
+          '', appDocumentsDir.path, event.offset, 'voice');
+      await NDialog(
+        dialogStyle: DialogStyle(
+          backgroundColor: Colors.white38,
+        ),
+        content: RecordDialogWidget(
+          path: path.$2,
+        ),
+      )
+          .show(
+        getIt.get<AppRouter>().navigatorKey.currentContext!,
+        transitionType: DialogTransitionType.BottomToTop,
+        dismissable: false,
+      )
+          .whenComplete(() async {
+        if (await File(path.$2).exists()) {
+          state.controller!.document.insert(
+              path.$1,
+              EmbeddableObject('voice',
+                  inline: true, data: {'audio': path.$2}));
+          state.controller!.formatSelection(
+              ParchmentAttribute.backgroundColor.fromString('0x602BAAFF'));
+        }
+        getIt.get<Record>().dispose();
+        getIt.unregister<Record>();
+        getIt.get<AudioPlayer>().dispose();
+        getIt.unregister<AudioPlayer>();
+        emit(state.copyWith(isLoading: false));
+      });
+    } else {
+      emit(state.copyWith(isLoading: false));
+    }
   }
 
   FutureOr<void> _onReadDocument(
@@ -370,6 +404,32 @@ class EditorPageBloc extends Bloc<EditorPageEvent, EditorPageState> {
         if (getIt.isRegistered<AudioPlayer>()) {
           getIt.unregister<AudioPlayer>();
         }
+      }
+    }
+  }
+
+  Future<(int offset, String pathDir)> insertDataToDelta(
+      String path, String appDocumentsDir, int baseOffset, String type) async {
+    if (await File('$appDocumentsDir/$type$baseOffset').exists()) {
+      return await insertDataToDelta(
+          path, appDocumentsDir, baseOffset + 1, type);
+    } else {
+      if (type == 'gallary') {
+        await File(path).copy('$appDocumentsDir/$type$baseOffset');
+        return (baseOffset, '$appDocumentsDir/$type$baseOffset');
+      } else if (type == 'voice') {
+        return (baseOffset, '$appDocumentsDir/voice$baseOffset');
+      } else if (type == 'camera') {
+        await File(path).copy('$appDocumentsDir/$type$baseOffset');
+        state.controller!.document.insert(
+            baseOffset,
+            EmbeddableObject('camera', inline: false, data: {
+              'length': path,
+              'images': '$appDocumentsDir/camera$baseOffset'
+            }));
+        return (baseOffset, '$appDocumentsDir/camera$baseOffset');
+      } else {
+        return (baseOffset, '');
       }
     }
   }

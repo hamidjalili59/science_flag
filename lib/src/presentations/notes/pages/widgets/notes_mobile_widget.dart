@@ -21,10 +21,21 @@ class NotesMobileWidget extends StatelessWidget {
   }
 }
 
-class NotesPageBody extends StatelessWidget {
+class NotesPageBody extends StatefulWidget {
   const NotesPageBody({
     super.key,
   });
+
+  @override
+  State<NotesPageBody> createState() => _NotesPageBodyState();
+}
+
+class _NotesPageBodyState extends State<NotesPageBody> {
+  @override
+  void dispose() {
+    getIt.get<NotesBloc>().close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,88 +51,17 @@ class NotesPageBody extends StatelessWidget {
                 orElse: () => const SizedBox(),
                 failed: () => const Text('Failed'),
                 idle: (isLoading, notes) {
-                  return SizedBox(
-                    width: 1.sw,
-                    child: ListView.builder(
-                      itemCount: isLoading ? 4 : notes.length,
-                      itemBuilder: (context, position) {
-                        switch (isLoading) {
-                          case false:
-                            return Padding(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 8.0.h,
-                                horizontal: 20.w,
-                              ),
-                              child: Container(
-                                height: 90.h,
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground,
-                                  borderRadius: BorderRadius.circular(12.r),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    SizedBox(
-                                      width: 40.w,
-                                      child: SvgPicture.asset(
-                                        notes[position].category == 'math'
-                                            ? SVGAssets.math_3
-                                            : notes[position].category ==
-                                                    'chemistry'
-                                                ? SVGAssets.math_3
-                                                : SVGAssets.course,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 0.5.sw,
-                                      child: Text(
-                                        notes[position].name,
-                                        textAlign: TextAlign.center,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!
-                                            .copyWith(
-                                              fontWeight: FontWeight.w500,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .surface,
-                                            ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        getIt.get<NotesBloc>().add(
-                                            NotesEvent.editNotesItem(
-                                                notes[position]));
-                                      },
-                                      child: SizedBox(
-                                        width: 40.w,
-                                        height: 40.w,
-                                        child: Padding(
-                                          padding: EdgeInsets.all(6.0.r),
-                                          child: SvgPicture.asset(
-                                            SVGAssets.modify,
-                                            fit: BoxFit.fitHeight,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .surface,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          default:
-                            return Shimmer.fromColors(
-                              baseColor: Colors.grey.withOpacity(0.3),
-                              highlightColor:
-                                  Colors.grey.shade100.withOpacity(0.3),
-                              child: Padding(
+                  return Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 8.0.r, vertical: 18.r),
+                    child: SizedBox(
+                      width: 1.sw,
+                      child: ListView.builder(
+                        itemCount: isLoading ? 4 : notes.length,
+                        itemBuilder: (context, position) {
+                          switch (isLoading) {
+                            case false:
+                              return Padding(
                                 padding: EdgeInsets.symmetric(
                                   vertical: 8.0.h,
                                   horizontal: 20.w,
@@ -129,14 +69,89 @@ class NotesPageBody extends StatelessWidget {
                                 child: Container(
                                   height: 90.h,
                                   decoration: BoxDecoration(
-                                    color: Colors.black,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground,
                                     borderRadius: BorderRadius.circular(12.r),
                                   ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      SizedBox(
+                                        width: 40.w,
+                                        child: SvgPicture.asset(
+                                          notes[position].category == 'math'
+                                              ? SVGAssets.math_3
+                                              : notes[position].category ==
+                                                      'chemistry'
+                                                  ? SVGAssets.math_3
+                                                  : SVGAssets.course,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 0.5.sw,
+                                        child: Text(
+                                          notes[position].name,
+                                          textAlign: TextAlign.center,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge!
+                                              .copyWith(
+                                                fontWeight: FontWeight.w500,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .surface,
+                                              ),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          getIt.get<NotesBloc>().add(
+                                              NotesEvent.editNotesItem(
+                                                  notes[position]));
+                                        },
+                                        child: SizedBox(
+                                          width: 40.w,
+                                          height: 40.w,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(6.0.r),
+                                            child: SvgPicture.asset(
+                                              SVGAssets.modify,
+                                              fit: BoxFit.fitHeight,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .surface,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                        }
-                      },
+                              );
+                            default:
+                              return Shimmer.fromColors(
+                                baseColor: Colors.grey.withOpacity(0.3),
+                                highlightColor:
+                                    Colors.grey.shade100.withOpacity(0.3),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 8.0.h,
+                                    horizontal: 20.w,
+                                  ),
+                                  child: Container(
+                                    height: 90.h,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.circular(12.r),
+                                    ),
+                                  ),
+                                ),
+                              );
+                          }
+                        },
+                      ),
                     ),
                   );
                 },
