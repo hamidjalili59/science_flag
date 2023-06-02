@@ -174,7 +174,7 @@ class HomeHeaderWidget extends StatelessWidget {
       width: 0.88.sw,
       height: 0.23.sh,
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary,
+          color: Theme.of(context).colorScheme.onSecondary,
           borderRadius: BorderRadius.circular(18.r)),
       child: InkWell(
         onTap: () {
@@ -294,7 +294,7 @@ class HomeAppbarWidget extends StatelessWidget {
               padding: EdgeInsets.all(13.r),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.r),
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.onSecondary,
               ),
               child: SvgPicture.asset(
                 SVGAssets.search,

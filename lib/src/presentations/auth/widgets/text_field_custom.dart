@@ -47,7 +47,7 @@ class TextFieldCustomWidget extends StatelessWidget {
                   fontWeight: FontWeight.w500),
             )
           : TextField(
-              autofocus: true,
+              autofocus: false,
               focusNode: focusNode,
               style: TextStyle(
                 fontFamily: 'IranSans',

@@ -40,6 +40,7 @@ dependencies:
   json_annotation: ^4.8.1
   just_audio: ^0.9.33
   logger: ^1.3.0
+  math_expressions: ^2.4.0
   math_keyboard:
     path: ./packages/math_keyboard
   ndialog: ^4.3.0

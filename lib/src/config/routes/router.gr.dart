@@ -16,10 +16,9 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     Login.name: (routeData) {
-      final args = routeData.argsAs<LoginArgs>(orElse: () => const LoginArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: AuthPage(key: args.key),
+        child: const AuthPage(),
       );
     },
     Editor.name: (routeData) {
@@ -60,30 +59,16 @@ abstract class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [AuthPage]
-class Login extends PageRouteInfo<LoginArgs> {
-  Login({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
+class Login extends PageRouteInfo<void> {
+  const Login({List<PageRouteInfo>? children})
+      : super(
           Login.name,
-          args: LoginArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'Login';
 
-  static const PageInfo<LoginArgs> page = PageInfo<LoginArgs>(name);
-}
-
-class LoginArgs {
-  const LoginArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'LoginArgs{key: $key}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

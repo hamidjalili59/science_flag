@@ -12,14 +12,35 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage(name: 'login')
-class AuthPage extends StatelessWidget {
-  AuthPage({super.key});
+class AuthPage extends StatefulWidget {
+  const AuthPage({super.key});
+
+  @override
+  State<AuthPage> createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> {
   final FocusNode _codefocusNode = FocusNode();
+
   final FocusNode _numberPhonefocusNode = FocusNode();
+
   final TextEditingController _numberPhoneController =
       TextEditingController(text: '');
+
   final TextEditingController _codeController = TextEditingController(text: '');
+
   final AuthBloc _authBloc = getIt.get<AuthBloc>();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _numberPhoneController.dispose();
+    _numberPhonefocusNode.dispose();
+    _codeController.dispose();
+    _codefocusNode.dispose();
+    _authBloc.close();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -81,7 +102,7 @@ class AuthPage extends StatelessWidget {
                       return state.maybeWhen(
                         orElse: () => const SizedBox(),
                         otpHandshakeSuccess: (otpHandshakeResponse, isLoading) {
-                          _codefocusNode.requestFocus();
+                          // _codefocusNode.requestFocus();
                           return SizedBox(
                             width: 1.sw,
                             height: 0.3.sh,
@@ -178,7 +199,7 @@ class AuthPage extends StatelessWidget {
                           return const Center(child: Text('verify'));
                         },
                         idle: (isLoading) {
-                          _numberPhonefocusNode.requestFocus();
+                          // _numberPhonefocusNode.requestFocus();
                           return SizedBox(
                             width: 1.sw,
                             height: 0.3.sh,
@@ -188,12 +209,6 @@ class AuthPage extends StatelessWidget {
                                 children: [
                                   TextFieldCustomWidget(
                                       onSubmitted: (p0) {
-                                        // _authBloc.add(
-                                        //   AuthEvent.otpHandshake(
-                                        //     double.parse(
-                                        //         _numberPhoneController.text),
-                                        //   ),
-                                        // );
                                         Future.delayed(
                                                 const Duration(seconds: 1))
                                             .then((value) => getIt
@@ -216,12 +231,6 @@ class AuthPage extends StatelessWidget {
                                           .then((value) => getIt
                                               .get<AppRouter>()
                                               .replaceNamed('/home'));
-                                      // _authBloc.add(
-                                      //   AuthEvent.otpHandshake(
-                                      //     double.parse(
-                                      //         _numberPhoneController.text),
-                                      //   ),
-                                      // );
                                     },
                                     child: Container(
                                       width: 0.75.sw,

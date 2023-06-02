@@ -27,6 +27,8 @@ class EditorPageEvent with _$EditorPageEvent {
   const factory EditorPageEvent.playAudio(bool play, String path) = _PlayAudio;
   const factory EditorPageEvent.updateTool(
     String widgetType,
-    EditorItemList stackWidget,
+    int offset,
+    int length,
+    bool inline,
   ) = _UpdateTool;
 }

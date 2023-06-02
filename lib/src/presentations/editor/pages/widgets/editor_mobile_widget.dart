@@ -23,6 +23,7 @@ class EditorMobileWidget extends StatefulWidget {
 
 class _EditorMobileWidgetState extends State<EditorMobileWidget> {
   final FocusNode _focusNode = FocusNode();
+  // final FocusNode _formulasFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -37,7 +38,7 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
         final defaultTheme = FleatherThemeData.fallback(context);
         return Scaffold(
           floatingActionButton: FloatingActionButton.extended(
-            backgroundColor: Theme.of(context).colorScheme.secondary,
+            backgroundColor: Theme.of(context).colorScheme.onSecondary,
             onPressed: () {
               NDialog(
                 dialogStyle: DialogStyle(
@@ -191,8 +192,7 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
                             bottom: 0.35.sh,
                           ),
                           onLaunchUrl: _launchUrl,
-                          maxContentWidth: 800,
-                          enableInteractiveSelection: true,
+                          maxContentWidth: 0.95.sw,
                           showCursor: true,
                           embedBuilder: _embedBuilder,
                         ),
@@ -229,8 +229,6 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
         width: 0.65.sw,
         height: 0.35.sh,
         child: Image.file(File(node.value.data['images'])),
-        // child: Image.memory((node.value.data['images'])),
-        // child: const Icon(Icons.access_alarm_outlined),
       );
     }
     if (node.value.type == 'gallary') {
@@ -239,12 +237,10 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
         width: 0.8.sw,
         height: 0.4.sh,
         child: Image.file(File(node.value.data['image'])),
-        // Image.memory((node.value.data['images'] as Uint8List)),
       );
     }
 
     if (node.value.type == 'voice') {
-      // Icons.rocket_launch_outlined
       return BlocBuilder<EditorPageBloc, EditorPageState>(
         bloc: getIt.get<EditorPageBloc>(),
         builder: (context, state) {
@@ -283,21 +279,35 @@ class _EditorMobileWidgetState extends State<EditorMobileWidget> {
     }
 
     if (node.value.type == 'formula') {
-      // Icons.rocket_launch_outlined
-      return Container(
-        constraints: BoxConstraints(
-            minHeight: 15.h, maxHeight: 80.h, minWidth: 80.w, maxWidth: 250.w),
-        child: Math.tex(node.value.data['value'],
-            mathStyle: MathStyle.text,
-            textStyle: TextStyle(
-              fontSize: node.value.data['size'],
-            )),
+      return Directionality(
+        textDirection: TextDirection.ltr,
+        child: Container(
+          constraints: BoxConstraints(
+              minHeight: 15.h,
+              maxHeight: 80.h,
+              minWidth: 10.w,
+              maxWidth: 250.w),
+          child: InkWell(
+            onTap: () => getIt.get<EditorPageBloc>().add(
+                  EditorPageEvent.updateTool(
+                    'formula',
+                    node.documentOffset,
+                    node.length,
+                    false,
+                  ),
+                ),
+            child: Math.tex(node.value.data['value'],
+                mathStyle: MathStyle.text,
+                textStyle: TextStyle(
+                  fontSize: node.value.data['size'],
+                )),
+          ),
+        ),
       );
     }
 
     if (node.value.type == 'icon') {
       final data = node.value.data;
-      // Icons.rocket_launch_outlined
       return InkWell(
         onTap: () {},
         child: Icon(
